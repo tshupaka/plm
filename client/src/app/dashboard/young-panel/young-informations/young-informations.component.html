@@ -1,0 +1,370 @@
+<form #form="ngForm">
+  <div class="row m-2">
+
+    <div class="col-8">
+      <h1>{{young.firstname}} {{young.lastname}}</h1>
+    </div>
+    <div class="col-4 text-right">
+      <button type="button" class="btn btn-outline-primary m-1" onclick="cancel()">Annuler</button>
+      <button type="button" class="btn btn-primary m-1" onclick="saveYoung(form)">Enregistrer</button>
+    </div>
+  </div>
+  <div class="row m-2">
+    <div class="col-12 text-right">
+      <h3>Etat de suivi : Parti - Toujours à l'étranger</h3>
+    </div>
+
+  </div>
+  <hr />
+  <div class="row">
+    <div class="col-md-6">
+
+      <!-- Personal Datas-->
+      <fieldset>
+        <legend>Etat civil</legend>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="gender">Sexe :</label>
+          </div>
+          <div class="col-7">
+            <select class="form-control" id="gender" [(ngModel)]="young.gender" #gender="ngModel" name="gender">
+              <option *ngFor="let gender of getDropDownValues('gender')">{{gender.value}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="lastname">Nom :</label>
+          </div>
+          <div class="col-7">
+            <input class="form-control" id="lastname" type="text" [(ngModel)]="young.lastname" #lastname="ngModel" name="lastname"
+              required />
+            <span *ngIf="lastname.dirty && lastname.invalid" class="text-danger">Le nom est obligatoire</span>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="firstname">Prénom :</label>
+          </div>
+          <div class="col-7">
+            <input class="form-control" id="firstname" type="text" [(ngModel)]="young.firstname" #firstname="ngModel"
+              name="firstname" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="birthday">Date de naissance :</label>
+          </div>
+          <div class="col-7">
+            <input class="form-control" id="birthday" type="date" [(ngModel)]="young.birthday" #birthday="ngModel" name="birthday" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-6">
+            <label class="form-check-label" for="member">Adhérent</label>
+          </div>
+          <div class="col-6">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" [(ngModel)]="young.member" type="checkbox" id="no" value="2">
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <hr class="mb-6" />
+
+    </div>
+    <div class="col-md-6">
+      <!-- Contact -->
+      <fieldset>
+        <legend>Contacts</legend>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="email">Email :</label>
+          </div>
+          <div class="col-7">
+            <input class="form-control" id="email" type="text" [(ngModel)]="young.email" #email="ngModel" name="email"
+              email />
+            <span *ngIf="email.dirty && email.invalid" class="text-danger">Email invalide</span>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="phone">Téléphone :</label>
+          </div>
+          <div class="col-7">
+            <input class="form-control" id="phone" type="text" [(ngModel)]="young.phone" #phone="ngModel" name="phone" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="facebook">Facebook :</label>
+          </div>
+          <div class="col-7">
+            <input class="form-control" id="facebook" type="text" [(ngModel)]="young.facebook" #facebook="ngModel" name="facebook" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="skype">Skype : </label>
+          </div>
+          <div class="col-7">
+            <input class="form-control" id="skype" type="text" [(ngModel)]="young.skype" #skype="ngModel" name="skype" />
+          </div>
+        </div>
+
+      </fieldset>
+      <hr class="mb-6" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <!-- contact details -->
+      <fieldset>
+        <legend>Coordonnées</legend>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="address1">Adresse 1 :</label>
+          </div>
+          <div class="col-7">
+            <input class="form-control" id="address1" type="text" [(ngModel)]="young.address1" #address1="ngModel" name="address1" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="address2">Adresse 2 :</label>
+          </div>
+          <div class="col-7">
+            <input class="form-control" id="address2" type="text" [(ngModel)]="young.address2" #address2="ngModel" name="address2" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="zipCode">Code Postal :</label>
+          </div>
+          <div class="col-7">
+            <input class="form-control" id="zipCode" type="text" [(ngModel)]="young.zipCode" #zipCode="ngModel" name="zipCode" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="city">Ville : </label>
+          </div>
+          <div class="col-7">
+            <input class="form-control" id="city" type="text" [(ngModel)]="young.city" #city="ngModel" name="city" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="geographicFocusId">Focus Géographique :</label>
+          </div>
+          <div class="col-7">
+            <select class="form-control" id="geographicFocusId" [(ngModel)]="young.geographicFocusId"
+              #geographicFocusId="ngModel" name="geographicFocusId">
+              <option *ngFor="let geographicFocus of getDropDownValues('geographicFocus')">{{geographicFocus.value}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="qpvStatusId">QPV :</label>
+          </div>
+          <div class="col-7">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="yes" value="1" name="qpvStatusId" [(ngModel)]="young.qpvStatusId">
+              <label class="form-check-label" for="yes">Oui</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="no" value="2" name="qpvStatusId" [(ngModel)]="young.qpvStatusId">
+              <label class="form-check-label" for="no">Non</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" id="limite" value="3" name="qpvStatusId" [(ngModel)]="young.qpvStatusId">
+              <label class="form-check-label" for="limite">Limite</label>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="qpvQuarterId">Quartier QPV:</label>
+          </div>
+          <div class="col-7">
+            <select class="form-control" id="qpvQuarterId" [(ngModel)]="young.qpvQuarterId" #qpvQuarterId="ngModel"
+              name="qpvQuarterId">
+              <option *ngFor="let qpvQuarter of getDropDownValues('qpvQuarter')">{{qpvQuarter.value}}</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+      <hr class="mb-6" />
+    </div>
+    <div class="col-md-6">
+      <fieldset>
+        <legend>Organisme référent</legend>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="prescriberId">Prescripteur :
+            </label>
+            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" ngbTooltip="Tooltip on top">
+              <i class="fas fa-question-circle"></i>
+            </span>
+          </div>
+          <div class="col-7">
+            <select class="form-control" id="prescriberId" [(ngModel)]="young.prescriberId" #prescriberId="ngModel"
+              name="prescriberId">
+              <option *ngFor="let prescriber of getDropDownValues('prescriber')">{{prescriber.value}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="prescriberType">Type d'organisme :</label>
+          </div>
+          <div class="col-7">
+            <input class="form-control" id="prescriberType" type="text" [(ngModel)]="young.prescriberType"
+              #prescriberType="ngModel" name="prescriberType" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="prescriberDetail">Détail organisme référent :</label>
+          </div>
+          <div class="col-7">
+            <input class="form-control" id="prescriberDetail" type="text" [(ngModel)]="young.prescriberDetail"
+              #prescriberDetail="ngModel" name="prescriberDetail" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="prescriberName">Nom référent :</label>
+          </div>
+          <div class="col-7">
+            <input class="form-control" id="prescriberName" type="text" [(ngModel)]="young.prescriberName"
+              #prescriberName="ngModel" name="prescriberName" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="prescriberPhone">Téléphone référent : </label>
+          </div>
+          <div class="col-7">
+            <input class="form-control" id="prescriberPhone" type="text" [(ngModel)]="young.prescriberPhone"
+              #prescriberPhone="ngModel" name="prescriberPhone" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="prescriberEmail">Email référent :</label>
+          </div>
+          <div class="col-7">
+            <input class="form-control" id="prescriberEmail" type="text" [(ngModel)]="young.prescriberEmail"
+              #prescriberEmail="ngModel" name="prescriberEmail" />
+          </div>
+        </div>
+
+      </fieldset>
+      <hr class="mb-6" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <fieldset>
+        <legend>Formation</legend>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="educationLabel">Intitulé dernière formation :
+            </label>
+          </div>
+          <div class="col-7">
+            <input class="form-control" id="educationLabel" type="text" [(ngModel)]="young.educationLabel"
+              #educationLabel="ngModel" name="educationLabel" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="educationLevelId">Niveau de formation :</label>
+          </div>
+          <div class="col-7">
+            <select class="form-control" id="educationlevelId" [(ngModel)]="young.educationlevelId" #educationlevelId="ngModel"
+              name="educationlevelId">
+              <option *ngFor="let educationlevel of getDropDownValues('educationlevel')">{{educationlevel.value}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="lastCertificate">Dernier diplôme acquis</label>
+          </div>
+          <div class="col-7">
+            <input class="form-control" id="lastCertificate" type="text" [(ngModel)]="young.lastCertificate"
+              #lastCertificate="ngModel" name="lastCertificate" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="englishLevelId">Niveau d'anglais :</label>
+          </div>
+          <div class="col-7">
+            <select class="form-control" id="englishLevelId" [(ngModel)]="young.englishLevelId" #englishLevelId="ngModel"
+              name="englishLevelId">
+              <option *ngFor="let englishLevel of getDropDownValues('englishLevel')">{{englishLevel.value}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="otherLanguage">Autre langue : </label>
+          </div>
+          <div class="col-7">
+            <input class="form-control" id="otherLanguage" type="text" [(ngModel)]="young.otherLanguage" #otherLanguage="ngModel"
+              name="otherLanguage" />
+          </div>
+        </div>
+
+      </fieldset>
+      <hr class="mb-6" />
+    </div>
+    <div class="col-md-6">
+      <fieldset>
+        <legend>Situation professionnelle</legend>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="employmentStatusId">Statut emploi :
+            </label>
+          </div>
+          <div class="col-7">
+            <select class="form-control" id="employmentStatusId" [(ngModel)]="young.employmentStatusId"
+              #employmentStatusId="ngModel" name="employmentStatusId">
+              <option *ngFor="let employmentStatus of getDropDownValues('employmentStatus')">{{employmentStatus.value}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-5">
+            <label for="poleEmploiInscriptionDate">Inscription Pôle Emploi :</label>
+          </div>
+          <div class="col-7">
+            <input class="form-control" id="poleEmploiInscriptionDate" type="text" [(ngModel)]="young.poleEmploiInscriptionDate"
+              #poleEmploiInscriptionDate="ngModel" name="poleEmploiInscriptionDate" />
+          </div>
+        </div>
+        <div class="row mb-2">
+
+          <div class="col-6">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" id="rsaClaimant" name="rsaClaimant" type="checkbox" id="yes" value="1">
+              <label class="form-check-label" for="rsaClaimant">Allocataire RSA</label>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" id="no" value="2">
+              <label class="form-check-label" for="no">Garantie jeune</label>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+      <hr class="mb-6" />
+    </div>
+  </div>
+</form>
