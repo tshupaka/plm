@@ -1,0 +1,32 @@
+<section>
+  <div class="row">
+    <div class="col-12 text-right">
+      <button type="button" class="btn btn-outline-primary m-1" (click)="addAwareness()">Ajouter Sensibilisation</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 m-2">
+      <table class="table table-striped">
+        <thead>
+          <th>Date</th>
+          <th>Nom de la sensibilisation</th>
+          <th>Informations</th>
+          <th>Supprimer</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let awareness of awarenesses">
+            <td>{{awareness.date}}</td>
+            <td>{{awareness.name }}</td>
+            <td></td>
+            <td>Sup</td>
+          </tr>
+        </tbody>
+
+      </table>
+
+
+    </div>
+
+
+  </div>
+</section>

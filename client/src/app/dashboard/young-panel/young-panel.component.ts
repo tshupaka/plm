@@ -7,9 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class YoungPanelComponent implements OnInit {
 
-  constructor() { }
+  youngInformationActive: boolean;
+  youngHistoryActive: boolean;
+
+  constructor() {
+    this.youngInformationActive = false;
+    this.youngHistoryActive = true;
+  }
 
   ngOnInit() {
   }
+
+
+  setYoungInformationActive() {
+    this.youngInformationActive = true;
+    this.youngHistoryActive = false;
+  }
+
+setYoungHistoryActive() {
+  this.youngHistoryActive = true;
+  this.youngInformationActive = false;
+}
 
 }

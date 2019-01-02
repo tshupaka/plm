@@ -4,8 +4,11 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +17,8 @@ public class DropDownKey {
 
 	@Column(name = "DDK_ID")
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_plm_drop_down_key_ddk_id")
+	@SequenceGenerator(name = "seq_plm_drop_down_key_ddk_id", sequenceName = "seq_plm_drop_down_key_ddk_id")
 	private Long id;
 
 	@Column(name = "DDK_KEY")

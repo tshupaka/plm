@@ -17,7 +17,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BrowserModule,
     RouterModule.forRoot( [
       {path: 'login', component: LoginComponent},
-      {path: 'dashboard', component: DashboardComponent}
+    /*  {path: 'dashboard', component: DashboardComponent}*/
     ]),
     LoginModule,
     DashboardModule,

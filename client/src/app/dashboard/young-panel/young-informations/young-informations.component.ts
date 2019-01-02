@@ -28,16 +28,19 @@ export class YoungInformationsComponent implements OnInit {
 
 
   getDropDownValues(key: string) {
-    let values = this.dropDownValues[key];
-    if (!values) {
-      values = [];
+    if (this.dropDownValues) {
+      let values = this.dropDownValues[key];
+      if (!values) {
+        values = [];
+      }
+      return values;
     }
-    return values;
   }
 
   saveYoung(form: NgForm) {
+    console.log(form.valid);
     if (form.valid) {
-      this.youngService.saveYoung(this.young);
+      this.youngService.saveYoung(this.young).subscribe(young => console.log(young));
     } else {
       this.errorMessage = 'Des erreurs ont été détecté dans le formulaire.';
     }

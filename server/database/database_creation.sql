@@ -30,3 +30,6 @@ INSERT INTO DROP_DOWN_KEY (DDK_ID, DDK_KEY) VALUES (nextval('seq_plm_drop_down_k
 INSERT INTO DROP_DOWN_VALUE(DDV_ID, DDV_VALUE,DDV_ORDER, DDK_ID) VALUES (nextval('seq_plm_drop_down_value_ddv_id'), 'Femme', 1, 1);
 INSERT INTO DROP_DOWN_VALUE(DDV_ID, DDV_VALUE,DDV_ORDER, DDK_ID) VALUES (nextval('seq_plm_drop_down_value_ddv_id'), 'Homme', 2, 1);
 INSERT INTO DROP_DOWN_VALUE(DDV_ID, DDV_VALUE,DDV_ORDER, DDK_ID) VALUES (nextval('seq_plm_drop_down_value_ddv_id'), 'Autre', 3, 1);
+
+
+CREATE SEQUENCE seq_plm_young_you_id START 1;

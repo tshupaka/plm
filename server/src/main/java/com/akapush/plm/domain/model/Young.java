@@ -5,9 +5,12 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +20,8 @@ public class Young {
 	// Personal Data
 	@Column(name = "YOU_ID")
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_plm_young_you_id")
+	@SequenceGenerator(name = "seq_plm_young_you_id", sequenceName = "seq_plm_young_you_id")
 	private Long id;
 	@JoinColumn(name = "GENDER_DDV_ID")
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -64,7 +69,8 @@ public class Young {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private DropDownValue prescriber;
 
-	@Column(name = "PRESCRIBER_TYPE_DDV_ID")
+	@JoinColumn(name = "PRESCRIBER_TYPE_DDV_ID")
+	@ManyToOne(fetch = FetchType.EAGER)
 	private DropDownValue prescriberType;
 
 	@Column(name = "YOU_PRESCRIBER_DETAIL")

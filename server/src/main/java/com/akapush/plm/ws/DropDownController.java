@@ -16,7 +16,7 @@ import com.akapush.plm.service.DropDownService;
 import com.akapush.plm.util.DropDownHelper;
 
 @RestController
-public class DropDownControler {
+public class DropDownController {
 
 	@Autowired
 	private DropDownService dropDownService;

@@ -1,6 +1,7 @@
 package com.akapush.plm.service;
 
-import com.akapush.plm.domain.exception.NoYoungAvailable;
+import com.akapush.plm.domain.exception.InvalidBeanException;
+import com.akapush.plm.domain.exception.NoBeanAvailable;
 import com.akapush.plm.domain.model.Young;
 
 /**
@@ -13,16 +14,18 @@ public interface YoungService {
 	 * 
 	 * @param youngId
 	 * @return
-	 * @throws NoYoungAvailable
+	 * @throws NoBeanAvailable
 	 */
-	Young getYoungById(Long youngId) throws NoYoungAvailable;
+	Young getYoungById(Long youngId) throws NoBeanAvailable;
 
 	/**
 	 * Save young and return young with storage id.
 	 * 
 	 * @param young
+	 * @exception Occured
+	 *                when young hasn't name attribute defined
 	 * @return
 	 */
-	Young saveYoung(Young young);
+	Young saveYoung(Young young) throws InvalidBeanException;
 
 }

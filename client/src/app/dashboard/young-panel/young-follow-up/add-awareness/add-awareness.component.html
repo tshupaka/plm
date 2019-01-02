@@ -1,0 +1,35 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Ajouter un événement</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-12 m-2">
+        <table class="table table-striped">
+          <thead>
+            <th>Date</th>
+            <th>Nom de la sensibilisation</th>
+            <th>Informations</th>
+            <th>Ajouter</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let awareness of awarenesses">
+              <td>{{awareness.date}}</td>
+              <td>{{awareness.name }}</td>
+              <td></td>
+              <td><button class="btn btn-primary" (click)="addAwareness(awareness.id)">Ajouter</button></td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="form-group">
+      <button type="button" class="btn btn-outline-success" (click)="activeModal.dismiss()">Fermer</button>
+    </div>
+  </div>

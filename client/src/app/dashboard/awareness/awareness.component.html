@@ -1,0 +1,163 @@
+<form #form="ngForm">
+  <div class="row m-2">
+
+    <div class="col-8">
+      <h1>{{awareness.name}}</h1>
+    </div>
+    <div class="col-4 text-right">
+      <button type="button" class="btn btn-outline-primary m-1" (click)="cancel()">Annuler</button>
+      <button type="button" class="btn btn-primary m-1" (click)="saveAwareness(form)">Enregistrer</button>
+    </div>
+  </div>
+  <div>{{errorMessage}}</div>
+  <hr />
+  <div class="row">
+    <div class="col-2 mb-2">
+      <label for="name">Nom</label></div>
+    <div class="col-10 mb-2">
+      <input class="form-control" id="name" type="text" [(ngModel)]="awareness.name" #name="ngModel" name="name"
+        required />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-4 mb-2">
+          <label for="date">Date :</label>
+        </div>
+        <div class="col-8 mb-2">
+          <input class="form-control" id="date" type="date" [(ngModel)]="awareness.date" #name="ngModel" name="date"
+             />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 mb-2">
+          <label for="type">Type :</label>
+        </div>
+        <div class="col-8 mb-2">
+          <select class="form-control" id="gender" [(ngModel)]="awareness.typeId" #type="ngModel" name="type">
+            <option *ngFor="let gender of getDropDownValues('gender')">{{type.value}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 mb-2">
+          <label for="public">Public :</label>
+        </div>
+        <div class="col-8 mb-2">
+          <select class="form-control" id="public" [(ngModel)]="awareness.publicId" #public="ngModel" name="public">
+            <option *ngFor="let gender of getDropDownValues('public')">{{public.value}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-6 mb-2">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="signature" value="1" name="signature" [(ngModel)]="awareness.signature">
+            <label class="form-check-label" for="signature">Emargement</label>
+          </div>
+        </div>
+        <div class="col-6 mb-2">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="estimation" value="2" name="estimation" [(ngModel)]="!awareness.signature">
+            <label class="form-check-label" for="estimation">Estimation</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 mb-2">
+          <label for="estimation">Estimation :</label>
+        </div>
+        <div class="col-8 mb-2">
+          <input class="form-control" id="estimation" type="text" [(ngModel)]="awareness.estimation" #estimation="ngModel"
+            name="estimation"  />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12"><label for="comment">Commentaire : </label></div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+
+          <textarea id="comment" name="comment" #comment="ngModel" [(ngModel)]="awareness.comment" rows="5"></textarea>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-4 mb-2">
+          <label for="address1">Adresse :</label>
+        </div>
+        <div class="col-8 mb-2">
+          <input class="form-control" id="address1" type="text" [(ngModel)]="awareness.address1" #address1="ngModel"
+            name="address1" />
+        </div>
+      </div>
+      <div class="row align-middle">
+        <div class="col-4 mb-2">
+          <label for="address2">Complément adresse :</label>
+        </div>
+        <div class="col-8 mb-2">
+          <input class="form-control" id="address2" type="text" [(ngModel)]="awareness.address2" #address2="ngModel"
+            name="address2" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 mb-2">
+          <label for="zipCode">Code Postal :</label>
+        </div>
+        <div class="col-8 mb-2">
+          <input class="form-control" id="zipCode" type="numeric" [(ngModel)]="awareness.zipCode" #zipCode="ngModel"
+            name="zipCode" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 mb-2">
+          <label for="city">Ville :</label>
+        </div>
+        <div class="col-8 mb-2">
+          <input class="form-control" id="city" type="text" [(ngModel)]="awareness.city" #city="ngModel" name="city" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 mb-2">
+          <label for="public">Focus Géographique :</label>
+        </div>
+        <div class="col-8 mb-2">
+          <select class="form-control" id="geographicFocus" [(ngModel)]="awareness.geographicFocusId" #geographicFocusId="ngModel"
+            name="geographicFocusId">
+            <option *ngFor="let gender of getDropDownValues('geographicFocus')">{{geographicFocus.value}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 mb-2">
+          <label for="organiserStructure">Structure organisatrice :</label>
+        </div>
+        <div class="col-8 mb-2">
+          <input class="form-control" id="organiserStructure" type="text" [(ngModel)]="awareness.organiserStructure"
+            #organiserStructure="ngModel" name="organiserStructure" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 mb-2">
+          <label for="contact">Contact :</label>
+        </div>
+        <div class="col-8 mb-2">
+          <input class="form-control" id="contact" type="text" [(ngModel)]="awareness.contact" #contact="ngModel" name="contact" />
+        </div>
+      </div>
+      <div class="row"><span class="col-12 mb-2">Intervenants</span></div>
+      <div class="row" *ngFor="let user of awareness.users">
+        <input type="checkbox" value="user.id" />
+        {{user.fistname}} {{user.lastname}}
+
+      </div>
+    </div>
+
+  </div>
+
+</form>
