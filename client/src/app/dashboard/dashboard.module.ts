@@ -10,17 +10,22 @@ import { AwarenessComponent } from './awareness/awareness.component';
 import { YoungFollowUpComponent } from './young-panel/young-follow-up/young-follow-up.component';
 import { AddAwarenessComponent } from './young-panel/young-follow-up/add-awareness/add-awareness.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HomeComponent } from './home/home.component';
+import { AwarenessPipe } from './home/awareness.pipe';
 
 
 @NgModule({
   imports: [
-    CommonModule, FormsModule, NgbModule,
+    CommonModule, FormsModule, NgbModule, ReactiveFormsModule,
     RouterModule.forRoot([
       {
         path: 'dashboard', component: DashboardComponent,
         children: [
-          { path: 'young/info', component: YoungPanelComponent },
-          { path: 'awareness/info', component: AwarenessComponent }]
+          { path: 'home', component: HomeComponent },
+          { path: 'young', component: YoungPanelComponent },
+          { path: 'young/:id', component: YoungPanelComponent },
+          { path: 'awareness', component: AwarenessComponent },
+          { path: 'awareness/:id', component: AwarenessComponent }]
       }
     ]),
   ],
@@ -29,7 +34,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     YoungPanelComponent,
     YoungInformationsComponent,
     YoungFollowUpComponent,
-    AddAwarenessComponent],
+    AddAwarenessComponent,
+    HomeComponent,
+    AwarenessPipe],
   entryComponents: [AddAwarenessComponent]
 })
 export class DashboardModule { }

@@ -28,4 +28,12 @@ public interface YoungService {
 	 */
 	Young saveYoung(Young young) throws InvalidBeanException;
 
+	/**
+	 * Search young by firstname and lastname
+	 * 
+	 * @param search
+	 * @return
+	 */
+	Iterable<Young> searchYoungs(String search);
+
 }

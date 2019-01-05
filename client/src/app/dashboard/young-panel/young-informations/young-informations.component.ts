@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Young } from '../../../model/young.model';
 import { DropDownService } from '../../../service/drop-down.service';
 import { NgForm } from '@angular/forms';
 import { YoungService } from '../../../service/young.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'plm-young-informations',
@@ -11,15 +12,17 @@ import { YoungService } from '../../../service/young.service';
 })
 export class YoungInformationsComponent implements OnInit {
 
-  public young: Young = new Young();
+  @Input()
+  public young: Young;
   private dropDownValues: Object;
   private errorMessage: String;
 
 
-  constructor(private dropDownService: DropDownService, private youngService: YoungService) { }
+  constructor(private dropDownService: DropDownService, private youngService: YoungService, private router: Router ) { }
 
   ngOnInit() {
     this.initDropDownValue();
+    console.log(this.young);
   }
 
   initDropDownValue() {
@@ -44,5 +47,10 @@ export class YoungInformationsComponent implements OnInit {
     } else {
       this.errorMessage = 'Des erreurs ont été détecté dans le formulaire.';
     }
+  }
+
+
+  cancel() {
+    this.router.navigate(['/dashboard/home']);
   }
 }

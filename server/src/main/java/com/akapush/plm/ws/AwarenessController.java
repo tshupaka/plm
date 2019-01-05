@@ -7,6 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,8 +31,8 @@ public class AwarenessController {
 
 	private static final Log LOG = LogFactory.getLog(AwarenessController.class);
 
-	@RequestMapping(value = "/api/awareness", method = RequestMethod.GET)
-	public ResponseEntity<AwarenessDTO> getAwarenessById(long id) {
+	@RequestMapping(value = "/api/awareness/{awarenessId}", method = RequestMethod.GET)
+	public ResponseEntity<AwarenessDTO> getAwarenessById(@PathVariable("awarenessId") long id) {
 		try {
 			Awareness awareness = awarenessService.getAwarenessById(id);
 			AwarenessDTO awarenessDTO = awarenessHelper.getAwarenessDTO(awareness);

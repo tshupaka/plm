@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { YoungService } from 'src/app/service/young.service';
+import { Young } from 'src/app/model/young.model';
 
 @Component({
   selector: 'plm-young-panel',
@@ -9,13 +12,20 @@ export class YoungPanelComponent implements OnInit {
 
   youngInformationActive: boolean;
   youngHistoryActive: boolean;
+  currentYoung: Young;
 
-  constructor() {
-    this.youngInformationActive = false;
-    this.youngHistoryActive = true;
+  constructor(private route: ActivatedRoute, private youngservice: YoungService) {
+    this.youngInformationActive = true;
+    this.youngHistoryActive = false;
   }
 
   ngOnInit() {
+    const id = this.route.snapshot.params['id'];
+    if (id) {
+      this.youngservice.getYoungById(id).subscribe(young => this.currentYoung = young);
+    } else {
+      this.currentYoung = new Young();
+    }
   }
 
 
@@ -24,9 +34,9 @@ export class YoungPanelComponent implements OnInit {
     this.youngHistoryActive = false;
   }
 
-setYoungHistoryActive() {
-  this.youngHistoryActive = true;
-  this.youngInformationActive = false;
-}
+  setYoungHistoryActive() {
+    this.youngHistoryActive = true;
+    this.youngInformationActive = false;
+  }
 
 }

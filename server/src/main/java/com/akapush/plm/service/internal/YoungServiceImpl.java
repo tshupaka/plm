@@ -41,4 +41,12 @@ public class YoungServiceImpl implements YoungService {
 		return youngDAO.save(young);
 	}
 
+	@Override
+	public Iterable<Young> searchYoungs(String search) {
+		if (search == null) {
+			return null;
+		}
+		return youngDAO.searchYoung(search.toUpperCase());
+	}
+
 }

@@ -1,5 +1,8 @@
 package com.akapush.plm.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.akapush.plm.domain.dto.YoungDTO;
@@ -9,7 +12,16 @@ import com.akapush.plm.domain.model.Young;
 @Component
 public class YoungHelper {
 
-	public YoungDTO getYoungDTOFromYoung(Young young) {
+	public List<YoungDTO> getYoungsDTO(Iterable<Young> youngs) {
+		List<YoungDTO> youngsDTO = new ArrayList<YoungDTO>();
+		for (Young young : youngs) {
+			YoungDTO youngDTO = getYoungDTO(young);
+			youngsDTO.add(youngDTO);
+		}
+		return youngsDTO;
+	}
+
+	public YoungDTO getYoungDTO(Young young) {
 		YoungDTO youngDTO = new YoungDTO();
 		youngDTO.setAddress1(young.getAddress1());
 		youngDTO.setAddress2(young.getAddress2());
@@ -47,7 +59,7 @@ public class YoungHelper {
 		return youngDTO;
 	}
 
-	public Young getYoungFromYoungDTO(YoungDTO youngDTO) {
+	public Young getYoung(YoungDTO youngDTO) {
 		Young young = new Young();
 		young.setAddress1(youngDTO.getAddress1());
 		young.setAddress2(youngDTO.getAddress2());

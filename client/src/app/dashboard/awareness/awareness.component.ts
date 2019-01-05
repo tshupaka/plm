@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Awareness } from '../../model/awareness.model';
 import { NgForm } from '@angular/forms';
 import { AwarenessService } from '../../service/awareness.service';
+import { Route, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'plm-awareness',
@@ -10,13 +11,19 @@ import { AwarenessService } from '../../service/awareness.service';
 })
 export class AwarenessComponent implements OnInit {
 
-  public awareness: Awareness = new Awareness();
+  public awareness: Awareness;
   private dropDownValues: Object;
   private errorMessage: String;
 
-  constructor(private awarenessService: AwarenessService) { }
+  constructor(private awarenessService: AwarenessService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    const id = this.route.snapshot.params['id'];
+    if (id) {
+      this.awarenessService.getAwarenessById(id).subscribe(awareness => this.awareness = awareness);
+    } else {
+      this.awareness = new Awareness();
+    }
   }
 
 

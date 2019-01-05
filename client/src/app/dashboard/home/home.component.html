@@ -1,0 +1,84 @@
+<div class="row m-2">
+  <div class="col-12 text-right"><button class="btn btn-primary" (click)="addYoung()">Ajouter Jeune</button></div>
+
+</div>
+<div class="row">
+  <div class="col-4">
+    <label for="youngSearch" class="align-middle">
+      <h2>Recherche Jeunes : </h2>
+    </label>
+
+  </div>
+  <div class="col-8">
+    <input class="form-control form-control-lg" [formControl]="youngSearch" id="youngSearch" type="text" placeholder="Nom ou prénom" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nom</th>
+          <th scope="col">Prénom</th>
+          <th scope="col">Status</th>
+          <th scope="col">Accès</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let young of youngs">
+          <td>{{young.lastname}}</td>
+          <td>{{young.firstname}}</td>
+          <td>Parti : de retour</td>
+          <td><button class="btn btn-link" (click)="displayYoung(young.id)">Afficher</button></td>
+        </tr>
+
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row m-2">
+  <div class="col-12 text-right m-2"><button class="btn btn-primary" (click)="addAwareness()">Ajouter Sensibilisation</button></div>
+
+</div>
+<div class="row">
+  <div class="col-4">
+    <label for="youngSearch" class="align-middle">
+      <h2>Recherche sensibilisations : </h2>
+    </label>
+
+  </div>
+  <div class="col-8">
+    <input class="form-control form-control-lg" [(ngModel)]="awarenessSearch" id="youngSearch" type="text" placeholder="Sensibilisation" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Ville</th>
+          <th scope="col">Accès</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let awareness of awarenesses | awarenessFilter:awarenessSearch">
+          <td>{{awareness.date | date:'shortDate'}}</td>
+          <td>{{awareness.name}}</td>
+          <td>{{awareness.city}}</td>
+          <td><button class="btn btn-link" (click)="displayAwareness(awareness.id)">Afficher</button></td>
+        </tr>
+
+
+      </tbody>
+    </table>
+  </div>
+</div>
+

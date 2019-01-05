@@ -5,8 +5,8 @@
         <h1>{{young.firstname}} {{young.lastname}}</h1>
       </div>
       <div class="col-4 text-right">
-        <button type="button" class="btn btn-outline-primary m-1" onclick="cancel()">Annuler</button>
-        <button type="button" class="btn btn-primary m-1" onclick="saveYoung(form)">Enregistrer</button>
+        <button type="button" class="btn btn-outline-primary m-1" (click)="cancel()">Annuler</button>
+        <button type="button" class="btn btn-primary m-1" (click)="saveYoung(form)">Enregistrer</button>
       </div>
     </div>
     <div class="row m-2">
@@ -65,7 +65,7 @@
             </div>
             <div class="col-6">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" [(ngModel)]="young.member" type="checkbox" id="no" value="2">
+                <input class="form-check-input" [(ngModel)]="young.member" type="checkbox" id="no" value="2" name="member">
               </div>
             </div>
           </div>

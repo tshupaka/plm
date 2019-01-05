@@ -8,9 +8,11 @@ import { Observable } from 'rxjs';
 })
 export class AwarenessService {
 
+
     private urlCreateAwareness = '/api/awareness';
 
     private urlGetAllAwarenesses = '/api/awareness/all';
+    private urlGetAwarenessById = '/api/awareness/';
 
     constructor(private httpClient: HttpClient) {
 
@@ -22,5 +24,9 @@ export class AwarenessService {
 
     getAllAwarenesses(): Observable<Object> {
         return this.httpClient.get(this.urlGetAllAwarenesses);
+    }
+
+    getAwarenessById(id: number): any {
+        return this.httpClient.get(this.urlGetAwarenessById + id);
     }
 }
