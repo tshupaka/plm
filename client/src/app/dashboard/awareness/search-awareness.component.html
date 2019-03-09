@@ -1,0 +1,45 @@
+<div class="row m-2">
+  <div class="col-6 text-left">
+    <button type="button" class="btn btn-outline-primary text-left m-2" [routerLink]="['/dashboard/home']"><i
+        class="fas fa-chevron-left m-2"></i>Retour</button>
+  </div>
+  <div class="col-6 text-right"><button class="btn btn-primary m-2" (click)="addAwareness()"><i class="far fa-calendar-plus m-2"></i>Ajouter Sensibilisation</button></div>
+
+</div>
+<div class="row">
+  <div class="col-4">
+    <label for="youngSearch" class="align-middle">
+      <h2>Recherche sensibilisations : </h2>
+    </label>
+
+  </div>
+  <div class="col-8">
+    <input class="form-control form-control-lg" [(ngModel)]="awarenessSearch" id="youngSearch" type="text" placeholder="Sensibilisation" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Ville</th>
+          <th scope="col">Accès</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let awareness of awarenesses | awarenessFilter:awarenessSearch">
+          <td>{{awareness.date | date:'shortDate'}}</td>
+          <td>{{awareness.name}}</td>
+          <td>{{awareness.city}}</td>
+          <td><button class="btn btn-link" (click)="displayAwareness(awareness.id)">Afficher</button></td>
+        </tr>
+
+
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -5,7 +5,7 @@ export class Young {
     public gender?: number;
     public firstname?: string;
     public lastname: string;
-    public birthday?: Date;
+    public birthday?: string;
     public member: boolean;
 
     // Contact
@@ -39,7 +39,7 @@ export class Young {
     public otherLanguage?: string;
 
     // Professional status
-    public employementStatusId?: number;
+    public employmentStatusId?: number;
     public poleEmploiInscriptionDate?: Date;
     public rsaClaimant: boolean;
     public youngGuarantee: boolean;

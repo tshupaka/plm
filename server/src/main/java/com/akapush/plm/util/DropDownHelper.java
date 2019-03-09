@@ -1,11 +1,9 @@
 package com.akapush.plm.util;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
+import com.akapush.plm.domain.dto.DropDownKeyDTO;
 import com.akapush.plm.domain.dto.DropDownValueDTO;
 import com.akapush.plm.domain.model.DropDownKey;
 import com.akapush.plm.domain.model.DropDownValue;
@@ -19,31 +17,37 @@ import com.akapush.plm.domain.model.DropDownValue;
  */
 public class DropDownHelper {
 
-	public static Map<String, List<DropDownValueDTO>> getDrowDownValuesDTO(
-			Map<DropDownKey, List<DropDownValue>> mapDropDownValues) {
-		Map<String, List<DropDownValueDTO>> mapDropDownValuesDTO = new HashMap<String, List<DropDownValueDTO>>();
-		for (Entry<DropDownKey, List<DropDownValue>> entry : mapDropDownValues.entrySet()) {
-			DropDownKey dropDownKey = entry.getKey();
-			List<DropDownValue> dropDownValues = entry.getValue();
-			mapDropDownValuesDTO.put(dropDownKey.getKey(), convertDropDownValues(dropDownValues));
+	public static List<DropDownKeyDTO> getDrowDownKeyDTO(Iterable<DropDownKey> dropDownKeys) {
+		List<DropDownKeyDTO> dropDownKeysDTO = new ArrayList<DropDownKeyDTO>();
+		for (DropDownKey dropDownKey : dropDownKeys) {
+
+			List<DropDownValue> dropDownValues = dropDownKey.getDropDownValues();
+			List<DropDownValueDTO> dropDownValuesDTO = convertDropDownValues(dropDownValues);
+			String key = dropDownKey.getKey();
+			String label = dropDownKey.getLabel();
+			DropDownKeyDTO dropDownKeyDTO = new DropDownKeyDTO();
+			dropDownKeyDTO.setKey(key);
+			dropDownKeyDTO.setLabel(label);
+			dropDownKeyDTO.setValues(dropDownValuesDTO);
+			dropDownKeysDTO.add(dropDownKeyDTO);
 		}
-		return mapDropDownValuesDTO;
+		return dropDownKeysDTO;
 	}
 
-	private static List<DropDownValueDTO> convertDropDownValues(List<DropDownValue> dropDownValues) {
-		List<DropDownValueDTO> dropDownValuesDTO = new ArrayList<DropDownValueDTO>();
-		for (DropDownValue dropDownValue : dropDownValues) {
-			dropDownValuesDTO.add(convertDropDownValue(dropDownValue));
-		}
-		return dropDownValuesDTO;
-	}
-
-	private static DropDownValueDTO convertDropDownValue(DropDownValue dropDownValue) {
+	public static DropDownValueDTO getDropDownValue(DropDownValue dropDownValue) {
 		DropDownValueDTO dropDownValueDTO = new DropDownValueDTO();
 		dropDownValueDTO.setValue(dropDownValue.getValue());
 		dropDownValueDTO.setOrder(dropDownValue.getOrder());
 		dropDownValueDTO.setId(dropDownValue.getId());
 		return dropDownValueDTO;
+	}
+
+	private static List<DropDownValueDTO> convertDropDownValues(List<DropDownValue> dropDownValues) {
+		List<DropDownValueDTO> dropDownValuesDTO = new ArrayList<DropDownValueDTO>();
+		for (DropDownValue dropDownValue : dropDownValues) {
+			dropDownValuesDTO.add(getDropDownValue(dropDownValue));
+		}
+		return dropDownValuesDTO;
 	}
 
 }

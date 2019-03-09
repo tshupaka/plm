@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Young } from '../../../model/young.model';
 import { DropDownService } from '../../../service/drop-down.service';
 import { NgForm } from '@angular/forms';
 import { YoungService } from '../../../service/young.service';
 import { Router } from '@angular/router';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'plm-young-informations',
@@ -15,18 +16,25 @@ export class YoungInformationsComponent implements OnInit {
   @Input()
   public young: Young;
   private dropDownValues: Object;
-  private errorMessage: String;
+  private errorMessage: string;
+  private successMessage: string;
+  @Output()
+  youngSaved: EventEmitter<Young> = new EventEmitter<Young>();
 
 
-  constructor(private dropDownService: DropDownService, private youngService: YoungService, private router: Router ) { }
+
+  constructor(private dropDownService: DropDownService, private youngService: YoungService, private router: Router) { }
 
   ngOnInit() {
     this.initDropDownValue();
-    console.log(this.young);
   }
 
   initDropDownValue() {
-    this.dropDownService.getDropDownValues().subscribe(dropDownValues => this.dropDownValues = dropDownValues);
+    this.dropDownService.getDropDownValues().subscribe((dropDownValues: any) => {
+      this.dropDownValues = dropDownValues.reduce(
+        (map, dropDownValue) => { map[dropDownValue['key']] = dropDownValue['values']; return map; }, {});
+      console.log(this.dropDownValues);
+    });
   }
 
 
@@ -41,16 +49,17 @@ export class YoungInformationsComponent implements OnInit {
   }
 
   saveYoung(form: NgForm) {
-    console.log(form.valid);
     if (form.valid) {
-      this.youngService.saveYoung(this.young).subscribe(young => console.log(young));
+      this.youngService.saveYoung(this.young).subscribe((young) => {
+      this.young = young;
+        this.youngSaved.emit(young);
+        this.successMessage = 'Informations sauvegardées avec succès.';
+        timer(3000).subscribe(() => this.successMessage = undefined);
+      });
     } else {
-      this.errorMessage = 'Des erreurs ont été détecté dans le formulaire.';
+      this.errorMessage = 'Des erreurs ont été détectées dans le formulaire.';
+      timer(3000).subscribe(() => this.errorMessage = undefined);
     }
   }
 
-
-  cancel() {
-    this.router.navigate(['/dashboard/home']);
-  }
 }

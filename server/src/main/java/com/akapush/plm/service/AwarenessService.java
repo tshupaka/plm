@@ -1,7 +1,7 @@
 package com.akapush.plm.service;
 
 import com.akapush.plm.domain.exception.InvalidBeanException;
-import com.akapush.plm.domain.exception.NoBeanAvailable;
+import com.akapush.plm.domain.exception.NoBeanAvailableException;
 import com.akapush.plm.domain.model.Awareness;
 
 /**
@@ -17,9 +17,9 @@ public interface AwarenessService {
 	 * 
 	 * @param id
 	 * @return
-	 * @throws NoBeanAvailable
+	 * @throws NoBeanAvailableException
 	 */
-	public Awareness getAwarenessById(Long id) throws NoBeanAvailable;
+	public Awareness getAwarenessById(Long id) throws NoBeanAvailableException;
 
 	/**
 	 * Save {@link Awareness} and return storage id

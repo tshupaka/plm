@@ -1,8 +1,20 @@
+<header class="row">
+  <div class="col-2"><button class="btn btn-outline-primary m-2" [routerLink]="['/dashboard/young/search']"><i class="fas fa-chevron-left m-2"></i>Retour</button></div>
+
+
+</header>
+
 <nav class="nav nav-tabs">
-    <a class="nav-item nav-link" [class.active]="youngInformationActive" (click)="setYoungInformationActive()" data-toggle="tab">Informations</a>
-    <a class="nav-item nav-link" [class.active]="youngHistoryActive" (click)="setYoungHistoryActive()" data-toggle="tab">Suivi</a>
-  </nav>
-  <div class="tab-content">
-    <div class="tab-pane" [class.active]="youngInformationActive" id="p1" *ngIf="currentYoung"><plm-young-informations [young]="currentYoung"></plm-young-informations></div>
-    <div class="tab-pane" [class.active]="youngHistoryActive" id="p2"><plm-young-follow-up></plm-young-follow-up></div>
+  <a class="nav-item nav-link pointer" [class.active]="youngInformationActive" (click)="setYoungInformationActive()"
+    data-toggle="tab">Informations</a>
+  <a class="nav-item nav-link pointer" [class.active]="youngHistoryActive" (click)="setYoungHistoryActive()" data-toggle="tab"
+    *ngIf="currentYoung?.id">Suivi</a>
+</nav>
+<div class="tab-content">
+  <div class="tab-pane" [class.active]="youngInformationActive" id="p1" *ngIf="currentYoung">
+    <plm-young-informations [young]="currentYoung" (youngSaved)="saveYoung($event)"></plm-young-informations>
   </div>
+  <div class="tab-pane" [class.active]="youngHistoryActive" id="p2" *ngIf="currentYoung">
+    <plm-young-follow-up [young]="currentYoung"></plm-young-follow-up>
+  </div>
+</div>

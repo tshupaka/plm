@@ -11,6 +11,7 @@ DROP SEQUENCE seq_plm_drop_down_value_ddv_id;
 CREATE TABLE DROP_DOWN_KEY (
   DDK_ID BIGINT NOT NULL,
   DDK_KEY VARCHAR(255) NOT NULL,
+  DDK_LABEL VARCHAR(255) NOT NULL,
   PRIMARY KEY (DDK_ID));
   
 CREATE TABLE DROP_DOWN_VALUE (
@@ -25,7 +26,20 @@ CREATE TABLE DROP_DOWN_VALUE (
 CREATE SEQUENCE seq_plm_drop_down_key_ddk_id START 1;
 CREATE SEQUENCE seq_plm_drop_down_value_ddv_id START 1;
 
-INSERT INTO DROP_DOWN_KEY (DDK_ID, DDK_KEY) VALUES (nextval('seq_plm_drop_down_key_ddk_id'), 'gender');
+INSERT INTO DROP_DOWN_KEY (DDK_ID, DDK_KEY, DDK_LABEL) VALUES (nextval('seq_plm_drop_down_key_ddk_id'), 'gender', 'Sexe');
+INSERT INTO DROP_DOWN_KEY (DDK_ID, DDK_KEY, DDK_LABEL) VALUES (nextval('seq_plm_drop_down_key_ddk_id'), 'public', 'Public');
+
+INSERT INTO DROP_DOWN_KEY (DDK_ID, DDK_KEY, DDK_LABEL) VALUES (nextval('seq_plm_drop_down_key_ddk_id'), 'geographicFocus', 'Focus Géographique');
+
+INSERT INTO DROP_DOWN_KEY (DDK_ID, DDK_KEY, DDK_LABEL) VALUES (nextval('seq_plm_drop_down_key_ddk_id'), 'awarenessType', 'Type de sensibilisation');
+
+INSERT INTO DROP_DOWN_KEY (DDK_ID, DDK_KEY, DDK_LABEL) VALUES (nextval('seq_plm_drop_down_key_ddk_id'), 'qpvQuarter', 'Nom Quartier Politique de la ville');
+INSERT INTO DROP_DOWN_KEY (DDK_ID, DDK_KEY, DDK_LABEL) VALUES (nextval('seq_plm_drop_down_key_ddk_id'), 'prescriber', 'Prescripteur');
+INSERT INTO DROP_DOWN_KEY (DDK_ID, DDK_KEY, DDK_LABEL) VALUES (nextval('seq_plm_drop_down_key_ddk_id'), 'educationlevel', 'Niveau de formation');
+INSERT INTO DROP_DOWN_KEY (DDK_ID, DDK_KEY, DDK_LABEL) VALUES (nextval('seq_plm_drop_down_key_ddk_id'), 'englishLevel', 'Niveau d''anglais');
+INSERT INTO DROP_DOWN_KEY (DDK_ID, DDK_KEY, DDK_LABEL) VALUES (nextval('seq_plm_drop_down_key_ddk_id'), 'employmentStatus', 'Statut d''emploi');
+INSERT INTO DROP_DOWN_KEY (DDK_ID, DDK_KEY, DDK_LABEL) VALUES (nextval('seq_plm_drop_down_key_ddk_id'), 'qpvStatus', 'Est quartier QPV');
+
 
 INSERT INTO DROP_DOWN_VALUE(DDV_ID, DDV_VALUE,DDV_ORDER, DDK_ID) VALUES (nextval('seq_plm_drop_down_value_ddv_id'), 'Femme', 1, 1);
 INSERT INTO DROP_DOWN_VALUE(DDV_ID, DDV_VALUE,DDV_ORDER, DDK_ID) VALUES (nextval('seq_plm_drop_down_value_ddv_id'), 'Homme', 2, 1);
@@ -33,3 +47,4 @@ INSERT INTO DROP_DOWN_VALUE(DDV_ID, DDV_VALUE,DDV_ORDER, DDK_ID) VALUES (nextval
 
 
 CREATE SEQUENCE seq_plm_young_you_id START 1;
+

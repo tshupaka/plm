@@ -12,15 +12,13 @@
           <thead>
             <th>Date</th>
             <th>Nom de la sensibilisation</th>
-            <th>Informations</th>
             <th>Ajouter</th>
           </thead>
           <tbody>
             <tr *ngFor="let awareness of awarenesses">
-              <td>{{awareness.date}}</td>
+              <td>{{awareness.date  | date:'shortDate'}}</td>
               <td>{{awareness.name }}</td>
-              <td></td>
-              <td><button class="btn btn-primary" (click)="addAwareness(awareness.id)">Ajouter</button></td>
+              <td><button class="btn btn-link" (click)="addAwareness(awareness.id)">Ajouter</button></td>
             </tr>
           </tbody>
 
@@ -30,6 +28,6 @@
   </div>
   <div class="modal-footer">
     <div class="form-group">
-      <button type="button" class="btn btn-outline-success" (click)="activeModal.dismiss()">Fermer</button>
+      <button type="button" class="btn btn-outline-primary" (click)="activeModal.dismiss()">Fermer</button>
     </div>
   </div>

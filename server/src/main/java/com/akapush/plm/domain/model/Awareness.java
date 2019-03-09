@@ -75,6 +75,11 @@ public class Awareness {
 			@JoinColumn(name = "USR_ID") })
 	private List<User> users;
 
+	@ManyToMany()
+	@JoinTable(name = "YOUNG_AWARENESS", joinColumns = { @JoinColumn(name = "AWA_ID") }, inverseJoinColumns = {
+			@JoinColumn(name = "YOU_ID") })
+	private List<Young> youngs;
+
 	public Long getId() {
 		return id;
 	}
@@ -201,6 +206,39 @@ public class Awareness {
 
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+
+	public List<Young> getYoungs() {
+		return youngs;
+	}
+
+	public void setYoungs(List<Young> youngs) {
+		this.youngs = youngs;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Awareness other = (Awareness) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 
 }

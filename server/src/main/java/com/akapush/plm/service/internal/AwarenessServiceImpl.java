@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.akapush.plm.dao.AwarenessDAO;
 import com.akapush.plm.domain.enumartion.BeanType;
 import com.akapush.plm.domain.exception.InvalidBeanException;
-import com.akapush.plm.domain.exception.NoBeanAvailable;
+import com.akapush.plm.domain.exception.NoBeanAvailableException;
 import com.akapush.plm.domain.model.Awareness;
 import com.akapush.plm.service.AwarenessService;
 
@@ -19,12 +19,12 @@ public class AwarenessServiceImpl implements AwarenessService {
 	private AwarenessDAO awarenessDAO;
 
 	@Override
-	public Awareness getAwarenessById(Long id) throws NoBeanAvailable {
+	public Awareness getAwarenessById(Long id) throws NoBeanAvailableException {
 		Optional<Awareness> awareness = awarenessDAO.findById(id);
 		if (awareness.isPresent()) {
 			return awareness.get();
 		} else {
-			throw new NoBeanAvailable(BeanType.AWARENESS, id);
+			throw new NoBeanAvailableException(BeanType.AWARENESS, id);
 		}
 	}
 

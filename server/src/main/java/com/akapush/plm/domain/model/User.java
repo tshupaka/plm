@@ -27,11 +27,14 @@ public class User {
 	@Column(name = "USR_LASTNAME")
 	private String lastname;
 
-	@Column(name = "USR_LOGIN")
-	private String login;
+	@Column(name = "USR_EMAIL")
+	private String email;
 
 	@Column(name = "USR_PASSWORD")
 	private String password;
+
+	@Column(name = "USR_ACTIVE")
+	private Boolean active;
 
 	@JoinColumn(name = "GRP_ID")
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -61,12 +64,12 @@ public class User {
 		this.lastname = lastname;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -75,6 +78,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
 	public Group getGroup() {

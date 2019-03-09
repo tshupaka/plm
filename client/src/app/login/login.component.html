@@ -1,16 +1,25 @@
-
-  <form class="form-signin">
-    <img class="mb-4" src="../../assets/images/logo.png" alt="logo">
-    <h1 class="h3 mb-3 font-weight-normal">Identification</h1>
-    <label for="inputEmail" class="sr-only">Adresse email</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="sr-only">Mot de passe</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Se souvenir de moi
-      </label>
+<form class="form-signin"  #form="ngForm">
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <img class="mb-4 " src="../../assets/images/logo.png" alt="logo">
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
-  </form>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-auto">
+      <h1 class="h3 mb-3 font-weight-normal">Identification</h1>
+
+    </div>
+  </div>
+  <label for="email" class="sr-only">Adresse email</label>
+  <input type="email" id="email" [(ngModel)]="email" name="email" class="form-control" placeholder="Adresse email" required autofocus>
+  <label for="inputPassword" class="sr-only">Mot de passe</label>
+  <input type="password" id="password" [(ngModel)]="password" name="password" class="form-control" placeholder="Password" required>
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" name="remember" id="remember" [(ngModel)]="remember"> Se souvenir de moi
+    </label>
+  </div>
+  <div *ngIf="errorMessage" class="alert alert-danger justify-content-center">{{errorMessage}}</div>
+  <button class="btn btn-lg btn-primary btn-block" (click)=login(form)>Se connecter</button>
+
+</form>

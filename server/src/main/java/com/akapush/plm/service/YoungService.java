@@ -1,7 +1,8 @@
 package com.akapush.plm.service;
 
 import com.akapush.plm.domain.exception.InvalidBeanException;
-import com.akapush.plm.domain.exception.NoBeanAvailable;
+import com.akapush.plm.domain.exception.NoBeanAvailableException;
+import com.akapush.plm.domain.model.Awareness;
 import com.akapush.plm.domain.model.Young;
 
 /**
@@ -14,9 +15,9 @@ public interface YoungService {
 	 * 
 	 * @param youngId
 	 * @return
-	 * @throws NoBeanAvailable
+	 * @throws NoBeanAvailableException
 	 */
-	Young getYoungById(Long youngId) throws NoBeanAvailable;
+	Young getYoungById(Long youngId) throws NoBeanAvailableException;
 
 	/**
 	 * Save young and return young with storage id.
@@ -35,5 +36,33 @@ public interface YoungService {
 	 * @return
 	 */
 	Iterable<Young> searchYoungs(String search);
+
+	/**
+	 * Get awarnesses of a given young
+	 * 
+	 * @param youngId
+	 * @return
+	 */
+	Iterable<Awareness> getAwarenessesFromYoungId(long youngId);
+
+	/**
+	 * Associate a awareness to a given young
+	 * 
+	 * @param youngId
+	 * @param awarenessId
+	 * @return the awareness corresponding to awarenessId
+	 * @throws NoBeanAvailableException
+	 */
+	Awareness addAwarenessToYoung(Long youngId, Long awarenessId) throws NoBeanAvailableException;
+
+	/**
+	 * Remove awareness from given young
+	 * 
+	 * @param youngId
+	 * @param awarenessId
+	 * @return list of awarenesses available for young
+	 * @throws NoBeanAvailableException
+	 */
+	Iterable<Awareness> deleteAwarenessFromYoung(long youngId, long awarenessId) throws NoBeanAvailableException;
 
 }

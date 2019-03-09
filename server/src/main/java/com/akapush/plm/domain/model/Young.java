@@ -1,6 +1,7 @@
 package com.akapush.plm.domain.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -69,9 +72,8 @@ public class Young {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private DropDownValue prescriber;
 
-	@JoinColumn(name = "PRESCRIBER_TYPE_DDV_ID")
-	@ManyToOne(fetch = FetchType.EAGER)
-	private DropDownValue prescriberType;
+	@Column(name = "YOU_PRESCRIBER_TYPE_")
+	private String prescriberType;
 
 	@Column(name = "YOU_PRESCRIBER_DETAIL")
 	private String prescriberDetail;
@@ -116,6 +118,11 @@ public class Young {
 
 	@Column(name = "YOU_YOUNG_GUARANTEE")
 	private Boolean youngGuarantee;
+
+	@ManyToMany()
+	@JoinTable(name = "YOUNG_AWARENESS", joinColumns = { @JoinColumn(name = "YOU_ID") }, inverseJoinColumns = {
+			@JoinColumn(name = "AWA_ID") })
+	private List<Awareness> awarenesses;
 
 	public Long getId() {
 		return id;
@@ -261,11 +268,11 @@ public class Young {
 		this.prescriber = prescriber;
 	}
 
-	public DropDownValue getPrescriberType() {
+	public String getPrescriberType() {
 		return prescriberType;
 	}
 
-	public void setPrescriberType(DropDownValue prescriberType) {
+	public void setPrescriberType(String prescriberType) {
 		this.prescriberType = prescriberType;
 	}
 
@@ -371,6 +378,14 @@ public class Young {
 
 	public void setYoungGuarantee(Boolean youngGuarantee) {
 		this.youngGuarantee = youngGuarantee;
+	}
+
+	public List<Awareness> getAwarenesses() {
+		return awarenesses;
+	}
+
+	public void setAwarenesses(List<Awareness> awarenesses) {
+		this.awarenesses = awarenesses;
 	}
 
 }

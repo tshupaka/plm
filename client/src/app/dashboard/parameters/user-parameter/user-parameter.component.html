@@ -1,0 +1,91 @@
+<div class="row">
+  <div class="col-6 text-left">
+    <button type="button" class="btn btn-outline-primary m-1" (click)="goBack()"><i class="fas fa-chevron-left m-2"></i>Retour</button>
+  </div>
+  <div class="col-6 text-right">
+    <button type="button" class="btn btn-primary m-1" (click)="addUser()" [disabled]="currentUser"><i class="fas fa-user-plus m-2"></i>Ajouter
+      un utilisateur</button>
+  </div>
+</div>
+<form #form="ngForm">
+  <div *ngIf="currentUser" class="row border m-2 p-2">
+    <div class="row" *ngIf="errorMessage">
+      <div class="col-12 m-2">
+        <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="row mb-2">
+        <div class="col-5">
+          <label for="lastname">Nom :</label>
+        </div>
+        <div class="col-7">
+          <input class="form-control" id="lastname" type="text" [(ngModel)]="currentUser.lastname" #lastname="ngModel"
+            name="lastname" required />
+          <span *ngIf="lastname.dirty && lastname.invalid" class="text-danger">Le nom est obligatoire</span>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-5">
+          <label for="firstname">Prénom :</label>
+        </div>
+        <div class="col-7">
+          <input class="form-control" id="firstname" type="text" [(ngModel)]="currentUser.firstname" #firstname="ngModel"
+            name="firstname" />
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-5">
+          <label for="email">email :</label>
+        </div>
+        <div class="col-7">
+          <input class="form-control" id="email" type="text" [(ngModel)]="currentUser.email" #email="ngModel" name="email" />
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-5">
+          <label for="password">Mot de passe :</label>
+        </div>
+        <div class="col-7">
+          <input class="form-control" id="password" type="password" [(ngModel)]="currentUser.password" #password="ngModel"
+            name="password" />
+        </div>
+      </div>
+      <div class="row m-2">
+        <div class="col-6 text-right">
+          <button type="button" class="btn btn-outline-primary m-1" (click)="cancel()">Annuler</button>
+        </div>
+        <div class="col-6 text-left">
+          <button type="button" class="btn btn-primary m-1" (click)="saveUser(form)" [disabled]="!form.valid || saving">Enregistrer</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>
+<div class="row justify-content-center">
+  <div class="col-lg-8 col-md-12 text-center m-2">
+    <table class="table">
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>&nbsp;</th>
+
+      </tr>
+      <tr *ngFor="let user of users">
+
+        <td>{{user.lastname}}</td>
+        <td>{{user.firstname}}</td>
+        <td>{{user.email}}</td>
+        <td>
+          <a (click)="updateUser(user)"><i class="fas fa-edit text-primary pointer m-2"></i></a>
+          <a (click)="deleteUser(user)"><i class="trash far fa-trash-alt text-primary pointer m-2"></i></a>
+        </td>
+      </tr>
+
+
+    </table>
+  </div>
+
+</div>

@@ -30,7 +30,7 @@ public class YoungHelper {
 		youngDTO.setEducationLabel(young.getEducationLabel());
 		youngDTO.setEducationLevelId(getDropDownValueId(young.getEducationLevel()));
 		youngDTO.setEmail(young.getEmail());
-		youngDTO.setEmployementStatusId(getDropDownValueId(young.getEmployementStatus()));
+		youngDTO.setEmploymentStatusId(getDropDownValueId(young.getEmployementStatus()));
 		youngDTO.setEnglishLevelId(getDropDownValueId(young.getEnglishLevel()));
 		youngDTO.setFacebook(young.getFacebook());
 		youngDTO.setFirstname(young.getFirstname());
@@ -48,7 +48,7 @@ public class YoungHelper {
 		youngDTO.setPrescriberId(getDropDownValueId(young.getPrescriber()));
 		youngDTO.setPrescriberName(young.getPrescriberName());
 		youngDTO.setPrescriberPhone(young.getPrescriberPhone());
-		youngDTO.setPrescriberTypeId(getDropDownValueId(young.getPrescriberType()));
+		youngDTO.setPrescriberType(young.getPrescriberType());
 		youngDTO.setQpvQuarterId(getDropDownValueId(young.getQpvQuarter()));
 		youngDTO.setQpvStatusId(getDropDownValueId(young.getQpvStatus()));
 		youngDTO.setRsaClaimant(young.getRsaClaimant());
@@ -68,7 +68,7 @@ public class YoungHelper {
 		young.setEducationLabel(youngDTO.getEducationLabel());
 		young.setEducationLevel(createDropDownValue(youngDTO.getEducationLevelId()));
 		young.setEmail(youngDTO.getEmail());
-		young.setEmployementStatus(createDropDownValue(youngDTO.getEmployementStatusId()));
+		young.setEmployementStatus(createDropDownValue(youngDTO.getEmploymentStatusId()));
 		young.setEnglishLevel(createDropDownValue(youngDTO.getEnglishLevelId()));
 		young.setFacebook(youngDTO.getFacebook());
 		young.setFirstname(youngDTO.getFirstname());
@@ -86,7 +86,7 @@ public class YoungHelper {
 		young.setPrescriber(createDropDownValue(youngDTO.getPrescriberId()));
 		young.setPrescriberName(youngDTO.getPrescriberName());
 		young.setPrescriberPhone(youngDTO.getPrescriberPhone());
-		young.setPrescriberType(createDropDownValue(youngDTO.getPrescriberTypeId()));
+		young.setPrescriberType(youngDTO.getPrescriberType());
 		young.setQpvQuarter(createDropDownValue(youngDTO.getQpvQuarterId()));
 		young.setQpvStatus(createDropDownValue(youngDTO.getQpvStatusId()));
 		young.setRsaClaimant(youngDTO.getRsaClaimant());

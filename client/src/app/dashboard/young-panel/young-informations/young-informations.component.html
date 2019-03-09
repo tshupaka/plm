@@ -5,16 +5,11 @@
         <h1>{{young.firstname}} {{young.lastname}}</h1>
       </div>
       <div class="col-4 text-right">
-        <button type="button" class="btn btn-outline-primary m-1" (click)="cancel()">Annuler</button>
         <button type="button" class="btn btn-primary m-1" (click)="saveYoung(form)">Enregistrer</button>
       </div>
     </div>
-    <div class="row m-2">
-      <div class="col-12 text-right">
-        <h3>Etat de suivi : Parti - Toujours à l'étranger</h3>
-      </div>
-  
-    </div>
+    <div *ngIf="errorMessage" class="p-3 mb-2 bg-danger text-white">{{errorMessage}}</div>
+    <div *ngIf="successMessage" class="p-3 mb-2 bg-success text-white">{{successMessage}}</div>
     <hr />
     <div class="row">
       <div class="col-md-6">
@@ -27,8 +22,8 @@
               <label for="gender">Sexe :</label>
             </div>
             <div class="col-7">
-              <select class="form-control" id="gender" [(ngModel)]="young.gender" #gender="ngModel" name="gender">
-                <option *ngFor="let gender of getDropDownValues('gender')">{{gender.value}}</option>
+              <select class="form-control" id="gender" [(ngModel)]="young.genderId" #gender="ngModel" name="gender">
+                <option *ngFor="let gender of getDropDownValues('gender')" [value]="gender.id" [selected]="gender.id == young.genderId">{{gender.value}}</option>
               </select>
             </div>
           </div>
@@ -39,7 +34,7 @@
             <div class="col-7">
               <input class="form-control" id="lastname" type="text" [(ngModel)]="young.lastname" #lastname="ngModel" name="lastname"
                 required />
-              <span *ngIf="lastname.dirty && lastname.invalid" class="text-danger">Le nom est obligatoire</span>
+              <span *ngIf="(!lastname.pristine || lastname.dirty) && lastname.invalid" class="text-danger">Le nom est obligatoire</span>
             </div>
           </div>
           <div class="row mb-2">
@@ -56,7 +51,7 @@
               <label for="birthday">Date de naissance :</label>
             </div>
             <div class="col-7">
-              <input class="form-control" id="birthday" type="date" [(ngModel)]="young.birthday" #birthday="ngModel" name="birthday" />
+              <input class="form-control" id="birthday" type="date" [(ngModel)]="young.birthday" name="birthday" #birthday="ngModel" plmUseValueAsDate/>
             </div>
           </div>
           <div class="row mb-2">
@@ -160,7 +155,7 @@
             <div class="col-7">
               <select class="form-control" id="geographicFocusId" [(ngModel)]="young.geographicFocusId"
                 #geographicFocusId="ngModel" name="geographicFocusId">
-                <option *ngFor="let geographicFocus of getDropDownValues('geographicFocus')">{{geographicFocus.value}}</option>
+                <option *ngFor="let geographicFocus of getDropDownValues('geographicFocus')" [value]="geographicFocus.id" [selected]="geographicFocus.id == young.geographicFocusId">{{geographicFocus.value}}</option>
               </select>
             </div>
           </div>
@@ -169,18 +164,10 @@
               <label for="qpvStatusId">QPV :</label>
             </div>
             <div class="col-7">
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" id="yes" value="1" name="qpvStatusId" [(ngModel)]="young.qpvStatusId">
-                <label class="form-check-label" for="yes">Oui</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" id="no" value="2" name="qpvStatusId" [(ngModel)]="young.qpvStatusId">
-                <label class="form-check-label" for="no">Non</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" id="limite" value="3" name="qpvStatusId" [(ngModel)]="young.qpvStatusId">
-                <label class="form-check-label" for="limite">Limite</label>
-              </div>
+                <select class="form-control" id="qpvStatusId" [(ngModel)]="young.qpvStatusId"
+                #geographicFocusId="ngModel" name="qpvStatusId">
+                <option *ngFor="let qpvStatus of getDropDownValues('qpvStatus')" [value]="qpvStatus.id" [selected]="qpvStatus.id == young.qpvStatusId">{{qpvStatus.value}}</option>
+              </select>
             </div>
           </div>
           <div class="row mb-2">
@@ -190,7 +177,7 @@
             <div class="col-7">
               <select class="form-control" id="qpvQuarterId" [(ngModel)]="young.qpvQuarterId" #qpvQuarterId="ngModel"
                 name="qpvQuarterId">
-                <option *ngFor="let qpvQuarter of getDropDownValues('qpvQuarter')">{{qpvQuarter.value}}</option>
+                <option *ngFor="let qpvQuarter of getDropDownValues('qpvQuarter')" [value]="qpvQuarter.id" [selected]="qpvQuarter.id == young.qpvQuarterId">{{qpvQuarter.value}}</option>
               </select>
             </div>
           </div>
@@ -211,7 +198,7 @@
             <div class="col-7">
               <select class="form-control" id="prescriberId" [(ngModel)]="young.prescriberId" #prescriberId="ngModel"
                 name="prescriberId">
-                <option *ngFor="let prescriber of getDropDownValues('prescriber')">{{prescriber.value}}</option>
+                <option *ngFor="let prescriber of getDropDownValues('prescriber')" [value]="prescriber.id" [selected]="prescriber.id == young.prescriberId">{{prescriber.value}}</option>
               </select>
             </div>
           </div>
@@ -256,7 +243,7 @@
               <label for="prescriberEmail">Email référent :</label>
             </div>
             <div class="col-7">
-              <input class="form-control" id="prescriberEmail" type="text" [(ngModel)]="young.prescriberEmail"
+              <input class="form-control" id="prescriberEmail" type="email" [(ngModel)]="young.prescriberEmail"
                 #prescriberEmail="ngModel" name="prescriberEmail" />
             </div>
           </div>
@@ -284,9 +271,9 @@
               <label for="educationLevelId">Niveau de formation :</label>
             </div>
             <div class="col-7">
-              <select class="form-control" id="educationlevelId" [(ngModel)]="young.educationlevelId" #educationlevelId="ngModel"
+              <select class="form-control" id="educationLevelId" [(ngModel)]="young.educationLevelId" #educationlevelId="ngModel"
                 name="educationlevelId">
-                <option *ngFor="let educationlevel of getDropDownValues('educationlevel')">{{educationlevel.value}}</option>
+                <option *ngFor="let educationLevel of getDropDownValues('educationlevel')"  [value]="educationLevel.id"  [selected]="educationLevel.id == young.educationLevelId">{{educationLevel.value}}</option>
               </select>
             </div>
           </div>
@@ -306,7 +293,7 @@
             <div class="col-7">
               <select class="form-control" id="englishLevelId" [(ngModel)]="young.englishLevelId" #englishLevelId="ngModel"
                 name="englishLevelId">
-                <option *ngFor="let englishLevel of getDropDownValues('englishLevel')">{{englishLevel.value}}</option>
+                <option *ngFor="let englishLevel of getDropDownValues('englishLevel')" [value]="englishLevel.id" [selected]="englishLevel.id == young.englishLevelId">{{englishLevel.value}}</option>
               </select>
             </div>
           </div>
@@ -334,7 +321,7 @@
             <div class="col-7">
               <select class="form-control" id="employmentStatusId" [(ngModel)]="young.employmentStatusId"
                 #employmentStatusId="ngModel" name="employmentStatusId">
-                <option *ngFor="let employmentStatus of getDropDownValues('employmentStatus')">{{employmentStatus.value}}</option>
+                <option *ngFor="let employmentStatus of getDropDownValues('employmentStatus')" [value]="employmentStatus.id" [selected]="employmentStatus.id == young.employmentStatusId">{{employmentStatus.value}}</option>
               </select>
             </div>
           </div>
@@ -343,21 +330,22 @@
               <label for="poleEmploiInscriptionDate">Inscription Pôle Emploi :</label>
             </div>
             <div class="col-7">
-              <input class="form-control" id="poleEmploiInscriptionDate" type="text" [(ngModel)]="young.poleEmploiInscriptionDate"
-                #poleEmploiInscriptionDate="ngModel" name="poleEmploiInscriptionDate" />
+              <input class="form-control" id="poleEmploiInscriptionDate" type="date" [(ngModel)]="young.poleEmploiInscriptionDate"
+                #poleEmploiInscriptionDate="ngModel" name="poleEmploiInscriptionDate" plmUseValueAsDate/>
             </div>
           </div>
           <div class="row mb-2">
   
             <div class="col-6">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" id="rsaClaimant" name="rsaClaimant" type="checkbox" id="yes" value="1">
+                <input class="form-check-input" [(ngModel)]="young.rsaClaimant" id="rsaClaimant" name="rsaClaimant" type="checkbox"  value="1">
                 <label class="form-check-label" for="rsaClaimant">Allocataire RSA</label>
               </div>
             </div>
             <div class="col-6">
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="no" value="2">
+                <input class="form-check-input" [(ngModel)]="young.youngGuarantee" id="youngGuarantee" name="youngGuarantee" type="checkbox" value="1">
+                
                 <label class="form-check-label" for="no">Garantie jeune</label>
               </div>
             </div>

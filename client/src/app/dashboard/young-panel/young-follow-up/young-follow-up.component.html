@@ -1,7 +1,7 @@
 <section>
   <div class="row">
     <div class="col-12 text-right">
-      <button type="button" class="btn btn-outline-primary m-1" (click)="addAwareness()">Ajouter Sensibilisation</button>
+      <button type="button" class="btn btn-primary m-2" (click)="addAwareness()">Ajouter Sensibilisation</button>
     </div>
   </div>
   <div class="row">
@@ -15,10 +15,12 @@
         </thead>
         <tbody>
           <tr *ngFor="let awareness of awarenesses">
-            <td>{{awareness.date}}</td>
+            <td>{{awareness.date | date:'shortDate'}}</td>
             <td>{{awareness.name }}</td>
             <td></td>
-            <td>Sup</td>
+            <td>
+              <a (click)="deleteAwareness(awareness.id)"><i class="trash far fa-trash-alt text-primary pointer"></i></a>
+            </td>
           </tr>
         </tbody>
 

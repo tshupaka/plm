@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.akapush.plm.domain.dto.AwarenessDTO;
 import com.akapush.plm.domain.exception.InvalidBeanException;
-import com.akapush.plm.domain.exception.NoBeanAvailable;
+import com.akapush.plm.domain.exception.NoBeanAvailableException;
 import com.akapush.plm.domain.model.Awareness;
 import com.akapush.plm.service.AwarenessService;
 import com.akapush.plm.util.AwarenessHelper;
@@ -37,7 +37,7 @@ public class AwarenessController {
 			Awareness awareness = awarenessService.getAwarenessById(id);
 			AwarenessDTO awarenessDTO = awarenessHelper.getAwarenessDTO(awareness);
 			return new ResponseEntity<AwarenessDTO>(awarenessDTO, HttpStatus.OK);
-		} catch (NoBeanAvailable e) {
+		} catch (NoBeanAvailableException e) {
 			return new ResponseEntity<AwarenessDTO>(HttpStatus.NOT_FOUND);
 		}
 

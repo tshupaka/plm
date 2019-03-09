@@ -1,0 +1,33 @@
+<header class="row">
+  <div class="col-2"><button class="btn btn-outline-primary" [routerLink]="['/dashboard/parameters/home']"><i class="fas fa-chevron-left m-2"></i>Retour</button></div>
+  <div class="col-10 text-right"><h1>Configuration des listes déroulantes</h1></div>
+
+</header>
+<div class="row">
+
+  <div class="col-lg-6" *ngFor="let dropdownValue of dropdownValues ">
+    <div class="m-2">
+      <h3>{{dropdownValue.label}}</h3>
+    </div>
+    <table class="table m-2">
+      <tr *ngFor="let values of dropdownValue.values">
+        <td>
+          {{values.value}}
+        </td>
+        <td class="text-right"><a (click)="deleteValue(values.id)"><i class="trash far fa-trash-alt text-primary pointer"></i></a></td>
+      </tr>
+    </table>
+    
+
+    <div class="row">
+      <div class="col-8"><input class="form-control" type="text" [(ngModel)]="newValues[dropdownValue.key]" /></div>
+      <div class="col-4"><button class="btn btn-primary" (click)="addValue(dropdownValue.key, dropdownValue.values)">Ajouter</button></div>
+    </div>
+    <hr />
+    
+  </div>
+
+
+
+
+</div>

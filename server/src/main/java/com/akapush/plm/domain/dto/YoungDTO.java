@@ -29,7 +29,7 @@ public class YoungDTO {
 
 	// Organisation contact
 	private Long prescriberId;
-	private Long prescriberTypeId;
+	private String prescriberType;
 	private String prescriberDetail;
 	private String prescriberName;
 	private String prescriberEmail;
@@ -43,7 +43,7 @@ public class YoungDTO {
 	private String otherLanguage;
 
 	// Professional status
-	private Long employementStatusId;
+	private Long employmentStatusId;
 	private Date poleEmploiInscriptionDate;
 	private Boolean rsaClaimant;
 	private Boolean youngGuarantee;
@@ -264,12 +264,12 @@ public class YoungDTO {
 		this.otherLanguage = otherLanguage;
 	}
 
-	public Long getEmployementStatusId() {
-		return employementStatusId;
+	public Long getEmploymentStatusId() {
+		return employmentStatusId;
 	}
 
-	public void setEmployementStatusId(Long employementStatusId) {
-		this.employementStatusId = employementStatusId;
+	public void setEmploymentStatusId(Long employmentStatusId) {
+		this.employmentStatusId = employmentStatusId;
 	}
 
 	public Date getPoleEmploiInscriptionDate() {
@@ -296,12 +296,12 @@ public class YoungDTO {
 		this.youngGuarantee = youngGuarantee;
 	}
 
-	public Long getPrescriberTypeId() {
-		return prescriberTypeId;
+	public String getPrescriberType() {
+		return prescriberType;
 	}
 
-	public void setPrescriberTypeId(Long prescriberTypeId) {
-		this.prescriberTypeId = prescriberTypeId;
+	public void setPrescriberType(String prescriberType) {
+		this.prescriberType = prescriberType;
 	}
 
 }

@@ -8,22 +8,25 @@ import { LoginModule } from './login/login.module';
 import { LoginComponent } from './login/login.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthenticationService } from './service/authentication.service';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot( [
       {path: 'login', component: LoginComponent},
+      {path : '', redirectTo : 'login', pathMatch : 'full'}
     /*  {path: 'dashboard', component: DashboardComponent}*/
     ]),
     LoginModule,
     DashboardModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

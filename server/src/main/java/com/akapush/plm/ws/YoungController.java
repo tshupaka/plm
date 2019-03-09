@@ -1,6 +1,7 @@
 package com.akapush.plm.ws;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -14,12 +15,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.akapush.plm.domain.dto.AwarenessDTO;
 import com.akapush.plm.domain.dto.YoungDTO;
 import com.akapush.plm.domain.exception.InvalidBeanException;
-import com.akapush.plm.domain.exception.NoBeanAvailable;
+import com.akapush.plm.domain.exception.NoBeanAvailableException;
+import com.akapush.plm.domain.model.Awareness;
 import com.akapush.plm.domain.model.Young;
 import com.akapush.plm.service.YoungService;
+import com.akapush.plm.util.AwarenessHelper;
 import com.akapush.plm.util.YoungHelper;
+
+import net.sf.ehcache.CacheManager;
 
 @RestController
 public class YoungController {
@@ -30,16 +36,21 @@ public class YoungController {
 	@Autowired
 	private YoungHelper youngHelper;
 
+	@Autowired
+	private AwarenessHelper awarenessHelper;
+
 	private static final Log LOG = LogFactory.getLog(YoungController.class);
 
 	@RequestMapping(value = "/api/young/{youngId}", method = RequestMethod.GET)
 	public ResponseEntity<YoungDTO> getYoungById(@PathVariable("youngId") Long youngId) {
 
 		try {
+			//
 			Young young = youngService.getYoungById(youngId);
 			YoungDTO youngDTO = youngHelper.getYoungDTO(young);
+			CacheManager.ALL_CACHE_MANAGERS.get(0).getCache("com.akapush.plm.domain.model.DropDownKey").getKeys();
 			return new ResponseEntity<YoungDTO>(youngDTO, HttpStatus.OK);
-		} catch (NoBeanAvailable e) {
+		} catch (NoBeanAvailableException e) {
 			return new ResponseEntity<YoungDTO>(HttpStatus.NOT_FOUND);
 		}
 
@@ -67,6 +78,38 @@ public class YoungController {
 		}
 		List<YoungDTO> youngsDTO = youngHelper.getYoungsDTO(youngs);
 		return new ResponseEntity<List<YoungDTO>>(youngsDTO, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/api/young/{youngId}/awareness", method = RequestMethod.GET)
+	public ResponseEntity<List<AwarenessDTO>> getAwarenessesFromYoung(@PathVariable(name = "youngId") long youngId) {
+		Iterable<Awareness> awarenesses = youngService.getAwarenessesFromYoungId(youngId);
+		List<AwarenessDTO> awarenessesDTO = awarenessHelper.getAwarenessDTO(awarenesses);
+		return new ResponseEntity<>(awarenessesDTO, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/api/young/awareness", method = RequestMethod.POST)
+	public ResponseEntity<AwarenessDTO> addAwarenessToYoung(@RequestBody Map<String, Long> parameters) {
+		Long youngId = parameters.get("youngId");
+		Long awarenessId = parameters.get("awarenessId");
+		try {
+			Awareness awareness = youngService.addAwarenessToYoung(youngId, awarenessId);
+			AwarenessDTO awarenessDTO = awarenessHelper.getAwarenessDTO(awareness);
+			return new ResponseEntity<AwarenessDTO>(awarenessDTO, HttpStatus.OK);
+		} catch (NoBeanAvailableException e) {
+			return new ResponseEntity<AwarenessDTO>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@RequestMapping(value = "/api/young/{youngId}/awareness/{awarenessId}", method = RequestMethod.DELETE)
+	public ResponseEntity<List<AwarenessDTO>> deleteAwarenessFromYoung(@PathVariable(name = "youngId") long youngId,
+			@PathVariable(name = "awarenessId") long awarenessId) {
+		try {
+			Iterable<Awareness> awarenesses = youngService.deleteAwarenessFromYoung(youngId, awarenessId);
+			List<AwarenessDTO> awarenessDTO = awarenessHelper.getAwarenessDTO(awarenesses);
+			return new ResponseEntity<List<AwarenessDTO>>(awarenessDTO, HttpStatus.OK);
+		} catch (NoBeanAvailableException e) {
+			return new ResponseEntity<List<AwarenessDTO>>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 }
