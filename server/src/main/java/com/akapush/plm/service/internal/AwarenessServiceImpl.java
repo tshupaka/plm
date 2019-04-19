@@ -34,7 +34,7 @@ public class AwarenessServiceImpl implements AwarenessService {
 	}
 
 	@Override
-	public Iterable<Awareness> getAllAwareness() {
+	public Iterable<Awareness> getAllAwarenesses() {
 		Iterable<Awareness> awarenesses = awarenessDAO.findAll();
 		return awarenesses;
 	}

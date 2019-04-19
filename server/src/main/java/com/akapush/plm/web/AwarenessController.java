@@ -1,4 +1,4 @@
-package com.akapush.plm.ws;
+package com.akapush.plm.web;
 
 import java.util.List;
 
@@ -44,8 +44,8 @@ public class AwarenessController {
 	}
 
 	@RequestMapping(value = "/api/awareness/all", method = RequestMethod.GET)
-	public ResponseEntity<List<AwarenessDTO>> getAllAwarenessById() {
-		Iterable<Awareness> awarenesses = awarenessService.getAllAwareness();
+	public ResponseEntity<List<AwarenessDTO>> getAllAwarenesses() {
+		Iterable<Awareness> awarenesses = awarenessService.getAllAwarenesses();
 		List<AwarenessDTO> awarenessDTO = awarenessHelper.getAwarenessDTO(awarenesses);
 		return new ResponseEntity<List<AwarenessDTO>>(awarenessDTO, HttpStatus.OK);
 

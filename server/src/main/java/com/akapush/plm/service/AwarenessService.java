@@ -36,6 +36,6 @@ public interface AwarenessService {
 	 * 
 	 * @return
 	 */
-	public Iterable<Awareness> getAllAwareness();
+	public Iterable<Awareness> getAllAwarenesses();
 
 }

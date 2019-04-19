@@ -1,4 +1,4 @@
-package com.akapush.plm.ws;
+package com.akapush.plm.web;
 
 import java.util.List;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.akapush.plm.ws;
+package com.akapush.plm.web;
 
 import java.util.List;
 
@@ -59,4 +59,5 @@ public class UserController {
 			return new ResponseEntity<List<UserDTO>>(HttpStatus.BAD_REQUEST);
 		}
 	}
+
 }
