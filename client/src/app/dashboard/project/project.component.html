@@ -1,0 +1,68 @@
+<form *ngIf="project" #form="ngForm">
+  <div class="row m-2">
+    <div class="col-2 text-left">
+      <button type="button" class="btn btn-outline-primary text-left m-2" [routerLink]="['/dashboard/project/search']"><i
+          class="fas fa-chevron-left m-2"></i>Retour</button>
+    </div>
+    <hr />
+    <div class="col-8 text-center">
+      <h1>{{project.name}}</h1>
+    </div>
+    <div class="col-2 text-right">
+
+      <button type="button" class="btn btn-primary m-2" (click)="saveProject(form)"><i class="fas fa-save m-2"></i>Enregistrer</button>
+    </div>
+  </div>
+  <div *ngIf="errorMessage" class="p-3 mb-2 bg-danger text-white">{{errorMessage}}</div>
+  <div *ngIf="successMessage" class="p-3 mb-2 bg-success text-white">{{successMessage}}</div>
+  <div class="row mb-2 justify-content-md-center">
+    <label for="project" class="col-lg-2 col-sm-3 col-form-label">Projet</label>
+
+    <div class="col-lg-5 col-sm-9">
+      <input class="form-control" id="country" type="text" [(ngModel)]="project.name" #country="ngModel" name="name" />
+    </div>
+  </div>
+  <div class="row mb-2 justify-content-md-center">
+    <label for="geographicZone" class="col-lg-2 col-sm-3 col-form-label">Zone géographique</label>
+
+    <div class="col-lg-5 col-sm-9">
+      <select class="form-control" id="geographicZone" [(ngModel)]="project.geographicZoneId" #geographicZone="ngModel"
+        name="geographicZone">
+        <option *ngFor="let geographicZone of getDropDownValues('geographicZone')" [value]="geographicZone.id"
+          [selected]="geographicZone.id == project.geographicZoneId">{{geographicZone.value}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row mb-2 justify-content-md-center">
+    <label for="country" class="col-lg-2 col-sm-3 col-form-label">Pays</label>
+
+    <div class="col-lg-5 col-sm-9">
+      <input class="form-control" id="country" type="text" [(ngModel)]="project.country" #country="ngModel" name="country" />
+    </div>
+  </div>
+  <div class="row mb-2 justify-content-md-center">
+    <label for="departureDate" class="col-lg-2 col-sm-3 col-form-label">Date départ</label>
+
+    <div class="col-lg-5 col-sm-9">
+      <input class="form-control" id="departureDate" type="date" [(ngModel)]="project.departureDate" #departureDate="ngModel"
+        name="departureDate" />
+    </div>
+  </div>
+  <div class="row mb-2 justify-content-md-center">
+    <label for="returnDate" class="col-lg-2 col-sm-3 col-form-label">Date Retour</label>
+
+    <div class="col-lg-5 col-sm-9">
+      <input class="form-control" id="returnDate" type="date" [(ngModel)]="project.returnDate" #returnDate="ngModel"
+        name="returnDate" />
+    </div>
+  </div>
+  <div class="row mb-2 justify-content-lg-center">
+    <label for="duration" class="col-lg-2 col-sm-3 col-form-label">Durée</label>
+
+    <div class="col-lg-5 col-sm-9">
+      <select class="form-control" id="duration" [(ngModel)]="project.durationId" #duration="ngModel" name="duration">
+        <option *ngFor="let duration of getDropDownValues('mobilityDuration')" [value]="duration.id" [selected]="duration.id == project.durationId">{{duration.value}}</option>
+      </select>
+    </div>
+  </div>
+</form>

@@ -11,7 +11,7 @@ import { YoungFollowUpComponent } from './young-panel/young-follow-up/young-foll
 import { AddAwarenessComponent } from './young-panel/young-follow-up/add-awareness/add-awareness.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
-import { AwarenessPipe } from './home/awareness.pipe';
+import { AwarenessPipe } from '../utils/pipe/awareness.pipe';
 import { SearchYoungComponent } from './young-panel/search-young.component';
 import { SearchAwarenessComponent } from './awareness/search-awareness.component';
 import { ParametersComponent } from './parameters/parameters.component';
@@ -19,16 +19,20 @@ import { DropdownParameterComponent } from './parameters/dropdown-parameter/drop
 import { UserParameterComponent } from './parameters/user-parameter/user-parameter.component';
 
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DateValueAccessorDirective } from '../utils/date-value-accessor.directive';
 import { AuthGuard } from '../guard/auth.guard';
+import { YoungAccompanyingComponent } from './young-panel/young-accompanying/young-accompanying.component';
+import { AddMeetingComponent } from './young-panel/young-accompanying/add-meeting/add-meeting.component';
+import { ProjectComponent } from './project/project.component';
+import { ProjectSearchComponent } from './project/project-search.component';
+import { ProjectPipe } from '../utils/pipe/project.pipe';
 
 @NgModule({
   imports: [
     CommonModule, FormsModule, NgbModule, ReactiveFormsModule,
     RouterModule.forRoot([
       {
-        path: 'dashboard', component: DashboardComponent,  canActivate: [AuthGuard],
+        path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
         children: [
           { path: 'home', component: HomeComponent },
           { path: 'young', component: YoungPanelComponent },
@@ -37,9 +41,13 @@ import { AuthGuard } from '../guard/auth.guard';
           { path: 'awareness', component: AwarenessComponent },
           { path: 'awereness/search', component: SearchAwarenessComponent },
           { path: 'awareness/:id', component: AwarenessComponent },
+          { path: 'project', component: ProjectComponent },
+          { path: 'project/search', component: ProjectSearchComponent },
+          { path: 'project/:id', component: ProjectComponent },
           { path: 'parameters/home', component: ParametersComponent },
           { path: 'parameters/dropdown', component: DropdownParameterComponent },
-          { path: 'parameters/users', component: UserParameterComponent }
+          { path: 'parameters/users', component: UserParameterComponent },
+
         ]
       }
     ]),
@@ -52,14 +60,19 @@ import { AuthGuard } from '../guard/auth.guard';
     AddAwarenessComponent,
     HomeComponent,
     AwarenessPipe,
+    ProjectPipe,
     SearchYoungComponent,
     SearchAwarenessComponent,
     ParametersComponent,
     DropdownParameterComponent,
     UserParameterComponent,
-    DateValueAccessorDirective
+    DateValueAccessorDirective,
+    YoungAccompanyingComponent,
+    AddMeetingComponent,
+    ProjectComponent,
+    ProjectSearchComponent
   ],
-  entryComponents: [AddAwarenessComponent]
+  entryComponents: [AddAwarenessComponent, AddMeetingComponent]
 })
 export class DashboardModule { }
 

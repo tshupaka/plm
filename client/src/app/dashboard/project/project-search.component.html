@@ -1,0 +1,45 @@
+<div class="row m-2">
+  <div class="col-6 text-left">
+    <button type="button" class="btn btn-outline-primary text-left m-2" [routerLink]="['/dashboard/home']"><i
+        class="fas fa-chevron-left m-2"></i>Retour</button>
+  </div>
+  <div class="col-6 text-right"><button class="btn btn-primary m-2" (click)="addProject()"><i class="far fa-calendar-plus m-2"></i>Ajouter Projet</button></div>
+
+</div>
+<div class="row">
+  <div class="col-4">
+    <label for="projectSearch" class="align-middle">
+      <h2>Recherche Projets : </h2>
+    </label>
+
+  </div>
+  <div class="col-8">
+    <input class="form-control form-control-lg" [(ngModel)]="projectSearch" id="projectSearch" type="text" placeholder="Projets" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nom</th>
+          <th scope="col">Pays</th>
+          <th scope="col">Départ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of projects | projectFilter:projectSearch">
+          <td>{{project.name}}</td>
+          <td>{{project.country}}</td>
+          <td>{{project.departure | date:'shortDate'}}</td>
+
+          <td><button class="btn btn-link" (click)="displayProject(project.id)">Afficher</button></td>
+        </tr>
+
+
+      </tbody>
+    </table>
+  </div>
+</div>

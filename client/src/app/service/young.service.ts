@@ -4,11 +4,13 @@ import { Young } from '../model/young.model';
 import { Observable } from 'rxjs';
 import { Awareness } from '../model/awareness.model';
 import { AuthenticationService } from './authentication.service';
+import { Accompanying } from '../model/accompanying.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class YoungService {
+
 
   private urlCreateYoung = '/api/young';
   private urlSearchYoung = '/api/youngs';
@@ -16,6 +18,7 @@ export class YoungService {
   private urlGetAwarenesses = '/api/young/:id/awareness';
   private urlDeleteAwarenesses = '/api/young/:youngId/awareness/:awarenessId';
   private urlPostAwarnessAffectation = '/api/young/awareness';
+  private urlGetAccompanyings: '/api/young/:id/accompanying';
 
   constructor(private httpClient: HttpClient, private authenticationService: AuthenticationService) { }
 
@@ -58,5 +61,11 @@ export class YoungService {
     return this.httpClient.delete(url, { 'headers': headers });
   }
 
+
+  getAccompanyingsFromYoung(youngId: number): Observable<Object> {
+    const headers = new HttpHeaders().set('authorization', this.authenticationService.getToken());
+    const url = this.urlGetAccompanyings.replace(':id', youngId.toString());
+    return this.httpClient.get(url, { 'headers': headers });
+  }
 
 }

@@ -13,7 +13,7 @@ import { AuthenticationService } from './service/authentication.service';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,

@@ -7,8 +7,10 @@
 <nav class="nav nav-tabs">
   <a class="nav-item nav-link pointer" [class.active]="youngInformationActive" (click)="setYoungInformationActive()"
     data-toggle="tab">Informations</a>
-  <a class="nav-item nav-link pointer" [class.active]="youngHistoryActive" (click)="setYoungHistoryActive()" data-toggle="tab"
-    *ngIf="currentYoung?.id">Suivi</a>
+  <a class="nav-item nav-link pointer" [class.active]="youngHistoryActive" (click)="setYoungAwarenessActive()"
+    data-toggle="tab" *ngIf="currentYoung?.id">Sensibilisation</a>
+  <a class="nav-item nav-link pointer" [class.active]="youngHistoryActive" (click)="setYoungAccompanyingActive()"
+    data-toggle="tab" *ngIf="currentYoung?.id">Accompagnement</a>
 </nav>
 <div class="tab-content">
   <div class="tab-pane" [class.active]="youngInformationActive" id="p1" *ngIf="currentYoung">
@@ -16,5 +18,8 @@
   </div>
   <div class="tab-pane" [class.active]="youngHistoryActive" id="p2" *ngIf="currentYoung">
     <plm-young-follow-up [young]="currentYoung"></plm-young-follow-up>
+  </div>
+  <div class="tab-pane" [class.active]="youngAccompanyingActive" id="p1" *ngIf="currentYoung">
+    <plm-young-accompanying [young]="currentYoung"></plm-young-accompanying>
   </div>
 </div>

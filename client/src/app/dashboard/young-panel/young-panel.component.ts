@@ -14,11 +14,13 @@ export class YoungPanelComponent implements OnInit {
   youngInformationActive: boolean;
   youngHistoryActive: boolean;
   youngHistoryEnable: boolean;
+  youngAccompanyingActive: boolean;
   currentYoung: Young;
 
   constructor(private route: ActivatedRoute, private youngservice: YoungService) {
     this.youngInformationActive = true;
     this.youngHistoryActive = false;
+    this.youngAccompanyingActive = false;
   }
 
   ngOnInit() {
@@ -36,11 +38,20 @@ export class YoungPanelComponent implements OnInit {
   setYoungInformationActive() {
     this.youngInformationActive = true;
     this.youngHistoryActive = false;
+    this.youngAccompanyingActive = false;
   }
 
   setYoungHistoryActive() {
     this.youngHistoryActive = true;
     this.youngInformationActive = false;
+    this.youngAccompanyingActive = false;
+  }
+
+
+  setYoungAccompanyingActive() {
+    this.youngHistoryActive = false;
+    this.youngInformationActive = false;
+    this.youngAccompanyingActive = true;
   }
 
   saveYoung(young: Young) {

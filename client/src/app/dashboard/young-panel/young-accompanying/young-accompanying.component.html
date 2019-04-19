@@ -1,0 +1,234 @@
+<section>
+  <div class="row">
+    <div class="col-12 text-right">
+      <button type="button" class="btn btn-primary m-2" (click)="addNewMeeting()">Ajouter Rdv</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 m-2">
+      <table class="table table-striped">
+        <thead>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Commentaire</th>
+          <th>Réalisé par</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let meeting of accompanying.meetings">
+            <td>{{meeting.date | date:'shortDate'}}</td>
+
+            <td>{{meeting.description}}</td>
+            <td>{{meeting.comment}}</td>
+            <td>{{meeting.user.firstname}} {{meeting.user.lastname}}</td>
+            <td>
+              <a (click)="deleteMeeting(meeting.id)"><i class="trash far fa-trash-alt text-primary pointer"></i></a>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</section>
+<section>
+
+  <div class="row m-2">
+    <label for="mobilityType" class="col-sm-2 col-form-label">Statut accompagnement</label>
+    <div class="col-sm-3">
+      <select class="form-control" id="accompayningType" [(ngModel)]="accompayningType" (change)="onChangeAccompanyingType()"
+        name="accompayningType">
+        <option value="1">Abandon</option>
+        <option value="2">Sortie Positive</option>
+        <option value="3">Accompagnement avant départ</option>
+        <option value="4">Mobilité</option>
+        <option value="5">Fin de suivi</option>
+      </select>
+    </div>
+  </div>
+</section>
+<form>
+  <div class="row m-2">
+    <div class="col-xl-3 col-md-6 col-sd-12">
+      <!-- Mobility-->
+      <section>
+        <div class="row">
+          <div class="col-12">
+            <strong>Mobilité</strong>
+            <hr />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <label for="mobilityType" class="col-sm-5 col-form-label">Forme Mob.</label>
+
+          <div class="col-sm-7">
+            <select class="form-control" id="mobilityType" [(ngModel)]="accompanying.mobilityTypeId" #mobilityType="ngModel"
+              name="mobilityType">
+              <option *ngFor="let mobilityType of getDropDownValues('mobilityType')" [value]="mobilityType.id"
+                [selected]="mobilityType.id == accompanying.mobilityTypeId">{{mobilityType.value}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <label for="project" class="col-sm-5 col-form-label">Projet</label>
+
+          <div class="col-sm-7">
+            <select class="form-control" id="project" [(ngModel)]="accompanying.projectId" #project="ngModel" name="project">
+              <option *ngFor="let project of mobilityProjects" [value]="mobilityTypeId.id" [selected]="project.id == accompanying.projectId">{{project.value}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <label for="geographicZone" class="col-sm-5 col-form-label">Zone géo.</label>
+
+          <div class="col-sm-7">
+            <select class="form-control" id="geographicZone" [(ngModel)]="accompanying.geographicZoneId"
+              #geographicZone="ngModel" name="geographicZone">
+              <option *ngFor="let geographicZone of getDropDownValues('geographicZone')" [value]="geographicZone.id"
+                [selected]="geographicZone.id == accompanying.geographicZoneId">{{geographicZone.value}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <label for="country" class="col-sm-5 col-form-label">Pays</label>
+
+          <div class="col-sm-7">
+            <input class="form-control" id="country" type="text" [(ngModel)]="accompanying.country" #country="ngModel"
+              name="country" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <label for="departureDate" class="col-sm-5 col-form-label">Date départ</label>
+
+          <div class="col-sm-7">
+            <input class="form-control" id="departureDate" type="date" [(ngModel)]="accompanying.departureDate"
+              #departureDate="ngModel" name="departureDate" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <label for="returnDate" class="col-sm-5 col-form-label">Date Retour</label>
+
+          <div class="col-sm-7">
+            <input class="form-control" id="returnDate" type="date" [(ngModel)]="accompanying.returnDate" #returnDate="ngModel"
+              name="returnDate" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <label for="duration" class="col-sm-5 col-form-label">Durée</label>
+
+          <div class="col-sm-7">
+            <select class="form-control" id="duration" [(ngModel)]="accompanying.durationId" #duration="ngModel" name="duration">
+              <option *ngFor="let duration of getDropDownValues('mobilityDuration')" [value]="duration.id" [selected]="duration.id == accompanying.durationId">{{duration.value}}</option>
+            </select>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-xl-3 col-md-6 col-sd-12">
+      <!-- Accompanying end-->
+      <section>
+        <div class="row">
+          <div class="col-12">
+            <strong>Fin de suivi</strong>
+            <hr />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <label for="endAccompanyingDate" class="col-sm-5 col-form-label">Date</label>
+
+          <div class="col-sm-7">
+            <input class="form-control" id="endAccompanyingDate" type="date" [(ngModel)]="accompanying.endAccompanyingDate"
+              #endAccompanyingDate="ngModel" name="endAccompanyingDate" />
+          </div>
+        </div>
+        <div class="form-group row mb-2">
+          <label for="reason" class="col-sm-5 col-form-label">Raison</label>
+          <div class="col-sm-7">
+            <select class="form-control" id="reason" [(ngModel)]="accompanying.endAccompanyingReasonId" #reason="ngModel"
+              name="reason">
+              <option *ngFor="let reason of getDropDownValues('endFollowReason')" [value]="reason.id" [selected]="reason.id == accompanying.reasonId">{{reason.value}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="endAccompanyingComment">Commentaires</label>
+          <textarea class="form-control" id="endAccompanyingComment" name="endAccompanyingComment"
+            #endAccompanyingComment="ngModel" [(ngModel)]="accompanying.endAccompanyingComment" rows="5"></textarea>
+        </div>
+
+      </section>
+    </div>
+    <div class="col-xl-3 col-md-6 col-sd-12">
+      <!--  3 month after accompanying end -->
+      <section>
+        <div class="row">
+          <div class="col-12">
+            <strong>Suivi à 3 mois</strong>
+            <hr />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <label for="contactDate3Month" class="col-sm-5 col-form-label">Date Contact</label>
+
+          <div class="col-sm-7">
+            <input class="form-control" id="contactDate3Month" type="date" [(ngModel)]="accompanying.contactDate3Month"
+              #contactDate3Month="ngModel" name="contactDate3Month" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <label for="contactDate3Month" class="col-sm-5 col-form-label">Situation</label>
+
+          <div class="col-sm-7">
+            <select class="form-control" id="position3Month" [(ngModel)]="accompanying.position3MonthId"
+              #position3Month="ngModel" name="position3Month">
+              <option *ngFor="let position3Month of getDropDownValues('position')" [value]="position3Month.id"
+                [selected]="position3Month.id == accompanying.position3MonthId">{{position3Month.value}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="comment3Month">Commentaires</label>
+          <textarea class="form-control" id="comment3Month" name="comment3Month" #comment3Month="ngModel" [(ngModel)]="accompanying.comment3Month"
+            rows="5"></textarea>
+
+        </div>
+      </section>
+    </div>
+    <div class="col-xl-3 col-md-6 col-sd-12">
+      <!--  6 month after accompanying end -->
+      <section disabled>
+        <div class="row">
+          <div class="col-12">
+            <strong>Suivi à 6 mois</strong>
+            <hr />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <label for="contactDate6Month" class="col-sm-5 col-form-label">Date Contact</label>
+
+          <div class="col-sm-7">
+            <input class="form-control" id="contactDate6Month" type="date" [(ngModel)]="accompanying.contactDate6Month"
+              #contactDate3Month="ngModel" name="contactDate6Month" />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <label for="position6Month" class="col-sm-5 col-form-label">Situation</label>
+
+          <div class="col-sm-7">
+            <select class="form-control" id="position6Month" [(ngModel)]="accompanying.position6MonthId"
+              #position6Month="ngModel" name="position6Month" disabled>
+              <option *ngFor="let position6Month of getDropDownValues('position')" [value]="position6Month.id"
+                [selected]="position6Month.id == accompanying.position6MonthId">{{position6Month.value}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="comment3Month">Commentaires</label>
+          <textarea class="form-control" id="comment6Month" name="comment6Month" #comment3Month="ngModel" [(ngModel)]="accompanying.comment6Month"
+            rows="5"></textarea>
+        </div>
+
+      </section>
+    </div>
+  </div>
+</form>
