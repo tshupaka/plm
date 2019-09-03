@@ -13,33 +13,18 @@ import { Router } from '@angular/router';
 })
 export class SearchYoungComponent implements OnInit {
 
-  private youngs: Young[];
-  private youngSearch: FormControl = new FormControl();
+  public youngs: Young[];
 
-  constructor(private youngService: YoungService, private router: Router) { }
+  constructor(private youngService: YoungService, private router: Router) {
+  }
 
   ngOnInit() {
-    this.youngSearch.valueChanges.pipe(debounceTime(200))
-    .subscribe((search: string) => this.searchYoung(search));
-
+    this.youngService.getAllYoungs().subscribe(youngs => this.youngs = youngs);
   }
-
-
-
-  searchYoung(search: string) {
-    console.log(this);
-    if (search.length > 2) {
-      this.youngService.searchYoung(search).subscribe(youngs => this.youngs = youngs);
-    }
-  }
-
-  displayYoung(youngId: number) {
-    this.router.navigate(['/dashboard/young', youngId]);
-  }
-
 
   addYoung() {
     this.router.navigate(['/dashboard/young']);
   }
+
 
 }

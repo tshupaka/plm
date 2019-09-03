@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Awareness } from '../model/awareness.model';
 import { AuthenticationService } from './authentication.service';
 import { Accompanying } from '../model/accompanying.model';
+import { YoungFilter } from '../utils/bean/young-filter';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,11 @@ export class YoungService {
   private urlGetAwarenesses = '/api/young/:id/awareness';
   private urlDeleteAwarenesses = '/api/young/:youngId/awareness/:awarenessId';
   private urlPostAwarnessAffectation = '/api/young/awareness';
-  private urlGetAccompanyings: '/api/young/:id/accompanying';
+  private urlGetCurrentAccompanying = '/api/young/:id/accompanying/current';
+  private urlGetHistoricAccompanyings = '/api/young/:id/accompanying/historic';
+  private urlPostAccompanying = '/api/young/:id/accompanying';
+  private urlGetAccompanyingById = '/api/young/accompanying/:id';
+  private youngFilter: any;
 
   constructor(private httpClient: HttpClient, private authenticationService: AuthenticationService) { }
 
@@ -29,10 +34,9 @@ export class YoungService {
   }
 
 
-  searchYoung(search: string): any {
-    const params = new HttpParams().set('search', search);
+  getAllYoungs(): any {
     const headers = new HttpHeaders().set('authorization', this.authenticationService.getToken());
-    return this.httpClient.get(this.urlSearchYoung, { 'headers': headers, 'params': params });
+    return this.httpClient.get(this.urlSearchYoung, { 'headers': headers });
   }
 
   getYoungById(id: number): any {
@@ -62,10 +66,52 @@ export class YoungService {
   }
 
 
-  getAccompanyingsFromYoung(youngId: number): Observable<Object> {
+  getCurrentAccompanyingFromYoung(youngId: number): Observable<Object> {
     const headers = new HttpHeaders().set('authorization', this.authenticationService.getToken());
-    const url = this.urlGetAccompanyings.replace(':id', youngId.toString());
+    const url = this.urlGetCurrentAccompanying.replace(':id', youngId.toString());
     return this.httpClient.get(url, { 'headers': headers });
   }
 
+  getHistoricAccompanyingsFromYoung(youngId: number): Observable<Object> {
+    const headers = new HttpHeaders().set('authorization', this.authenticationService.getToken());
+    const url = this.urlGetHistoricAccompanyings.replace(':id', youngId.toString());
+    return this.httpClient.get(url, { 'headers': headers });
+  }
+
+
+  getAccompanyingById(accompanyingId: number): any {
+    const headers = new HttpHeaders().set('authorization', this.authenticationService.getToken());
+    const url = this.urlGetAccompanyingById.replace(':id', accompanyingId.toString());
+    return this.httpClient.get(url, { 'headers': headers });
+  }
+
+
+  saveAccompanying(youngId: number, accompanying: Accompanying): any {
+    console.log('save Accompanying : {0} , {1}', youngId, accompanying);
+    const headers = new HttpHeaders().set('authorization', this.authenticationService.getToken());
+    const url = this.urlPostAccompanying.replace(':id', youngId.toString());
+    return this.httpClient.post(url, accompanying, { 'headers': headers });
+  }
+
+  getYoungFilter(): YoungFilter {
+    if (!this.youngFilter) {
+      this.youngFilter = new YoungFilter();
+    }
+    return this.youngFilter;
+  }
+
+  setYoungFilter(youngFilter: YoungFilter) {
+    this.youngFilter = youngFilter;
+  }
+
+  getAccompanyingTypes(): Array<any> {
+    return [
+      { 'value': 1, 'label': 'Abandon' },
+      { 'value': 2, 'label': 'Sortie Positive' },
+      { 'value': 3, 'label': 'Premier entretien' },
+      { 'value': 4, 'label': 'Accompagnement avant départ' },
+      { 'value': 5, 'label': 'Mobilité' },
+      { 'value': 6, 'label': 'Accompagnement au retour' },
+      { 'value': 7, 'label': 'Fin de suivi' }];
+  }
 }

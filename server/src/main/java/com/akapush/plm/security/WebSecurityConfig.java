@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests().antMatchers("/").permitAll()
 				// Autorise les accès sans authent pour le login
-				.antMatchers(SecurityConstants.SIGN_IN_URL).permitAll()
+				.antMatchers(SecurityConstants.SIGN_IN_URL, SecurityConstants.CSV_URL).permitAll()
 				// Tous les autres accès doivent être authentifié
 				.anyRequest().authenticated().and()
 				// Ajout du filtre pour le login

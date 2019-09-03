@@ -1,0 +1,24 @@
+<section>
+  <table class="table">
+    <thead>
+      <th>Date</th>
+      <th>Nom</th>
+      <th>Satut</th>
+      <th>Accès</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let accompanying of historicAccompanyings">
+        <td>{{accompanying.date | date:'shortDate'}}</td>
+        <td>{{accompanying.name}}</td>
+        <td>{{getAccompanyingTypeLabel(accompanying.type)}}</td>
+        <td><button class="btn btn-link" (click)="displayHistoricAccompanying(accompanying.id)">Afficher</button>
+      </tr>
+
+
+    </tbody>
+
+
+  </table>
+
+
+</section>

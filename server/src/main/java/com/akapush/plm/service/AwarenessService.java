@@ -3,6 +3,7 @@ package com.akapush.plm.service;
 import com.akapush.plm.domain.exception.InvalidBeanException;
 import com.akapush.plm.domain.exception.NoBeanAvailableException;
 import com.akapush.plm.domain.model.Awareness;
+import com.akapush.plm.domain.model.Young;
 
 /**
  * This service provides method to handle Awareness.
@@ -37,5 +38,13 @@ public interface AwarenessService {
 	 * @return
 	 */
 	public Iterable<Awareness> getAllAwarenesses();
+
+	/**
+	 * Return youngs associated with a given awareness
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Iterable<Young> getAwarenessYoungs(long id);
 
 }

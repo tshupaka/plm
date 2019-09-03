@@ -12,6 +12,9 @@ import com.akapush.plm.domain.model.User;
 public class UserHelper {
 
 	public UserDTO getUserDTO(User user) {
+		if (user == null) {
+			return null;
+		}
 		UserDTO userDTO = new UserDTO();
 		userDTO.setId(user.getId());
 		userDTO.setFirstname(user.getFirstname());
@@ -21,6 +24,9 @@ public class UserHelper {
 	}
 
 	public User getUser(UserDTO userDTO) {
+		if (userDTO == null) {
+			return null;
+		}
 		User user = new User();
 		user.setId(userDTO.getId());
 		user.setFirstname(userDTO.getFirstname());

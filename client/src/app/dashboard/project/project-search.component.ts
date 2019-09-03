@@ -10,7 +10,8 @@ import { Project } from 'src/app/model/project.model';
 })
 export class ProjectSearchComponent implements OnInit {
 
-  projects: Project[];
+  public projects: Project[];
+  public projectSearch: string;
 
   constructor(private projectService: ProjectService, private router: Router) { }
 
@@ -21,7 +22,7 @@ export class ProjectSearchComponent implements OnInit {
 
 
 
-  displayAwareness(projectId: number) {
+  displayProject(projectId: number) {
     this.router.navigate(['/dashboard/project', projectId]);
   }
 

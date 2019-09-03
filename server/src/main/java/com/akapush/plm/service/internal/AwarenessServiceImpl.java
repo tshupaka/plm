@@ -10,6 +10,7 @@ import com.akapush.plm.domain.enumartion.BeanType;
 import com.akapush.plm.domain.exception.InvalidBeanException;
 import com.akapush.plm.domain.exception.NoBeanAvailableException;
 import com.akapush.plm.domain.model.Awareness;
+import com.akapush.plm.domain.model.Young;
 import com.akapush.plm.service.AwarenessService;
 
 @Service
@@ -37,6 +38,12 @@ public class AwarenessServiceImpl implements AwarenessService {
 	public Iterable<Awareness> getAllAwarenesses() {
 		Iterable<Awareness> awarenesses = awarenessDAO.findAll();
 		return awarenesses;
+	}
+
+	@Override
+	public Iterable<Young> getAwarenessYoungs(long id) {
+		Iterable<Young> youngs = awarenessDAO.findYoungByAwareness(id);
+		return youngs;
 	}
 
 }

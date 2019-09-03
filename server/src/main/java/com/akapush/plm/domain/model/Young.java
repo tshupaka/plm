@@ -13,8 +13,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.BatchSize;
 
 @Entity
 @Table(name = "YOUNG")
@@ -120,9 +123,14 @@ public class Young {
 	private Boolean youngGuarantee;
 
 	@ManyToMany()
+	@BatchSize(size = 50)
 	@JoinTable(name = "YOUNG_AWARENESS", joinColumns = { @JoinColumn(name = "YOU_ID") }, inverseJoinColumns = {
 			@JoinColumn(name = "AWA_ID") })
 	private List<Awareness> awarenesses;
+
+	@OneToMany(mappedBy = "young", fetch = FetchType.LAZY)
+	@BatchSize(size = 50)
+	private List<Accompanying> accompanyings;
 
 	public Long getId() {
 		return id;
@@ -386,6 +394,14 @@ public class Young {
 
 	public void setAwarenesses(List<Awareness> awarenesses) {
 		this.awarenesses = awarenesses;
+	}
+
+	public List<Accompanying> getAccompanyings() {
+		return accompanyings;
+	}
+
+	public void setAccompanyings(List<Accompanying> accompanyings) {
+		this.accompanyings = accompanyings;
 	}
 
 }

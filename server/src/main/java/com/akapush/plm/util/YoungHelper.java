@@ -1,18 +1,26 @@
 package com.akapush.plm.util;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.akapush.plm.domain.dto.UserDTO;
 import com.akapush.plm.domain.dto.YoungDTO;
+import com.akapush.plm.domain.model.Accompanying;
+import com.akapush.plm.domain.model.Awareness;
 import com.akapush.plm.domain.model.DropDownValue;
+import com.akapush.plm.domain.model.User;
 import com.akapush.plm.domain.model.Young;
 
 @Component
 public class YoungHelper {
 
 	public List<YoungDTO> getYoungsDTO(Iterable<Young> youngs) {
+		if (youngs == null) {
+			return null;
+		}
 		List<YoungDTO> youngsDTO = new ArrayList<YoungDTO>();
 		for (Young young : youngs) {
 			YoungDTO youngDTO = getYoungDTO(young);
@@ -55,8 +63,65 @@ public class YoungHelper {
 		youngDTO.setSkype(young.getSkype());
 		youngDTO.setYoungGuarantee(young.getYoungGuarantee());
 		youngDTO.setZipCode(young.getZipCode());
-
+		youngDTO.setAccompanyingType(getAccompanyingType(young.getAccompanyings()));
+		youngDTO.setSensitized(isSensitized(young.getAwarenesses()));
+		youngDTO.setAccompanied(isAccompanied(young.getAccompanyings()));
+		youngDTO.setAccompanyingUser(getAccompanyingUser(young.getAccompanyings()));
 		return youngDTO;
+	}
+
+	private UserDTO getAccompanyingUser(List<Accompanying> accompanyings) {
+		if (accompanyings != null) {
+			for (Accompanying accompanying : accompanyings) {
+				if (accompanying.getClosed() == null || !accompanying.getClosed()) {
+					User accompanyingUser = accompanying.getAccompagnyingUser();
+					if (accompanyingUser != null) {
+						UserDTO userDTO = new UserDTO();
+						userDTO.setLastname(accompanyingUser.getLastname());
+						userDTO.setFirstname(accompanyingUser.getFirstname());
+						userDTO.setId(accompanyingUser.getId());
+						return userDTO;
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	private Boolean isAccompanied(List<Accompanying> accompanyings) {
+		if (accompanyings != null && accompanyings.size() > 0) {
+			return true;
+
+		}
+		return false;
+	}
+
+	private Boolean isSensitized(List<Awareness> awarenesses) {
+
+		return awarenesses != null && awarenesses.size() > 0;
+	}
+
+	private Long getAccompanyingType(List<Accompanying> accompanyings) {
+		if (accompanyings != null) {
+			for (Accompanying accompanying : accompanyings) {
+				if (!accompanying.getClosed()) {
+					return accompanying.getType();
+				}
+			}
+			/* Si tous les projets sont clos, on cherche le projet clos le plus récent */
+			Date lastDate = null;
+			Long lastType = null;
+			for (Accompanying accompanying : accompanyings) {
+				Date currentDate = accompanying.getDate();
+				if (currentDate != null && (lastDate == null || currentDate.compareTo(lastDate) > 0)) {
+					lastDate = currentDate;
+					lastType = accompanying.getType();
+				}
+
+			}
+			return lastType;
+		}
+		return null;
 	}
 
 	public Young getYoung(YoungDTO youngDTO) {

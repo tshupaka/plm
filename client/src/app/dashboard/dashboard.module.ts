@@ -26,6 +26,11 @@ import { AddMeetingComponent } from './young-panel/young-accompanying/add-meetin
 import { ProjectComponent } from './project/project.component';
 import { ProjectSearchComponent } from './project/project-search.component';
 import { ProjectPipe } from '../utils/pipe/project.pipe';
+import { YoungAccompanyingSummaryComponent } from './young-panel/young-accompanying/young-accompanying-summary.component';
+import { YoungHistoricAccompanyingComponent } from './young-panel/young-accompanying/young-historic-accompanying.component';
+import { YoungPopupClosedAccompanyingComponent } from './young-panel/young-accompanying/young-popup-closed-accompanying.component';
+import { YoungPipe } from '../utils/pipe/young.pipe';
+import { YoungListComponent } from './young-panel/young-list.component';
 
 @NgModule({
   imports: [
@@ -61,18 +66,23 @@ import { ProjectPipe } from '../utils/pipe/project.pipe';
     HomeComponent,
     AwarenessPipe,
     ProjectPipe,
+    YoungPipe,
     SearchYoungComponent,
     SearchAwarenessComponent,
     ParametersComponent,
     DropdownParameterComponent,
     UserParameterComponent,
     DateValueAccessorDirective,
-    YoungAccompanyingComponent,
     AddMeetingComponent,
     ProjectComponent,
-    ProjectSearchComponent
+    ProjectSearchComponent,
+    YoungAccompanyingSummaryComponent,
+    YoungHistoricAccompanyingComponent,
+    YoungAccompanyingComponent,
+    YoungPopupClosedAccompanyingComponent,
+    YoungListComponent
   ],
-  entryComponents: [AddAwarenessComponent, AddMeetingComponent]
+  entryComponents: [AddAwarenessComponent, AddMeetingComponent, YoungPopupClosedAccompanyingComponent]
 })
 export class DashboardModule { }
 

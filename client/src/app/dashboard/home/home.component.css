@@ -1,3 +1,31 @@
 section {
     padding: 0px;
 }
+
+
+.banner {
+    margin: 0 auto 3.5em;
+}
+
+.site-headline {
+        font-size: 1.6em;
+        color: #ffffff;
+        background: #000000;
+        padding: .5em .75em !important;
+        display: inline-block;
+        line-height: 1;
+        text-transform: uppercase;
+        font-family: 'Montserrat';
+    
+}
+
+.site-subtitle {
+    font-size: 1.25em;
+    color: #000000;
+    background: #67b3df;
+    padding: .5em .75em !important;
+    display: inline-block;
+    line-height: 1;
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+}

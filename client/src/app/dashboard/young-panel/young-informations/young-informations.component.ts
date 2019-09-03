@@ -15,9 +15,9 @@ export class YoungInformationsComponent implements OnInit {
 
   @Input()
   public young: Young;
-  private dropDownValues: Object;
-  private errorMessage: string;
-  private successMessage: string;
+  public dropDownValues: Object;
+  public errorMessage: string;
+  public successMessage: string;
   @Output()
   youngSaved: EventEmitter<Young> = new EventEmitter<Young>();
 

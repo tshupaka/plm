@@ -13,6 +13,7 @@
       <button type="button" class="btn btn-primary m-2" (click)="saveProject(form)"><i class="fas fa-save m-2"></i>Enregistrer</button>
     </div>
   </div>
+  <hr />
   <div *ngIf="errorMessage" class="p-3 mb-2 bg-danger text-white">{{errorMessage}}</div>
   <div *ngIf="successMessage" class="p-3 mb-2 bg-success text-white">{{successMessage}}</div>
   <div class="row mb-2 justify-content-md-center">
@@ -28,6 +29,7 @@
     <div class="col-lg-5 col-sm-9">
       <select class="form-control" id="geographicZone" [(ngModel)]="project.geographicZoneId" #geographicZone="ngModel"
         name="geographicZone">
+        <option value=""></option>
         <option *ngFor="let geographicZone of getDropDownValues('geographicZone')" [value]="geographicZone.id"
           [selected]="geographicZone.id == project.geographicZoneId">{{geographicZone.value}}</option>
       </select>
@@ -45,7 +47,7 @@
 
     <div class="col-lg-5 col-sm-9">
       <input class="form-control" id="departureDate" type="date" [(ngModel)]="project.departureDate" #departureDate="ngModel"
-        name="departureDate" />
+        name="departureDate" plmUseValueAsDate />
     </div>
   </div>
   <div class="row mb-2 justify-content-md-center">
@@ -53,7 +55,7 @@
 
     <div class="col-lg-5 col-sm-9">
       <input class="form-control" id="returnDate" type="date" [(ngModel)]="project.returnDate" #returnDate="ngModel"
-        name="returnDate" />
+        name="returnDate" plmUseValueAsDate />
     </div>
   </div>
   <div class="row mb-2 justify-content-lg-center">
@@ -61,8 +63,10 @@
 
     <div class="col-lg-5 col-sm-9">
       <select class="form-control" id="duration" [(ngModel)]="project.durationId" #duration="ngModel" name="duration">
+        <option value=""></option>
         <option *ngFor="let duration of getDropDownValues('mobilityDuration')" [value]="duration.id" [selected]="duration.id == project.durationId">{{duration.value}}</option>
       </select>
     </div>
   </div>
 </form>
+<plm-young-list [youngs]="youngs"></plm-young-list>

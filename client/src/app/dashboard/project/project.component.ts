@@ -5,6 +5,7 @@ import { ProjectService } from 'src/app/service/project.service';
 import { Project } from 'src/app/model/project.model';
 import { NgForm } from '@angular/forms';
 import { timer } from 'rxjs';
+import { Young } from 'src/app/model/young.model';
 
 @Component({
   selector: 'plm-project',
@@ -15,10 +16,11 @@ export class ProjectComponent implements OnInit {
 
 
 
-  private dropDownValues: Object;
-  private project: Project;
-  private successMessage: string;
-  private errorMessage: string;
+  public dropDownValues: Object;
+  public project: Project;
+  public successMessage: string;
+  public errorMessage: string;
+  public youngs: Young[];
 
   constructor(private dropDownService: DropDownService, private projectService: ProjectService, private route: ActivatedRoute) { }
 
@@ -27,6 +29,7 @@ export class ProjectComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     if (id) {
       this.projectService.getProjectById(id).subscribe(project => this.project = project);
+      this.projectService.getYoungsByProjectId(id).subscribe((youngs: Young[]) => this.youngs = youngs);
     } else {
       this.project = new Project();
     }

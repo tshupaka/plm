@@ -3,43 +3,7 @@
   <div class="col-6 text-left">
     <button class="btn btn-outline-primary" [routerLink]="['/dashboard/home']"><i class="fas fa-chevron-left m-2"></i>Retour</button>
   </div>
-  <div class="col-6 text-right"><button class="btn btn-primary" (click)="addYoung()">Ajouter Jeune</button></div>
+  <div class="col-6 text-right"><button class="btn btn-primary" (click)="addYoung()"><i class="fas fa-user-plus m-2"></i>Ajouter Jeune</button></div>
 
 </div>
-<div class="row">
-  <div class="col-4">
-    <label for="youngSearch" class="align-middle">
-      <h2>Recherche Jeunes : </h2>
-    </label>
-
-  </div>
-  <div class="col-8">
-    <input class="form-control form-control-lg" [formControl]="youngSearch" id="youngSearch" type="text" placeholder="Nom ou prénom" />
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12">
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Nom</th>
-          <th scope="col">Prénom</th>
-          <th scope="col">Statut</th>
-          <th scope="col">Accès</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let young of youngs">
-          <td>{{young.lastname}}</td>
-          <td>{{young.firstname}}</td>
-          <td>Parti : de retour</td>
-          <td><button class="btn btn-link" (click)="displayYoung(young.id)">Afficher</button></td>
-        </tr>
-
-
-      </tbody>
-    </table>
-  </div>
-</div>
+<plm-young-list [youngs]="youngs"></plm-young-list>

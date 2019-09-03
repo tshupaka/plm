@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.akapush.plm.domain.dto.AwarenessDTO;
+import com.akapush.plm.domain.dto.YoungDTO;
 import com.akapush.plm.domain.exception.InvalidBeanException;
 import com.akapush.plm.domain.exception.NoBeanAvailableException;
 import com.akapush.plm.domain.model.Awareness;
+import com.akapush.plm.domain.model.Young;
 import com.akapush.plm.service.AwarenessService;
 import com.akapush.plm.util.AwarenessHelper;
+import com.akapush.plm.util.YoungHelper;
 
 @RestController
 public class AwarenessController {
@@ -28,6 +31,9 @@ public class AwarenessController {
 
 	@Autowired
 	private AwarenessHelper awarenessHelper;
+
+	@Autowired
+	private YoungHelper youngHelper;
 
 	private static final Log LOG = LogFactory.getLog(AwarenessController.class);
 
@@ -62,6 +68,13 @@ public class AwarenessController {
 			LOG.error("Invalid Young Bean : " + e.getMessage());
 			return new ResponseEntity<AwarenessDTO>(HttpStatus.BAD_REQUEST);
 		}
+	}
+
+	@RequestMapping(value = "/api/awareness/{awarenessId}/young", method = RequestMethod.GET)
+	public ResponseEntity<List<YoungDTO>> getAwarenessYoungs(@PathVariable("awarenessId") long id) {
+		Iterable<Young> youngs = awarenessService.getAwarenessYoungs(id);
+		List<YoungDTO> youngsDTO = youngHelper.getYoungsDTO(youngs);
+		return new ResponseEntity<List<YoungDTO>>(youngsDTO, HttpStatus.OK);
 	}
 
 }

@@ -1,15 +1,15 @@
 <div class="row m-2">
   <div class="col-6 text-left">
-    <button type="button" class="btn btn-outline-primary text-left m-2" [routerLink]="['/dashboard/home']"><i
-        class="fas fa-chevron-left m-2"></i>Retour</button>
+    <button type="button" class="btn btn-outline-primary text-left m-2" [routerLink]="['/dashboard/home']"><i class="fas fa-chevron-left m-2"></i>Retour</button>
   </div>
-  <div class="col-6 text-right"><button class="btn btn-primary m-2" (click)="addAwareness()"><i class="far fa-calendar-plus m-2"></i>Ajouter Sensibilisation</button></div>
+  <div class="col-6 text-right"><button class="btn btn-primary m-2" (click)="addAwareness()"><i class="far fa-calendar-plus m-2"></i>Ajouter
+      Sensibilisation</button></div>
 
 </div>
 <div class="row">
   <div class="col-4">
     <label for="youngSearch" class="align-middle">
-      <h2>Recherche sensibilisations : </h2>
+      <h2>Filtre sensibilisations : </h2>
     </label>
 
   </div>
@@ -31,7 +31,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let awareness of awarenesses | awarenessFilter:awarenessSearch">
+        <tr *ngFor="let awareness of getAwarenesses()">
           <td>{{awareness.date | date:'shortDate'}}</td>
           <td>{{awareness.name}}</td>
           <td>{{awareness.city}}</td>
@@ -42,4 +42,20 @@
       </tbody>
     </table>
   </div>
+</div>
+<div class="row">
+  <nav class="col-12">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage == 0">
+        <a class="page-link" tabindex="-1" (click)="changePage(currentPage - 1)">Précédent</a>
+      </li>
+      <li *ngFor="let item of getPageRange()" class="page-item" [class.active]="(item-1) == currentPage" (click)=changePage(item-1)>
+        <a class="page-link" tabindex="{{item-1}}">{{item}}</a>
+      </li>
+
+      <li class="page-item" [class.disabled]="currentPage == nbPage -1">
+        <a class="page-link" tabindex="{{nbPage}}" (click)='changePage(currentPage + 1)'>Suivant</a>
+      </li>
+    </ul>
+  </nav>
 </div>

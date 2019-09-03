@@ -9,6 +9,7 @@ import com.akapush.plm.dao.ProjectDAO;
 import com.akapush.plm.domain.enumartion.BeanType;
 import com.akapush.plm.domain.exception.NoBeanAvailableException;
 import com.akapush.plm.domain.model.Project;
+import com.akapush.plm.domain.model.Young;
 import com.akapush.plm.service.ProjectService;
 
 @Service
@@ -35,6 +36,11 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public Project saveProject(Project project) {
 		return projectDAO.save(project);
+	}
+
+	@Override
+	public Iterable<Young> getYoungsByProjectId(long id) {
+		return projectDAO.findYoungsByProjectId(id);
 	}
 
 }

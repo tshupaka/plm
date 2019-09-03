@@ -1,10 +1,8 @@
 <form #form="ngForm">
     <div class="row m-2">
   
-      <div class="col-8">
-        <h1>{{young.firstname}} {{young.lastname}}</h1>
-      </div>
-      <div class="col-4 text-right">
+
+      <div class="col-12 text-right">
         <button type="button" class="btn btn-primary m-1" (click)="saveYoung(form)">Enregistrer</button>
       </div>
     </div>
@@ -23,6 +21,7 @@
             </div>
             <div class="col-7">
               <select class="form-control" id="gender" [(ngModel)]="young.genderId" #gender="ngModel" name="gender">
+                <option value=""></option>
                 <option *ngFor="let gender of getDropDownValues('gender')" [value]="gender.id" [selected]="gender.id == young.genderId">{{gender.value}}</option>
               </select>
             </div>
@@ -155,6 +154,7 @@
             <div class="col-7">
               <select class="form-control" id="geographicFocusId" [(ngModel)]="young.geographicFocusId"
                 #geographicFocusId="ngModel" name="geographicFocusId">
+                <option value=""></option>
                 <option *ngFor="let geographicFocus of getDropDownValues('geographicFocus')" [value]="geographicFocus.id" [selected]="geographicFocus.id == young.geographicFocusId">{{geographicFocus.value}}</option>
               </select>
             </div>
@@ -166,6 +166,7 @@
             <div class="col-7">
                 <select class="form-control" id="qpvStatusId" [(ngModel)]="young.qpvStatusId"
                 #geographicFocusId="ngModel" name="qpvStatusId">
+                <option value=""></option>
                 <option *ngFor="let qpvStatus of getDropDownValues('qpvStatus')" [value]="qpvStatus.id" [selected]="qpvStatus.id == young.qpvStatusId">{{qpvStatus.value}}</option>
               </select>
             </div>
@@ -177,6 +178,7 @@
             <div class="col-7">
               <select class="form-control" id="qpvQuarterId" [(ngModel)]="young.qpvQuarterId" #qpvQuarterId="ngModel"
                 name="qpvQuarterId">
+                <option value=""></option>
                 <option *ngFor="let qpvQuarter of getDropDownValues('qpvQuarter')" [value]="qpvQuarter.id" [selected]="qpvQuarter.id == young.qpvQuarterId">{{qpvQuarter.value}}</option>
               </select>
             </div>
@@ -198,6 +200,7 @@
             <div class="col-7">
               <select class="form-control" id="prescriberId" [(ngModel)]="young.prescriberId" #prescriberId="ngModel"
                 name="prescriberId">
+                <option value=""></option>
                 <option *ngFor="let prescriber of getDropDownValues('prescriber')" [value]="prescriber.id" [selected]="prescriber.id == young.prescriberId">{{prescriber.value}}</option>
               </select>
             </div>
@@ -273,6 +276,7 @@
             <div class="col-7">
               <select class="form-control" id="educationLevelId" [(ngModel)]="young.educationLevelId" #educationlevelId="ngModel"
                 name="educationlevelId">
+                <option value=""></option>
                 <option *ngFor="let educationLevel of getDropDownValues('educationlevel')"  [value]="educationLevel.id"  [selected]="educationLevel.id == young.educationLevelId">{{educationLevel.value}}</option>
               </select>
             </div>
@@ -293,6 +297,7 @@
             <div class="col-7">
               <select class="form-control" id="englishLevelId" [(ngModel)]="young.englishLevelId" #englishLevelId="ngModel"
                 name="englishLevelId">
+                <option value=""></option>
                 <option *ngFor="let englishLevel of getDropDownValues('englishLevel')" [value]="englishLevel.id" [selected]="englishLevel.id == young.englishLevelId">{{englishLevel.value}}</option>
               </select>
             </div>
@@ -321,6 +326,7 @@
             <div class="col-7">
               <select class="form-control" id="employmentStatusId" [(ngModel)]="young.employmentStatusId"
                 #employmentStatusId="ngModel" name="employmentStatusId">
+                <option value=""></option>
                 <option *ngFor="let employmentStatus of getDropDownValues('employmentStatus')" [value]="employmentStatus.id" [selected]="employmentStatus.id == young.employmentStatusId">{{employmentStatus.value}}</option>
               </select>
             </div>

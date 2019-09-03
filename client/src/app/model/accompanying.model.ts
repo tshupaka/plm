@@ -2,14 +2,15 @@ import { Meeting } from './meeting.model';
 
 export class Accompanying {
     public id: number;
+    public type: number;
     public date: Date;
     public mobilityTypeId: number;
     public projectId: number;
-    public geographicZone: number;
+    public geographicZoneId: number;
     public country: string;
-    public departure: Date;
-    public arrival: Date;
-    public duration: number;
+    public departureDate: Date;
+    public returnDate: Date;
+    public durationId: number;
     public endAccompanyingDate: number;
     public endAccompanyingReasonId: number;
     public endAccompanyingComment: string;
@@ -20,4 +21,13 @@ export class Accompanying {
     public position6MonthId: number;
     public comment6Month: string;
     public meetings: Meeting[];
+    public youngId: number;
+    public closed: boolean;
+    public foundingId: number;
+    public accompanyingUserId: number;
+
+    constructor() {
+        this.closed = false;
+        this.date = new Date();
+    }
 }

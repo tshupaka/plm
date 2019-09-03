@@ -12,14 +12,13 @@ import { DatePipe } from '@angular/common';
 export class YoungPanelComponent implements OnInit {
 
   youngInformationActive: boolean;
-  youngHistoryActive: boolean;
-  youngHistoryEnable: boolean;
+  youngAwarenessActive: boolean;
   youngAccompanyingActive: boolean;
   currentYoung: Young;
 
   constructor(private route: ActivatedRoute, private youngservice: YoungService) {
     this.youngInformationActive = true;
-    this.youngHistoryActive = false;
+    this.youngAwarenessActive = false;
     this.youngAccompanyingActive = false;
   }
 
@@ -37,19 +36,19 @@ export class YoungPanelComponent implements OnInit {
 
   setYoungInformationActive() {
     this.youngInformationActive = true;
-    this.youngHistoryActive = false;
+    this.youngAwarenessActive = false;
     this.youngAccompanyingActive = false;
   }
 
-  setYoungHistoryActive() {
-    this.youngHistoryActive = true;
+  setYoungAwarenessActive() {
+    this.youngAwarenessActive = true;
     this.youngInformationActive = false;
     this.youngAccompanyingActive = false;
   }
 
 
   setYoungAccompanyingActive() {
-    this.youngHistoryActive = false;
+    this.youngAwarenessActive = false;
     this.youngInformationActive = false;
     this.youngAccompanyingActive = true;
   }

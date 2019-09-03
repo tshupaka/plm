@@ -48,6 +48,11 @@ public class YoungDTO {
 	private Boolean rsaClaimant;
 	private Boolean youngGuarantee;
 
+	private Long accompanyingType;
+	private Boolean sensitized;
+	private Boolean accompanied;
+	private UserDTO accompanyingUser;
+
 	public Long getId() {
 		return id;
 	}
@@ -302,6 +307,38 @@ public class YoungDTO {
 
 	public void setPrescriberType(String prescriberType) {
 		this.prescriberType = prescriberType;
+	}
+
+	public Long getAccompanyingType() {
+		return accompanyingType;
+	}
+
+	public void setAccompanyingType(Long accompanyingType) {
+		this.accompanyingType = accompanyingType;
+	}
+
+	public Boolean getSensitized() {
+		return sensitized;
+	}
+
+	public void setSensitized(Boolean sensitized) {
+		this.sensitized = sensitized;
+	}
+
+	public Boolean getAccompanied() {
+		return accompanied;
+	}
+
+	public void setAccompanied(Boolean accompanied) {
+		this.accompanied = accompanied;
+	}
+
+	public UserDTO getAccompanyingUser() {
+		return accompanyingUser;
+	}
+
+	public void setAccompanyingUser(UserDTO accompanyingUser) {
+		this.accompanyingUser = accompanyingUser;
 	}
 
 }

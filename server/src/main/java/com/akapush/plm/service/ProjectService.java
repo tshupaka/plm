@@ -2,6 +2,7 @@ package com.akapush.plm.service;
 
 import com.akapush.plm.domain.exception.NoBeanAvailableException;
 import com.akapush.plm.domain.model.Project;
+import com.akapush.plm.domain.model.Young;
 
 public interface ProjectService {
 
@@ -27,5 +28,13 @@ public interface ProjectService {
 	 * @return
 	 */
 	public Project saveProject(Project project);
+
+	/**
+	 * Return youngs associated with a given project
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Iterable<Young> getYoungsByProjectId(long id);
 
 }

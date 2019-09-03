@@ -2,7 +2,8 @@ package com.akapush.plm.domain.enumartion;
 
 public enum BeanType {
 
-	YOUNG("young"), AWARENESS("awareness"), USER("user"), DROPDOWN_KEY("dropDownKey"), PROJECT("project");
+	YOUNG("young"), AWARENESS("awareness"), USER("user"), DROPDOWN_KEY("dropDownKey"), PROJECT("project"), ACCOMPANYING(
+			"accompanying");
 
 	private String value;
 

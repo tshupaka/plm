@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
@@ -33,6 +34,7 @@ public class DropDownKey {
 	private String label;
 
 	@OneToMany(mappedBy = "dropDownKey")
+	@BatchSize(size = 15)
 	private List<DropDownValue> dropDownValues;
 
 	public Long getId() {

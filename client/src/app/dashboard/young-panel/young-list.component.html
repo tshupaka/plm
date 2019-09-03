@@ -1,0 +1,119 @@
+<hr />
+<fieldset>
+  <legend>Filtres</legend>
+  <div class="row m-2">
+    <div class="col-sm-12 col-md-6 col-lg-3">
+      <div class="form-group">
+        <label for="youngNameFilter">Nom / Prénom : </label>
+        <input type="text" class="form-control" id="youngNameFilter" [(ngModel)]="youngFilter.youngName"
+          #youngNameFilter="ngModel" (keyup)="onFilterChange($event)">
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-2">
+      <div class="form-group">
+        <label>Sensibilisé : </label>
+        <div class="form-check">
+          <input id="isSensitizedYes" type="checkbox" class="form-check-input" id="isSensitizedYes" value="1"
+            [(ngModel)]="youngFilter.isSensitizedYes" (change)="onFilterChange($event)">
+          <label for="isSensitizedYes">Oui</label>
+        </div>
+        <div class="form-check">
+          <input id="isSensitizedNo" type="checkbox" class="form-check-input" id="isSensitizedNo" value="0" [(ngModel)]="youngFilter.isSensitizedNo"
+            (change)="onFilterChange($event)">
+          <label for="isSensitizedNo">Non</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-2">
+      <div class="form-group">
+        <label>Accompagné : </label>
+        <div class="form-check">
+          <input id="isAccompaniedYes" type="checkbox" class="form-check-input" id="isAccompaniedYes" value="1"
+            [(ngModel)]="youngFilter.isAccompaniedYes" (change)="onFilterChange($event)">
+          <label for="isAccompaniedYes">Oui</label>
+        </div>
+        <div class="form-check">
+          <input id="isAccompaniedNo" type="checkbox" class="form-check-input" id="isAccompaniedNo" value="0"
+            [(ngModel)]="youngFilter.isAccompaniedNo" (change)="onFilterChange($event)">
+          <label for="isAccompaniedNo">Non</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-sm-12 col-md-6 col-lg-3">
+      <div class="form-group">
+        <label>Accompagnateur : </label>
+        <div class="form-check">
+          <select class="form-control" id="accompanyingUser" [(ngModel)]="youngFilter.accompanyingUserId" name="accompanyingUserId"
+            (change)="onFilterChange($event)">
+            <option value=""></option>
+            <option *ngFor="let user of accompanyingUsers" [value]="user.id">{{user.firstname}} {{user.lastname}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6 col-lg-2">
+      <div class="form-group">
+        <label>Statut : </label>
+        <div class="form-check">
+          <select class="form-control" id="youngStatus" [(ngModel)]="youngFilter.accompanyingTypeId" name="accompanyingTypeId"
+            (change)="onFilterChange($event)">
+            <option value=""></option>
+            <option *ngFor="let accompanyingType of accompanyingTypes" [value]="accompanyingType.value">{{accompanyingType.label}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+</fieldset>
+
+<div class="row m-2">
+  <div class="col-4">
+    <h3 class="col-form-label">Nombre de jeunes : {{(youngs | youngFilter:youngFilter)?.length}}</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center align-middle" scope="col">Nom</th>
+          <th class="text-center align-middle" scope="col">Prénom</th>
+          <th class="text-center align-middle" scope="col">Sensibilisé</th>
+          <th class="text-center align-middle" scope="col">Accompagné</th>
+          <th class="text-center align-middle" scope="col">Statut</th>
+          <th class="text-center align-middle" scope="col">Accompagné par</th>
+          <th class="text-center align-middle" scope="col">Accès</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let young of youngs | youngFilter:youngFilter">
+          <td>{{young.lastname}}</td>
+          <td>{{young.firstname}}</td>
+          <td class="text-center align-middle">
+
+            <i [className]="young.sensitized? 'fas fa-check' : 'fas fa-times'"></i>
+
+          </td>
+          <td class="text-center align-middle">
+            <i [className]="young.accompanied? 'fas fa-check' : 'fas fa-times'"></i>
+          </td>
+          <td>{{getAccompanyingTypeLabel(young.accompanyingType)}}</td>
+          <td>{{young.accompanyingUser?.lastname}} {{young.accompanyingUser?.firstname}}</td>
+          <td><button class="btn btn-link" (click)="displayYoung(young.id)">Afficher</button></td>
+        </tr>
+
+
+      </tbody>
+    </table>
+  </div>
+</div>

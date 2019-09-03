@@ -7,7 +7,7 @@ import { Awareness } from 'src/app/model/awareness.model';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'plm-young-follow-up',
+  selector: 'plm-young-awareness',
   templateUrl: './young-follow-up.component.html',
   styleUrls: ['./young-follow-up.component.css']
 })
@@ -15,7 +15,7 @@ export class YoungFollowUpComponent implements OnInit {
 
   @Input()
   public young: Young;
-  private awarenesses: Awareness[];
+  public awarenesses: Awareness[];
 
   constructor(private modalService: NgbModal, private youngService: YoungService) { }
 

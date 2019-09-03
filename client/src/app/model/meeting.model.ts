@@ -6,5 +6,6 @@ export class Meeting {
     public description: string;
     public comment: string;
     public user: User;
+    public userId: number;
 
 }

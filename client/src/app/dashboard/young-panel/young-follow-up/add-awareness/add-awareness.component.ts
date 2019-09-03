@@ -15,7 +15,7 @@ export class AddAwarenessComponent implements OnInit {
   addAwarenessFunction: Function;
   youngFollowUpComponent: YoungFollowUpComponent;
 
-  constructor(private awarenessService: AwarenessService, private activeModal: NgbActiveModal) { }
+  constructor(private awarenessService: AwarenessService, public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
     this.awarenessService.getAllAwarenesses().subscribe((awarenesses: Awareness[]) => this.awarenesses = awarenesses);

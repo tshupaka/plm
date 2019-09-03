@@ -33,7 +33,7 @@
         <tr *ngFor="let project of projects | projectFilter:projectSearch">
           <td>{{project.name}}</td>
           <td>{{project.country}}</td>
-          <td>{{project.departure | date:'shortDate'}}</td>
+          <td>{{project.departureDate | date:'shortDate'}}</td>
 
           <td><button class="btn btn-link" (click)="displayProject(project.id)">Afficher</button></td>
         </tr>

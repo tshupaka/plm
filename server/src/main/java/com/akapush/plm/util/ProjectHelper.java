@@ -29,6 +29,7 @@ public class ProjectHelper {
 		projectDTO.setReturnDate(project.getRoundTrip());
 		projectDTO.setDurationId(getDropDownValueId(project.getDuration()));
 		projectDTO.setGeographicZoneId(getDropDownValueId(project.getGeographicZone()));
+		projectDTO.setCountry(project.getCountry());
 		return projectDTO;
 	}
 
@@ -43,7 +44,9 @@ public class ProjectHelper {
 		project.setRoundTrip(projectDTO.getReturnDate());
 		project.setDuration(createDropDownValue(projectDTO.getDurationId()));
 		project.setGeographicZone(createDropDownValue(projectDTO.getGeographicZoneId()));
+		project.setCountry(projectDTO.getCountry());
 		return project;
+
 	}
 
 	private Long getDropDownValueId(DropDownValue dropDownValue) {

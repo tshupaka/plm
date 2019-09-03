@@ -13,6 +13,11 @@ body {
   }
 
 
+  legend {
+    padding: 0px 10px 0px 10px;
+    width: auto;
+  }
+
   app-root {
       width: 100%;
   }
@@ -47,4 +52,8 @@ body {
 
   .btn-primary.disabled, .btn-primary:disabled {
     background-color: rgb(145, 179, 199)
+  }
+
+  .closed-accompanying-modal .modal-dialog{
+    max-width: 1200px;
   }

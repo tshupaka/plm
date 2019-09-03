@@ -2,6 +2,7 @@ package com.akapush.plm.service;
 
 import com.akapush.plm.domain.exception.InvalidBeanException;
 import com.akapush.plm.domain.exception.NoBeanAvailableException;
+import com.akapush.plm.domain.model.Accompanying;
 import com.akapush.plm.domain.model.Awareness;
 import com.akapush.plm.domain.model.Young;
 
@@ -32,10 +33,9 @@ public interface YoungService {
 	/**
 	 * Search young by firstname and lastname
 	 * 
-	 * @param search
 	 * @return
 	 */
-	Iterable<Young> searchYoungs(String search);
+	Iterable<Young> getAllYoungs();
 
 	/**
 	 * Get awarnesses of a given young
@@ -64,5 +64,41 @@ public interface YoungService {
 	 * @throws NoBeanAvailableException
 	 */
 	Iterable<Awareness> deleteAwarenessFromYoung(long youngId, long awarenessId) throws NoBeanAvailableException;
+
+	/**
+	 * 
+	 * Get current (not closed) accompanying for a given young
+	 * 
+	 * @param youngId
+	 * @return current accompanying
+	 * @throws NoBeanAvailableException
+	 */
+	Accompanying getCurrentAccompanyingFromYoungId(long youngId) throws NoBeanAvailableException;
+
+	/**
+	 * Get historic (closed) accompanyings for a given young
+	 * 
+	 * @param youngId
+	 * @return
+	 */
+	Iterable<Accompanying> getHistoricAccompanyings(long youngId);
+
+	/**
+	 * Return accompanying from its database id
+	 * 
+	 * @param accompanyingId
+	 * @return
+	 * @throws NoBeanAvailableException
+	 */
+	Accompanying getAccompanyingById(Long accompanyingId) throws NoBeanAvailableException;
+
+	/**
+	 * 
+	 * Save the given accompanying
+	 * 
+	 * @param accompanying
+	 * @return
+	 */
+	Accompanying saveAccompanying(Accompanying accompanying);
 
 }

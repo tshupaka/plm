@@ -15,8 +15,8 @@ import javax.persistence.Table;
 @Table(name = "DROP_DOWN_VALUE")
 public class DropDownValue {
 
-	@Column(name = "DDV_ID")
 	@Id
+	@Column(name = "DDV_ID")
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_plm_drop_down_value_ddv_id")
 	@SequenceGenerator(name = "seq_plm_drop_down_value_ddv_id", sequenceName = "seq_plm_drop_down_value_ddv_id")
 	private Long id;

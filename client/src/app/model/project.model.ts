@@ -4,7 +4,7 @@ export class Project {
     name: string;
     geographicZoneId: number;
     country: string;
-    departure: Date;
-    roundTrip: Date;
+    departureDate: Date;
+    returnDate: Date;
     durationId: number;
 }

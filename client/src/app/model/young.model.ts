@@ -1,8 +1,11 @@
+import { Accompanying } from './accompanying.model';
+import { User } from './user.model';
+
 export class Young {
 
     // Personal Data
     public id?: number;
-    public gender?: number;
+    public genderId?: number;
     public firstname?: string;
     public lastname: string;
     public birthday?: string;
@@ -33,7 +36,7 @@ export class Young {
 
     // Education
     public educationLabel?: string;
-    public educationLebelId?: number;
+    public educationLevelId?: number;
     public lastCertificate?: string;
     public englishLevelId?: number;
     public otherLanguage?: string;
@@ -43,6 +46,14 @@ export class Young {
     public poleEmploiInscriptionDate?: Date;
     public rsaClaimant: boolean;
     public youngGuarantee: boolean;
+
+    public accompanying: Accompanying;
+    public accompanyingType: number;
+
+
+    public accompanied: boolean;
+    public sensitized: boolean;
+    public accompanyingUser: User;
 
 
 }
