@@ -13,7 +13,9 @@ import { YoungFilter } from '../utils/bean/young-filter';
 export class YoungService {
 
 
+
   private urlCreateYoung = '/api/young';
+  private urlDeleteYoung = '/api/young/:id';
   private urlSearchYoung = '/api/youngs';
   private urlGetYoungById = '/api/young/';
   private urlGetAwarenesses = '/api/young/:id/awareness';
@@ -87,10 +89,15 @@ export class YoungService {
 
 
   saveAccompanying(youngId: number, accompanying: Accompanying): any {
-    console.log('save Accompanying : {0} , {1}', youngId, accompanying);
     const headers = new HttpHeaders().set('authorization', this.authenticationService.getToken());
     const url = this.urlPostAccompanying.replace(':id', youngId.toString());
     return this.httpClient.post(url, accompanying, { 'headers': headers });
+  }
+
+  deleteYoung(youngId: number): any {
+    const headers = new HttpHeaders().set('authorization', this.authenticationService.getToken());
+    const url = this.urlDeleteYoung.replace(':id', youngId.toString());
+    return this.httpClient.delete(url, { 'headers': headers });
   }
 
   getYoungFilter(): YoungFilter {
@@ -103,6 +110,9 @@ export class YoungService {
   setYoungFilter(youngFilter: YoungFilter) {
     this.youngFilter = youngFilter;
   }
+
+
+
 
   getAccompanyingTypes(): Array<any> {
     return [

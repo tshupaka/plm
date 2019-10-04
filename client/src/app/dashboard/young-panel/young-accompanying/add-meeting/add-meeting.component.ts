@@ -21,6 +21,8 @@ export class AddMeetingComponent implements OnInit {
 
   public meeting: Meeting;
 
+  public newMeeting = false;
+
   public dropDownValues: Object;
 
   public users: User[];
@@ -33,8 +35,21 @@ export class AddMeetingComponent implements OnInit {
 
   ngOnInit() {
     this.initDropDownValue();
-    this.meeting = new Meeting();
+    if (!this.meeting) {
+      this.newMeeting = true;
+      this.meeting = new Meeting();
+    }
+    if (!this.meeting.user) {
+      this.meeting.user = new User();
+    }
+
   }
+
+  setMeeting(meeting: Meeting) {
+    this.meeting = meeting;
+    console.log('after init meeting', meeting);
+  }
+
 
   initDropDownValue() {
     this.dropDownService.getDropDownValues().subscribe((dropDownValues: any) => {
@@ -52,11 +67,15 @@ export class AddMeetingComponent implements OnInit {
 
   saveMeeting(form: NgForm) {
     if (form.valid) {
-      const userId = this.meeting.userId;
+      const userId = this.meeting.user.id;
       // TODO voir comment gérer proprement les retour de liste déroulante
-      this.meeting.user = this.getUserFromId(parseInt(userId.toString(), 10));
+      if (userId) {
+        this.meeting.user = this.getUserFromId(parseInt(userId.toString(), 10));
+      } else {
+        this.meeting.user = null;
+      }
 
-      this.youngAccompanyingComponent.handleAddMeeting(this.meeting);
+      this.youngAccompanyingComponent.handleAddMeeting(this.meeting, this.newMeeting);
       this.activeModal.dismiss();
     }
   }

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Meeting {
+public class Meeting implements Comparable<Meeting> {
 
 	@Id
 	@Column(name = "MEE_ID")
@@ -83,6 +83,24 @@ public class Meeting {
 
 	public void setAccompanying(Accompanying accompanying) {
 		this.accompanying = accompanying;
+	}
+
+	@Override
+	public int compareTo(Meeting meeting) {
+		if (meeting == null) {
+			return 1;
+		}
+		if (this.date == null && meeting.date == null) {
+			return 0;
+		}
+		if (this.date == null && meeting.date != null) {
+			return -1;
+		}
+		if (this.date != null && meeting.date == null) {
+			return 1;
+		}
+
+		return this.date.compareTo(meeting.date);
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.akapush.plm.web;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +24,7 @@ import com.akapush.plm.domain.exception.InvalidBeanException;
 import com.akapush.plm.domain.exception.NoBeanAvailableException;
 import com.akapush.plm.domain.model.Accompanying;
 import com.akapush.plm.domain.model.Awareness;
+import com.akapush.plm.domain.model.Meeting;
 import com.akapush.plm.domain.model.Young;
 import com.akapush.plm.service.YoungService;
 import com.akapush.plm.util.AccompanyingHelper;
@@ -58,11 +60,62 @@ public class YoungController {
 		try {
 			//
 			Young young = youngService.getYoungById(youngId);
+			sortAccompanyings(young);
+			sortAccompanyingsMeeting(young);
 			YoungDTO youngDTO = youngHelper.getYoungDTO(young);
 			CacheManager.ALL_CACHE_MANAGERS.get(0).getCache("com.akapush.plm.domain.model.DropDownKey").getKeys();
 			return new ResponseEntity<YoungDTO>(youngDTO, HttpStatus.OK);
 		} catch (NoBeanAvailableException e) {
 			return new ResponseEntity<YoungDTO>(HttpStatus.NOT_FOUND);
+		}
+
+	}
+
+	private void sortAccompanyingsMeeting(Young young) {
+		List<Accompanying> accompanyings = young.getAccompanyings();
+		if (accompanyings != null) {
+			for (Accompanying accompanying : accompanyings) {
+				sortMeetings(accompanying.getMeetings());
+			}
+		}
+
+	}
+
+	private void sortMeetings(List<Meeting> meetings) {
+		if (meetings != null) {
+			meetings.sort(new Comparator<Meeting>() {
+
+				@Override
+				public int compare(Meeting meeting1, Meeting meeting2) {
+					return meeting1.compareTo(meeting2);
+				}
+			});
+		}
+
+	}
+
+	private void sortAccompanyings(Young young) {
+		List<Accompanying> accompanyings = young.getAccompanyings();
+		if (accompanyings != null) {
+			accompanyings.sort(new Comparator<Accompanying>() {
+
+				@Override
+				public int compare(Accompanying accompanying1, Accompanying accompanying2) {
+					return accompanying1.compareTo(accompanying2);
+				}
+			});
+		}
+	}
+
+	@RequestMapping(value = "/api/young/{youngId}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> deleteYoungById(@PathVariable("youngId") Long youngId) {
+
+		try {
+			//
+			youngService.deleteYoungById(youngId);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		} catch (NoBeanAvailableException e) {
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}
 
 	}

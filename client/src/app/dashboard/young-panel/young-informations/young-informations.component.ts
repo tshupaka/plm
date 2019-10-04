@@ -18,6 +18,10 @@ export class YoungInformationsComponent implements OnInit {
   public dropDownValues: Object;
   public errorMessage: string;
   public successMessage: string;
+
+
+  public deleteCurrentYoungInProgress = false;
+
   @Output()
   youngSaved: EventEmitter<Young> = new EventEmitter<Young>();
 
@@ -51,7 +55,7 @@ export class YoungInformationsComponent implements OnInit {
   saveYoung(form: NgForm) {
     if (form.valid) {
       this.youngService.saveYoung(this.young).subscribe((young) => {
-      this.young = young;
+        this.young = young;
         this.youngSaved.emit(young);
         this.successMessage = 'Informations sauvegardées avec succès.';
         timer(3000).subscribe(() => this.successMessage = undefined);
@@ -59,6 +63,18 @@ export class YoungInformationsComponent implements OnInit {
     } else {
       this.errorMessage = 'Des erreurs ont été détectées dans le formulaire.';
       timer(3000).subscribe(() => this.errorMessage = undefined);
+    }
+  }
+
+  deleteCurrentYoung() {
+    this.deleteCurrentYoungInProgress = true;
+    if (confirm('Êtes-vous sûr de vouloir supprimer ce jeune et tous les accompagnements associés ?')) {
+      this.youngService.deleteYoung(this.young.id).subscribe(() => {
+        this.deleteCurrentYoungInProgress = false;
+        this.router.navigate(['/dashboard/young/search']);
+      });
+    } else {
+      this.deleteCurrentYoungInProgress = false;
     }
   }
 

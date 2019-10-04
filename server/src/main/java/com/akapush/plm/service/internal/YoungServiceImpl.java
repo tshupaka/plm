@@ -57,6 +57,13 @@ public class YoungServiceImpl implements YoungService {
 	}
 
 	@Override
+	public void deleteYoungById(Long youngId) throws NoBeanAvailableException {
+		Young young = getYoungById(youngId);
+		youngDAO.delete(young);
+
+	}
+
+	@Override
 	public Iterable<Young> getAllYoungs() {
 
 		return youngDAO.getAllYWithCurrentAccompanying();

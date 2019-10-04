@@ -42,14 +42,15 @@
             <th>Réalisé par</th>
           </thead>
           <tbody>
-            <tr *ngFor="let meeting of accompanying.meetings">
+            <tr *ngFor="let meeting of accompanying.meetings; index as index">
               <td>{{meeting.date | date:'shortDate'}}</td>
 
               <td>{{meeting.description}}</td>
               <td>{{meeting.comment}}</td>
               <td>{{meeting.user?.firstname}} {{meeting.user?.lastname}}</td>
-              <td>
-                <a (click)="deleteMeeting(meeting.id)"><i class="trash far fa-trash-alt text-primary pointer"></i></a>
+              <td class="m-2">
+                <a (click)="deleteMeeting(index)"><i class="trash far fa-trash-alt text-primary pointer m2"></i></a>
+                <a (click)="editMeeting(index)"><i class="trash far fa-edit text-primary pointer m-2"></i></a>
               </td>
             </tr>
           </tbody>

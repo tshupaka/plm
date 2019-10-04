@@ -160,12 +160,16 @@
         </div>
       </div>
       <div class="row"><span class="col-12 mb-2">Intervenants</span></div>
-      <div class="row" *ngFor="let user of awareness.users">
-        <input type="checkbox" value="user.id" />
-        {{user.fistname}} {{user.lastname}}
-
+      <div class="row">
+        <div class="user_list col-12 mb-2">
+          <div *ngFor="let user of users; let i = index">
+          <input type="checkbox" value="{{user.id}}" id="user_{{i}}" name="user_{{i}}" 
+           [(ngModel)]="usersChecked[i].checked"/>
+          <label class="m-2" for="user_{{user.id}}">{{user.firstname}} {{user.lastname}}</label>
+        </div>
       </div>
     </div>
+  </div>
 
   </div>
 

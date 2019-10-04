@@ -74,11 +74,13 @@ export class YoungAccompanyingComponent implements OnInit {
     }
   }
 
-  handleAddMeeting(meeting: Meeting) {
+  handleAddMeeting(meeting: Meeting, addMeeting: boolean) {
     if (!this.accompanying.meetings) {
       this.accompanying.meetings = new Array();
     }
-    this.accompanying.meetings.push(meeting);
+    if (addMeeting) {
+      this.accompanying.meetings.push(meeting);
+    }
     /*this.awarenesses.push(awareness);*/
   }
 
@@ -151,10 +153,16 @@ export class YoungAccompanyingComponent implements OnInit {
     return this.youngService.getAccompanyingTypes();
   }
 
-  deleteMeeting(meetingId: number) {
+  deleteMeeting(meetingIndex: number) {
     const meetings: Array<Meeting> = this.accompanying.meetings;
-    this.accompanying.meetings = meetings.filter(meeting => meeting.id !== meetingId);
+    this.accompanying.meetings.splice(meetingIndex, 1);
   }
 
+  editMeeting(meetingIndex: number) {
+    const modalRef = this.modalService.open(AddMeetingComponent);
+    modalRef.componentInstance.setParentComponent(this);
+    const currentMeeting = this.accompanying.meetings[meetingIndex];
+    modalRef.componentInstance.setMeeting(currentMeeting);
+  }
 
 }

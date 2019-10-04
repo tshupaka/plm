@@ -3,6 +3,7 @@ package com.akapush.plm.domain.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -122,13 +123,13 @@ public class Young {
 	@Column(name = "YOU_YOUNG_GUARANTEE")
 	private Boolean youngGuarantee;
 
-	@ManyToMany()
+	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
 	@BatchSize(size = 50)
 	@JoinTable(name = "YOUNG_AWARENESS", joinColumns = { @JoinColumn(name = "YOU_ID") }, inverseJoinColumns = {
 			@JoinColumn(name = "AWA_ID") })
 	private List<Awareness> awarenesses;
 
-	@OneToMany(mappedBy = "young", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "young", fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
 	@BatchSize(size = 50)
 	private List<Accompanying> accompanyings;
 

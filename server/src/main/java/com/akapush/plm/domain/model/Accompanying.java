@@ -22,7 +22,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Accompanying")
-public class Accompanying {
+public class Accompanying implements Comparable<Accompanying> {
 
 	@Id
 	@Column(name = "ACC_ID")
@@ -299,6 +299,24 @@ public class Accompanying {
 
 	public void setClosed(Boolean closed) {
 		this.closed = closed;
+	}
+
+	@Override
+	public int compareTo(Accompanying accompanying) {
+		if (accompanying == null) {
+			return 1;
+		}
+		if (this.date == null && accompanying.date == null) {
+			return 0;
+		}
+		if (this.date == null && accompanying.date != null) {
+			return -1;
+		}
+		if (this.date != null && accompanying.date == null) {
+			return 1;
+		}
+
+		return this.date.compareTo(accompanying.date);
 	}
 
 }

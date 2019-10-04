@@ -6,6 +6,9 @@ import { Route, ActivatedRoute } from '@angular/router';
 import { DropDownService } from 'src/app/service/drop-down.service';
 import { Observable, timer } from 'rxjs';
 import { Young } from 'src/app/model/young.model';
+import { YoungService } from 'src/app/service/young.service';
+import { UserService } from 'src/app/service/user.service';
+import { User } from 'src/app/model/user.model';
 
 
 @Component({
@@ -22,8 +25,11 @@ export class AwarenessComponent implements OnInit {
 
   private signatureRadioValue: string;
   private youngs: Young[];
+  private users: User[];
+  private usersChecked: User[];
 
-  constructor(private dropDownService: DropDownService, private awarenessService: AwarenessService, private route: ActivatedRoute) { }
+  constructor(private dropDownService: DropDownService, private awarenessService: AwarenessService, private userService: UserService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.initDropDownValue();
@@ -39,6 +45,10 @@ export class AwarenessComponent implements OnInit {
     } else {
       this.awareness = new Awareness();
     }
+    this.userService.getAllUsers().subscribe((users: User[]) => {
+      this.users = users;
+      this.usersChecked = users;
+    });
   }
 
   initDropDownValue() {
@@ -58,10 +68,28 @@ export class AwarenessComponent implements OnInit {
     }
   }
 
+  isUserChecked(userId: number) {
+    console.log('users : ', this.awareness.users);
+    const userFound: User = this.awareness.users.find((user: User) => user.id === userId);
+    if (userFound) {
+      console.log('usrFournd', userFound);
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   saveAwareness(form: NgForm) {
     if (form.valid) {
       this.awareness.signature = form.controls['signature'].value === 'true';
+      this.awareness.users = [];
+      for (let i = 0; i < this.usersChecked.length; i++) {
+        console.log(this.usersChecked);
+        if (this.usersChecked[i]['checked']) {
+          this.awareness.users.push(this.users[i]);
+        }
+
+      }
       this.awarenessService.saveAwarness(this.awareness).subscribe(awareness => {
         this.awareness = awareness;
         this.successMessage = 'Sensibilisation enregitrée avec succès.';

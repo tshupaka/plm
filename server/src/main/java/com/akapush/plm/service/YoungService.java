@@ -31,6 +31,13 @@ public interface YoungService {
 	Young saveYoung(Young young) throws InvalidBeanException;
 
 	/**
+	 * Delete a given young (and cascade all awarness & accompanying associated.
+	 * 
+	 * @param youngId
+	 */
+	void deleteYoungById(Long youngId) throws NoBeanAvailableException;
+
+	/**
 	 * Search young by firstname and lastname
 	 * 
 	 * @return

@@ -28,8 +28,6 @@ export class YoungAccompanyingSummaryComponent implements OnInit {
       .subscribe((accompanying: Accompanying) => {
 
         if (accompanying) {
-
-          console.log('load current accompanying : ', accompanying);
           this.young.accompanying = accompanying;
 
         } else {

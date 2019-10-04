@@ -1,6 +1,0 @@
-2019-02-16 21:58:49.701  INFO 21105 --- [Thread-6] ConfigServletWebServerApplicationContext : Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@12f9af83: startup date [Fri Feb 15 15:52:07 CET 2019]; root of context hierarchy
-2019-02-16 21:58:49.764  INFO 21105 --- [Thread-6] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
-2019-02-16 21:58:49.766  INFO 21105 --- [Thread-6] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
-2019-02-16 21:58:49.771  INFO 21105 --- [Thread-6] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2019-02-16 21:58:49.805  INFO 21105 --- [Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2019-02-16 21:58:49.809  INFO 21105 --- [Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
