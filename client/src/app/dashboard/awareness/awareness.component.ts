@@ -33,23 +33,29 @@ export class AwarenessComponent implements OnInit {
 
   ngOnInit() {
     this.initDropDownValue();
-    const id = this.route.snapshot.params['id'];
-    if (id) {
-      this.awarenessService.getAwarenessById(id).subscribe((awareness: Awareness) => {
-        this.awareness = awareness;
-        if (awareness) {
-          this.signatureRadioValue = awareness.signature ? 'true' : 'false';
-        }
-      });
-      this.awarenessService.getYoungsByAwarenessId(id).subscribe((youngs: Young[]) => this.youngs = youngs);
-    } else {
-      this.awareness = new Awareness();
-    }
     this.userService.getAllUsers().subscribe((users: User[]) => {
       this.users = users;
       this.usersChecked = users;
+
+      const id = this.route.snapshot.params['id'];
+      if (id) {
+        this.awarenessService.getAwarenessById(id).subscribe((awareness: Awareness) => {
+          this.awareness = awareness;
+          if (awareness) {
+            this.signatureRadioValue = awareness.signature ? 'true' : 'false';
+            this.updateUserSelected();
+          }
+        });
+        this.awarenessService.getYoungsByAwarenessId(id).subscribe((youngs: Young[]) => this.youngs = youngs);
+      } else {
+        this.awareness = new Awareness();
+      }
+
     });
   }
+
+
+
 
   initDropDownValue() {
     this.dropDownService.getDropDownValues().subscribe((dropDownValues: any) => {
@@ -65,6 +71,16 @@ export class AwarenessComponent implements OnInit {
         values = [];
       }
       return values;
+    }
+  }
+
+  updateUserSelected() {
+    if (this.awareness) {
+      this.awareness.users.forEach((user: User) => {
+
+        this.usersChecked.find((userChecked: User) => { if (user.id == userChecked.id) { userChecked['checked'] = true } });
+      });
+
     }
   }
 
