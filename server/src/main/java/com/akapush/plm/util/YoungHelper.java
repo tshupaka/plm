@@ -21,7 +21,7 @@ public class YoungHelper {
 		if (youngs == null) {
 			return null;
 		}
-		List<YoungDTO> youngsDTO = new ArrayList<YoungDTO>();
+		List<YoungDTO> youngsDTO = new ArrayList<>();
 		for (Young young : youngs) {
 			YoungDTO youngDTO = getYoungDTO(young);
 			youngsDTO.add(youngDTO);
@@ -67,6 +67,8 @@ public class YoungHelper {
 		youngDTO.setSensitized(isSensitized(young.getAwarenesses()));
 		youngDTO.setAccompanied(isAccompanied(young.getAccompanyings()));
 		youngDTO.setAccompanyingUser(getAccompanyingUser(young.getAccompanyings()));
+		youngDTO.setPersonToContact(young.getPersonToContact());
+		youngDTO.setCreationDate(young.getCreationDate());
 		return youngDTO;
 	}
 
@@ -89,11 +91,7 @@ public class YoungHelper {
 	}
 
 	private Boolean isAccompanied(List<Accompanying> accompanyings) {
-		if (accompanyings != null && accompanyings.size() > 0) {
-			return true;
-
-		}
-		return false;
+		return (accompanyings != null && accompanyings.size() > 0);
 	}
 
 	private Boolean isSensitized(List<Awareness> awarenesses) {
@@ -158,7 +156,8 @@ public class YoungHelper {
 		young.setSkype(youngDTO.getSkype());
 		young.setYoungGuarantee(youngDTO.getYoungGuarantee());
 		young.setZipCode(youngDTO.getZipCode());
-
+		young.setPersonToContact(youngDTO.getPersonToContact());
+		young.setCreationDate(youngDTO.getCreationDate());
 		return young;
 
 	}

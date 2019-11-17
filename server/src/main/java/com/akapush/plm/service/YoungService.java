@@ -1,5 +1,6 @@
 package com.akapush.plm.service;
 
+import com.akapush.plm.domain.exception.AlreadyExistingYoungException;
 import com.akapush.plm.domain.exception.InvalidBeanException;
 import com.akapush.plm.domain.exception.NoBeanAvailableException;
 import com.akapush.plm.domain.model.Accompanying;
@@ -20,15 +21,7 @@ public interface YoungService {
 	 */
 	Young getYoungById(Long youngId) throws NoBeanAvailableException;
 
-	/**
-	 * Save young and return young with storage id.
-	 * 
-	 * @param young
-	 * @exception Occured
-	 *                when young hasn't name attribute defined
-	 * @return
-	 */
-	Young saveYoung(Young young) throws InvalidBeanException;
+
 
 	/**
 	 * Delete a given young (and cascade all awarness & accompanying associated.
@@ -108,4 +101,14 @@ public interface YoungService {
 	 */
 	Accompanying saveAccompanying(Accompanying accompanying);
 
+	/**
+	 * Save young and return young with storage id.
+	 *
+	 * @param young
+	 * @param forceInsert Force insert if young name is already registred
+	 * @exception InvalidBeanException Occured when young hasn't name attribute defined
+	 * @exception AlreadyExistingYoungException Occurend when young with same name is already registred
+	 * @return
+	 */
+	Young saveYoung(Young young, boolean forceInsert) throws InvalidBeanException, AlreadyExistingYoungException;
 }

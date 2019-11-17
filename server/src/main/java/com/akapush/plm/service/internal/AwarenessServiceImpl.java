@@ -1,8 +1,10 @@
 package com.akapush.plm.service.internal;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.akapush.plm.dao.AwarenessDAO;
@@ -31,12 +33,21 @@ public class AwarenessServiceImpl implements AwarenessService {
 
 	@Override
 	public Awareness saveAwareness(Awareness awareness) throws InvalidBeanException {
+		Long id = awareness.getId();
+		//TODO trick to avoid awarness / young delete
+		if(id != null) {
+			Optional<Awareness> dbAwareness = awarenessDAO.findById(id);
+			if (dbAwareness.isPresent()) {
+				List<Young> youngs = dbAwareness.get().getYoungs();
+				awareness.setYoungs(youngs);
+			}
+		}
 		return awarenessDAO.save(awareness);
 	}
 
 	@Override
 	public Iterable<Awareness> getAllAwarenesses() {
-		Iterable<Awareness> awarenesses = awarenessDAO.findAll();
+		Iterable<Awareness> awarenesses = awarenessDAO.findByOrderByDateDesc();
 		return awarenesses;
 	}
 

@@ -6,16 +6,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.akapush.plm.domain.exception.AlreadyExistingYoungException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.akapush.plm.domain.dto.AccompanyingDTO;
 import com.akapush.plm.domain.dto.AwarenessDTO;
@@ -121,16 +118,20 @@ public class YoungController {
 	}
 
 	@RequestMapping(value = "/api/young", method = RequestMethod.POST)
-	public ResponseEntity<YoungDTO> saveYoung(@RequestBody YoungDTO youngDTO) {
+	public ResponseEntity<YoungDTO> saveYoung(@RequestBody YoungDTO youngDTO, @RequestParam("force") boolean forceInsert) {
 		try {
 			Young young = youngHelper.getYoung(youngDTO);
-			Young result = youngService.saveYoung(young);
+			Young result = youngService.saveYoung(young, forceInsert);
 
 			YoungDTO resultDTO = youngHelper.getYoungDTO(result);
 			return new ResponseEntity<YoungDTO>(resultDTO, HttpStatus.OK);
 		} catch (InvalidBeanException e) {
 			LOG.error("Invalid Young Bean : " + e.getMessage());
 			return new ResponseEntity<YoungDTO>(HttpStatus.BAD_REQUEST);
+		} catch (AlreadyExistingYoungException e) {
+			Young result = e.getYoung();
+			YoungDTO resultDTO = youngHelper.getYoungDTO(result);
+			return new ResponseEntity<YoungDTO>(resultDTO, HttpStatus.ALREADY_REPORTED);
 		}
 	}
 

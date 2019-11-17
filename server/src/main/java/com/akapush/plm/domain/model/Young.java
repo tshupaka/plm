@@ -3,20 +3,7 @@ package com.akapush.plm.domain.model;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.BatchSize;
 
@@ -123,14 +110,20 @@ public class Young {
 	@Column(name = "YOU_YOUNG_GUARANTEE")
 	private Boolean youngGuarantee;
 
-	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
-	@BatchSize(size = 50)
+	@Column(name="YOU_PERSON_TO_CONTACT")
+	private String personToContact;
+
+	@Column(name="YOU_CREATION_DATE")
+	private Date creationDate;
+
+	@ManyToMany(cascade = { CascadeType.REFRESH })
+	@BatchSize(size = 100)
 	@JoinTable(name = "YOUNG_AWARENESS", joinColumns = { @JoinColumn(name = "YOU_ID") }, inverseJoinColumns = {
 			@JoinColumn(name = "AWA_ID") })
 	private List<Awareness> awarenesses;
 
 	@OneToMany(mappedBy = "young", fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
-	@BatchSize(size = 50)
+	@BatchSize(size = 100)
 	private List<Accompanying> accompanyings;
 
 	public Long getId() {
@@ -405,4 +398,19 @@ public class Young {
 		this.accompanyings = accompanyings;
 	}
 
+	public String getPersonToContact() {
+		return personToContact;
+	}
+
+	public void setPersonToContact(String personToContact) {
+		this.personToContact = personToContact;
+	}
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
 }

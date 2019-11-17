@@ -15,4 +15,6 @@ public interface AwarenessDAO extends CrudRepository<Awareness, Long> {
 			+ "left join  young.accompanyings accompanyings on accompanyings.closed = false"
 			+ " where awarenesses.id = :id")
 	Iterable<Young> findYoungByAwareness(@Param("id") long id);
+
+	Iterable<Awareness> findByOrderByDateDesc();
 }

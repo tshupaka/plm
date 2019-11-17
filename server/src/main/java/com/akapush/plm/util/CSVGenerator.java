@@ -20,26 +20,7 @@ import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 public class CSVGenerator {
 
 	public void generateYoungsCSV(HttpServletResponse response, Iterable<Young> youngs) {
-		try {
 
-			HeaderColumnNameMappingStrategy<Young> mapStrategy = new HeaderColumnNameMappingStrategy<Young>();
-			mapStrategy.setType(Young.class);
-			mapStrategy.generateHeader();
-
-			String[] columns = new String[] { "id", "firstname", "lastname" };
-
-			StatefulBeanToCsv<Young> btcsv = new StatefulBeanToCsvBuilder<Young>(response.getWriter())
-					.withQuotechar(CSVWriter.NO_QUOTE_CHARACTER).withMappingStrategy(mapStrategy).withSeparator(',')
-					.build();
-			List<Young> youngsList = new ArrayList<>();
-			for (Young young : youngs) {
-				youngsList.add(young);
-			}
-			btcsv.write(youngsList);
-		} catch (CsvDataTypeMismatchException | CsvRequiredFieldEmptyException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 }
