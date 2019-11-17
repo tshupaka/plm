@@ -16,6 +16,7 @@ export class Young {
     public phone?: string;
     public facebook?: string;
     public skype?: string;
+    public personToContact?:string;
 
     // Geographic situation
     public address1?: string;

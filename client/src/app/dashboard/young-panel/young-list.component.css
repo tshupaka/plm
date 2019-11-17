@@ -4,3 +4,11 @@ fieldset {
     padding: 5px;
     border-radius: 5px;
 }
+
+
+.filter-not-empty {
+    border: 2px solid #FF0000;
+    border-top:  2px solid #FF0000;
+    padding: 5px;
+    border-radius: 5px;
+}

@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { YoungService } from '../../../service/young.service';
 import { Router } from '@angular/router';
 import { timer } from 'rxjs';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'plm-young-informations',
@@ -37,7 +38,7 @@ export class YoungInformationsComponent implements OnInit {
     this.dropDownService.getDropDownValues().subscribe((dropDownValues: any) => {
       this.dropDownValues = dropDownValues.reduce(
         (map, dropDownValue) => { map[dropDownValue['key']] = dropDownValue['values']; return map; }, {});
-      console.log(this.dropDownValues);
+
     });
   }
 
@@ -54,16 +55,43 @@ export class YoungInformationsComponent implements OnInit {
 
   saveYoung(form: NgForm) {
     if (form.valid) {
-      this.youngService.saveYoung(this.young).subscribe((young) => {
+      /*this.youngService.saveYoung(this.young).subscribe((young) => {
         this.young = young;
         this.youngSaved.emit(young);
         this.successMessage = 'Informations sauvegardées avec succès.';
         timer(3000).subscribe(() => this.successMessage = undefined);
-      });
+        });
+        */
+      this.saveYoungInternal(this.young, false)
+
+
     } else {
       this.errorMessage = 'Des erreurs ont été détectées dans le formulaire.';
       timer(3000).subscribe(() => this.errorMessage = undefined);
     }
+  }
+
+  saveYoungInternal(young: Young, forceInsert: boolean) {
+    this.youngService.saveYoung(this.young, forceInsert).subscribe((response: HttpResponse<any>) => {
+      let responseCode = response.status;
+      let body = response.body;
+      console.log("Erreur", response);
+      if (responseCode === 200) {
+        this.young = body;
+        this.youngSaved.emit(young);
+        this.successMessage = 'Informations sauvegardées avec succès.';
+        timer(3000).subscribe(() => this.successMessage = undefined);
+      } else if (responseCode === 208) {
+        let young = body;
+        if (confirm('Un jeune possédant le même nom est déjà enregistré : ' + young.lastname + ' ' + young.firstname  + '\nEtes-vous sûr de vouloir insérer ce jeune ?')) {
+          this.saveYoungInternal(this.young, true);
+        }
+      } else {
+        this.errorMessage = 'Erreur lors de l\'enregistrement du formulaire';
+        timer(3000).subscribe(() => this.errorMessage = undefined);
+      }
+
+    });
   }
 
   deleteCurrentYoung() {

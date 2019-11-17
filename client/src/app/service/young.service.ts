@@ -30,9 +30,10 @@ export class YoungService {
   constructor(private httpClient: HttpClient, private authenticationService: AuthenticationService) { }
 
 
-  saveYoung(young: Young): Observable<any> {
+  saveYoung(young: Young,  forceInsert:boolean): Observable<any> {
     const headers = new HttpHeaders().set('authorization', this.authenticationService.getToken());
-    return this.httpClient.post(this.urlCreateYoung, young, { 'headers': headers });
+
+    return this.httpClient.post(this.urlCreateYoung + '?force=' + forceInsert, young, { 'headers': headers,   observe: 'response'  });
   }
 
 

@@ -19,6 +19,7 @@ export class YoungPipe implements PipeTransform {
       let isSensitizedNoFilter: boolean = youngFilter.isSensitizedNo;
       const accompanyingUserIdFilter: number = youngFilter.accompanyingUserId;
       const accompanyingTypeIdFilter: number = youngFilter.accompanyingTypeId;
+      const qpvValuesFilter: Array<number> = youngFilter.qpvValues;
       let result = values;
       if (youngNameFilter) {
         result = values.filter((young: Young) => {
@@ -66,11 +67,25 @@ export class YoungPipe implements PipeTransform {
 
       if (accompanyingTypeIdFilter) {
         result = result.filter((young: Young) => {
-          console.log(young.accompanyingType);
           return young.accompanyingType && young.accompanyingType == accompanyingTypeIdFilter;
         });
 
       }
+
+
+      const filter = new Array();
+      for (const key in qpvValuesFilter) {
+        if (qpvValuesFilter[key]) {
+          filter.push(parseInt(key));
+        }
+      }
+      if (filter.length > 0) {
+        result = result.filter((young: Young) => {
+          return filter.indexOf(young.qpvStatusId) != -1;
+        });
+      }
+
+
       return result;
     }
 

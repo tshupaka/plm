@@ -4,6 +4,7 @@ import { Accompanying } from 'src/app/model/accompanying.model';
 import { YoungService } from 'src/app/service/young.service';
 import { YoungHistoricAccompanyingComponent } from './young-historic-accompanying.component';
 import { YoungAccompanyingComponent } from './young-accompanying.component';
+import { Meeting } from 'src/app/model/meeting.model';
 
 @Component({
   selector: 'plm-young-accompanying-summary',
@@ -28,7 +29,19 @@ export class YoungAccompanyingSummaryComponent implements OnInit {
       .subscribe((accompanying: Accompanying) => {
 
         if (accompanying) {
+          accompanying.meetings = accompanying.meetings.sort((meet1: Meeting, meet2: Meeting) => {
+            console.log("1", meet1)
+            console.log("2", meet2)
+            if (meet1 && meet2) {
+              return (new Date(meet1.date).getTime() - new Date(meet2.date).getTime());
+            } else {
+              return -1;
+            }
+
+          });
+          console.log(accompanying.meetings);
           this.young.accompanying = accompanying;
+
 
         } else {
           this.young.accompanying = new Accompanying();

@@ -24,7 +24,7 @@ export class AwarenessComponent implements OnInit {
   private successMessage: String;
 
   private signatureRadioValue: string;
-  private youngs: Young[];
+  youngs: Young[];
   private users: User[];
   private usersChecked: User[];
 
@@ -78,7 +78,7 @@ export class AwarenessComponent implements OnInit {
     if (this.awareness) {
       this.awareness.users.forEach((user: User) => {
 
-        this.usersChecked.find((userChecked: User) => { if (user.id == userChecked.id) { userChecked['checked'] = true } });
+        this.usersChecked.find((userChecked: User) => { if (user.id == userChecked.id) { userChecked['checked'] = true; return true } else return false; });
       });
 
     }

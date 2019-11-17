@@ -31,6 +31,7 @@ import { YoungHistoricAccompanyingComponent } from './young-panel/young-accompan
 import { YoungPopupClosedAccompanyingComponent } from './young-panel/young-accompanying/young-popup-closed-accompanying.component';
 import { YoungPipe } from '../utils/pipe/young.pipe';
 import { YoungListComponent } from './young-panel/young-list.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 @NgModule({
   imports: [
@@ -49,6 +50,7 @@ import { YoungListComponent } from './young-panel/young-list.component';
           { path: 'project', component: ProjectComponent },
           { path: 'project/search', component: ProjectSearchComponent },
           { path: 'project/:id', component: ProjectComponent },
+          { path: 'statistics', component: StatisticsComponent },
           { path: 'parameters/home', component: ParametersComponent },
           { path: 'parameters/dropdown', component: DropdownParameterComponent },
           { path: 'parameters/users', component: UserParameterComponent },
@@ -80,7 +82,8 @@ import { YoungListComponent } from './young-panel/young-list.component';
     YoungHistoricAccompanyingComponent,
     YoungAccompanyingComponent,
     YoungPopupClosedAccompanyingComponent,
-    YoungListComponent
+    YoungListComponent,
+    StatisticsComponent
   ],
   entryComponents: [AddAwarenessComponent, AddMeetingComponent, YoungPopupClosedAccompanyingComponent]
 })
