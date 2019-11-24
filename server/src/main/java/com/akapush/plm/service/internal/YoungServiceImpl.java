@@ -152,8 +152,7 @@ public class YoungServiceImpl implements YoungService {
     public Iterable<Accompanying> getHistoricAccompanyings(long youngId) {
         Young young = new Young();
         young.setId(youngId);
-        Iterable<Accompanying> accompanyings = accompanyingDAO.findAccompanyingByYoungAndClosed(young, true);
-        return accompanyings;
+        return accompanyingDAO.findAccompanyingByYoungAndClosed(young, true);
     }
 
     @Override

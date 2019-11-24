@@ -44,8 +44,7 @@ public class DropDownServiceImpl implements DropDownService {
 		dropDownValue.setValue(value);
 		dropDownValue.setDropDownKey(dropDownKey);
 		dropDownValue.setOrder(order);
-		DropDownValue dropDownValueSave = dropDownValueDAO.save(dropDownValue);
-		return dropDownValueSave;
+		return dropDownValueDAO.save(dropDownValue);
 	}
 
 	@Override

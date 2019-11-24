@@ -50,9 +50,9 @@ public class TokenAuthenticationService {
    public static String getUserInfo(String token) {
         if (token != null) {
             // parse the token.
-            String user = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token.replace(TOKEN_PREFIX, "")).getBody()
+           return Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token.replace(TOKEN_PREFIX, "")).getBody()
                     .getSubject();
-            return user;
+
         }
         return null;
     }

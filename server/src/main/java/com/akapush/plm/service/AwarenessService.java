@@ -20,7 +20,7 @@ public interface AwarenessService {
 	 * @return
 	 * @throws NoBeanAvailableException
 	 */
-	public Awareness getAwarenessById(Long id) throws NoBeanAvailableException;
+	Awareness getAwarenessById(Long id) throws NoBeanAvailableException;
 
 	/**
 	 * Save {@link Awareness} and return storage id
@@ -30,14 +30,14 @@ public interface AwarenessService {
 	 * @throws InvalidBeanException
 	 *             throwed if bean is invalid
 	 */
-	public Awareness saveAwareness(Awareness awareness) throws InvalidBeanException;
+	Awareness saveAwareness(Awareness awareness) throws InvalidBeanException;
 
 	/**
 	 * Return All {@link Awareness}
 	 * 
 	 * @return
 	 */
-	public Iterable<Awareness> getAllAwarenesses();
+	Iterable<Awareness> getAllAwarenesses();
 
 	/**
 	 * Return youngs associated with a given awareness
@@ -45,6 +45,6 @@ public interface AwarenessService {
 	 * @param id
 	 * @return
 	 */
-	public Iterable<Young> getAwarenessYoungs(long id);
+	Iterable<Young> getAwarenessYoungs(long id);
 
 }

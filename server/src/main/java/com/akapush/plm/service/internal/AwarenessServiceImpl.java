@@ -47,14 +47,13 @@ public class AwarenessServiceImpl implements AwarenessService {
 
 	@Override
 	public Iterable<Awareness> getAllAwarenesses() {
-		Iterable<Awareness> awarenesses = awarenessDAO.findByOrderByDateDesc();
-		return awarenesses;
+		return awarenessDAO.findByOrderByDateDesc();
 	}
 
 	@Override
 	public Iterable<Young> getAwarenessYoungs(long id) {
-		Iterable<Young> youngs = awarenessDAO.findYoungByAwareness(id);
-		return youngs;
+		return  awarenessDAO.findYoungByAwareness(id);
+
 	}
 
 }

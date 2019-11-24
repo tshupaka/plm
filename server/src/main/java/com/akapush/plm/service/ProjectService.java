@@ -11,7 +11,7 @@ public interface ProjectService {
 	 * 
 	 * @return
 	 */
-	public Iterable<Project> getAllProjects();
+	Iterable<Project> getAllProjects();
 
 	/**
 	 * Return a project stored with the given id
@@ -19,7 +19,7 @@ public interface ProjectService {
 	 * @param id
 	 * @return
 	 */
-	public Project getProjectById(long id) throws NoBeanAvailableException;
+	Project getProjectById(long id) throws NoBeanAvailableException;
 
 	/**
 	 * Save project and return project object with database id
@@ -27,7 +27,7 @@ public interface ProjectService {
 	 * @param project
 	 * @return
 	 */
-	public Project saveProject(Project project);
+	Project saveProject(Project project);
 
 	/**
 	 * Return youngs associated with a given project
@@ -35,6 +35,6 @@ public interface ProjectService {
 	 * @param id
 	 * @return
 	 */
-	public Iterable<Young> getYoungsByProjectId(long id);
+	Iterable<Young> getYoungsByProjectId(long id);
 
 }

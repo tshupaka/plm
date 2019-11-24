@@ -12,7 +12,7 @@ public interface UserService {
 	 * 
 	 * @return
 	 */
-	public Iterable<User> getAllActiveUsers();
+	Iterable<User> getAllActiveUsers();
 
 	/**
 	 * Save new or existing user
@@ -22,7 +22,7 @@ public interface UserService {
 	 * @throws InvalidBeanException
 	 * @throws NoBeanAvailableException
 	 */
-	public void saveUser(User user) throws AlreadyExistingBeanException, InvalidBeanException, NoBeanAvailableException;
+	void saveUser(User user) throws AlreadyExistingBeanException, InvalidBeanException, NoBeanAvailableException;
 
 	/**
 	 * Delete user specified by id
@@ -30,6 +30,6 @@ public interface UserService {
 	 * @param userId
 	 * @throws NoBeanAvailableException
 	 */
-	public void deleteUserById(Long userId) throws NoBeanAvailableException;
+	void deleteUserById(Long userId) throws NoBeanAvailableException;
 
 }

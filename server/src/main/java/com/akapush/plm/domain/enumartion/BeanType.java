@@ -7,7 +7,7 @@ public enum BeanType {
 
 	private String value;
 
-	private BeanType(String value) {
+	BeanType(String value) {
 		this.value = value;
 	}
 

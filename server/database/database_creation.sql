@@ -46,6 +46,7 @@ INSERT INTO DROP_DOWN_KEY (DDK_ID, DDK_KEY, DDK_LABEL) VALUES (nextval('seq_plm_
 INSERT INTO DROP_DOWN_KEY (DDK_ID, DDK_KEY, DDK_LABEL) VALUES (nextval('seq_plm_drop_down_key_ddk_id'), 'mobilityDuration','Durée de la mobilité');
 INSERT INTO DROP_DOWN_KEY (DDK_ID, DDK_KEY, DDK_LABEL) VALUES (nextval('seq_plm_drop_down_key_ddk_id'), 'geographicZone','Zone géographique (mobilité)');
 INSERT INTO DROP_DOWN_KEY (DDK_ID, DDK_KEY, DDK_LABEL) VALUES (nextval('seq_plm_drop_down_key_ddk_id'), 'mobilityType','Type de mobilité');
+INSERT INTO DROP_DOWN_KEY (DDK_ID, DDK_KEY, DDK_LABEL) VALUES (nextval('seq_plm_drop_down_key_ddk_id'), 'founding','Type de financement');
 
 
 

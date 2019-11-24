@@ -73,6 +73,6 @@ public interface StatisticsDAO extends Repository<Young, Long> {
             "            LEFT OUTER JOIN drop_down_value ddv_qpv_quarter on ddv_qpv_quarter.ddv_id = qpv_quarter_ddv_id \n" +
             "            LEFT OUTER JOIN drop_down_value ddv_qpv_status on ddv_qpv_status.ddv_id = qpv_status_ddv_id \n" +
             "            GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36", nativeQuery = true)
-    public List<Map<String, Object>> getStatistics();
+    List<Map<String, Object>> getStatistics();
 
 }
