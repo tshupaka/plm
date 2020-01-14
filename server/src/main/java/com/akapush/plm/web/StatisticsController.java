@@ -78,9 +78,13 @@ public class StatisticsController {
         headers.add("accompagnateur");
         headers.add("nom_projet");
         headers.add("nb_accompagnement");
-        headers.add("nb_sensibilisation");
         headers.add("pays_mobilite");
         headers.add("type_mobilite");
+        headers.add("type_financement");
+        headers.add("dernier_rdv_accompagnement");
+        headers.add("nb_sensibilisation");
+        headers.add("derniere_sensibilisation");
+
 
         response.setContentType("text/csv");
 
