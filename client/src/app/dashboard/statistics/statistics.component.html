@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-12 text-center m-2">
+    <h1>Statistiques</h1>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div class="col-lg-6 col-md-12 text-center m-2">
+    <button class="btn btn-lg btn-primary btn-block" (click)=downloadYoungAccompanyingStatistics()><i class="fas fa-chart-area m-2"></i>Statistiques Jeunes & Accompagnements</button>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div class="col-lg-6 col-md-12 text-center m-2">
+    <button class="btn btn-lg btn-primary btn-block" (click)=downloadYoungAwarenessStatistics()><i class="fas fa-chart-area m-2"></i>Statistiques Jeunes & Sensibilisations</button>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div class="col-lg-6 col-md-12 text-center m-2">
+    <button class="btn btn-lg btn-primary btn-block" (click)=downloadAwarenessStatistics()><i class="fas fa-chart-area m-2"></i>Statistiques Sensibilisations</button>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div class="col-lg-6 col-md-12 text-center m-2">
+    <button class="btn btn-lg btn-primary btn-block" [routerLink]="['/dashboard/home']"><i
+        class="fas fa-angle-double-left m-2"></i>Menu Principal</button>
+  </div>
+</div>
