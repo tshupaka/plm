@@ -15,7 +15,17 @@ public class StatisticsServiceImpl implements StatisticsService {
     StatisticsDAO statisticsDAO;
 
     @Override
-    public List<Map<String, Object>> getStatistics() {
-        return statisticsDAO.getStatistics();
+    public List<Map<String, Object>> getAccompanyingStatistics() {
+        return statisticsDAO.getAccompanyingStatistics();
+    }
+
+    @Override
+    public List<Map<String, Object>> getYoungAwarenessStatistics() {
+        return statisticsDAO.getYoungAwarenessStatistics();
+    }
+
+    @Override
+    public List<Map<String, Object>> getAwarenessStatistics() {
+        return statisticsDAO.getAwarnessStatistics();
     }
 }

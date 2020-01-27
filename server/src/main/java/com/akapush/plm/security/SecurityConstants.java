@@ -7,5 +7,5 @@ public class SecurityConstants {
 	public static final String HEADER_STRING = "Authorization";
 	public static final String SIGN_UP_URL = "/api/register";
 	public static final String SIGN_IN_URL = "/api/auth";
-	public static final String CSV_URL = "/api/csv/*";
+	public static final String CSV_URL = "/api/export/csv/**";
 }

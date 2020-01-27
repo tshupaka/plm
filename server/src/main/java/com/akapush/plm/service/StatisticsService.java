@@ -6,5 +6,9 @@ import java.util.Map;
 public interface StatisticsService {
 
 
-    List<Map<String, Object>> getStatistics();
-}
+    List<Map<String, Object>> getAccompanyingStatistics();
+
+    List<Map<String, Object>> getYoungAwarenessStatistics();
+
+    List<Map<String, Object>> getAwarenessStatistics();
+ }
