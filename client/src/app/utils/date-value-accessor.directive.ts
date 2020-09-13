@@ -10,10 +10,7 @@ export const DATE_VALUE_ACCESSOR: any = {
 };
 
 /**
-* The accessor for writing a value and listening to changes on a date input element
-*
-*  ### Example
-*  `<input name="myBirthday" type="date" />`
+* Directive to handle date in french format
 */
 @Directive({
   selector: '[plmUseValueAsDate]',

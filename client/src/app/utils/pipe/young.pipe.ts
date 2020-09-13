@@ -2,7 +2,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Young } from 'src/app/model/young.model';
 import { YoungFilter } from '../bean/young-filter';
 
-
+/**
+ * Pipe used to young awareness from young filter (name, is accompanied, is qpv, etc.)
+ */
 @Pipe({
   name: 'youngFilter'
 })

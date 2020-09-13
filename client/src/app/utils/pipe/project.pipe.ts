@@ -1,7 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Awareness } from 'src/app/model/awareness.model';
 import { Project } from 'src/app/model/project.model';
-
+/**
+ * Pipe used to filter projects from a given name
+ */
 @Pipe({
   name: 'projectFilter'
 })

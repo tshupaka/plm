@@ -1,6 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Awareness } from 'src/app/model/awareness.model';
-
+/**
+ * Pipe used to filter awarenesses from a given name
+ */
 @Pipe({
   name: 'awarenessFilter'
 })
