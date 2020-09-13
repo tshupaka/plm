@@ -42,9 +42,9 @@ public class AwarenessController {
 		try {
 			Awareness awareness = awarenessService.getAwarenessById(id);
 			AwarenessDTO awarenessDTO = awarenessHelper.getAwarenessDTO(awareness);
-			return new ResponseEntity<AwarenessDTO>(awarenessDTO, HttpStatus.OK);
+			return new ResponseEntity<>(awarenessDTO, HttpStatus.OK);
 		} catch (NoBeanAvailableException e) {
-			return new ResponseEntity<AwarenessDTO>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 
 	}
@@ -53,7 +53,7 @@ public class AwarenessController {
 	public ResponseEntity<List<AwarenessDTO>> getAllAwarenesses() {
 		Iterable<Awareness> awarenesses = awarenessService.getAllAwarenesses();
 		List<AwarenessDTO> awarenessDTO = awarenessHelper.getAwarenessDTO(awarenesses);
-		return new ResponseEntity<List<AwarenessDTO>>(awarenessDTO, HttpStatus.OK);
+		return new ResponseEntity<>(awarenessDTO, HttpStatus.OK);
 
 	}
 
@@ -63,10 +63,10 @@ public class AwarenessController {
 			Awareness awareness = awarenessHelper.getAwareness(awarenessDTO);
 			awareness = awarenessService.saveAwareness(awareness);
 			AwarenessDTO awarnessDTO = awarenessHelper.getAwarenessDTO(awareness);
-			return new ResponseEntity<AwarenessDTO>(awarnessDTO, HttpStatus.OK);
+			return new ResponseEntity<>(awarnessDTO, HttpStatus.OK);
 		} catch (InvalidBeanException e) {
 			LOG.error("Invalid Young Bean : " + e.getMessage());
-			return new ResponseEntity<AwarenessDTO>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
 
@@ -74,7 +74,7 @@ public class AwarenessController {
 	public ResponseEntity<List<YoungDTO>> getAwarenessYoungs(@PathVariable("awarenessId") long id) {
 		Iterable<Young> youngs = awarenessService.getAwarenessYoungs(id);
 		List<YoungDTO> youngsDTO = youngHelper.getYoungsDTO(youngs);
-		return new ResponseEntity<List<YoungDTO>>(youngsDTO, HttpStatus.OK);
+		return new ResponseEntity<>(youngsDTO, HttpStatus.OK);
 	}
 
 }

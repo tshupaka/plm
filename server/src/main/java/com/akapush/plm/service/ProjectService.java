@@ -4,6 +4,12 @@ import com.akapush.plm.domain.exception.NoBeanAvailableException;
 import com.akapush.plm.domain.model.Project;
 import com.akapush.plm.domain.model.Young;
 
+/**
+ * This service provides methods to handle projects.
+ *
+ * @author eric
+ *
+ */
 public interface ProjectService {
 
 	/**

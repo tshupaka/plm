@@ -70,7 +70,7 @@ public class AwarenessHelper {
 	}
 
 	public List<AwarenessDTO> getAwarenessDTO(Iterable<Awareness> awarenesses) {
-		List<AwarenessDTO> awarenessesDTO = new ArrayList<AwarenessDTO>();
+		List<AwarenessDTO> awarenessesDTO = new ArrayList<>();
 		for (Awareness awareness : awarenesses) {
 			awarenessesDTO.add(getAwarenessDTO(awareness));
 		}
@@ -81,7 +81,7 @@ public class AwarenessHelper {
 		if (usersDTO == null) {
 			return null;
 		}
-		List<User> users = new ArrayList<User>(usersDTO.size());
+		List<User> users = new ArrayList<>(usersDTO.size());
 		for (UserDTO userDTO : usersDTO) {
 			User user = userHelper.getUser(userDTO);
 			users.add(user);
@@ -93,7 +93,7 @@ public class AwarenessHelper {
 		if (users == null) {
 			return null;
 		}
-		List<UserDTO> usersDTO = new ArrayList<UserDTO>(users.size());
+		List<UserDTO> usersDTO = new ArrayList<>(users.size());
 		for (User user : users) {
 			UserDTO userDTO = userHelper.getUserDTO(user);
 			usersDTO.add(userDTO);

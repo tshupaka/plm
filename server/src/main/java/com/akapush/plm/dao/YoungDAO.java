@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import com.akapush.plm.domain.model.Young;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface YoungDAO extends CrudRepository<Young, Long> {

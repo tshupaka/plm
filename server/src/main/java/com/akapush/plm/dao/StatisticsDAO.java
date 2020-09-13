@@ -75,7 +75,7 @@ public interface StatisticsDAO extends Repository<Young, Long> {
             "                order by you_lastname, you_firstname\n" +
             "                 ",
             nativeQuery = true)
-    List<Map<String, Object>> getAccompanyingStatistics();
+    List<Map<String, Object>> getYoungAccompanyingStatistics();
 
     @Query(value = "SELECT   \n" +
             "                young.you_id as id,   \n" +
@@ -144,7 +144,7 @@ public interface StatisticsDAO extends Repository<Young, Long> {
             "    awa_name as nom,\n" +
             "    awa_city as ville,\n" +
             "    type_ddv.ddv_value as type,\n" +
-            "    count(*) as nb_jeunes,\n" +
+            "    sum(CASE WHEN young.you_id is not null then 1 else 0 end) as nb_jeunes,\n" +
             "    sum(CASE WHEN UPPER(qpv_status_ddv.ddv_value) != 'NON' then 1 else 0 end) as nb_jeunes_qpv\n" +
             "    from awareness\n" +
             "    left outer join drop_down_value type_ddv on type_ddv.ddv_id = type_ddv_id\n" +

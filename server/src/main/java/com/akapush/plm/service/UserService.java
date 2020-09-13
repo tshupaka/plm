@@ -5,6 +5,12 @@ import com.akapush.plm.domain.exception.InvalidBeanException;
 import com.akapush.plm.domain.exception.NoBeanAvailableException;
 import com.akapush.plm.domain.model.User;
 
+/**
+ * This service provide methods to handle users.
+ *
+ * @author eric
+ *
+ */
 public interface UserService {
 
 	/**

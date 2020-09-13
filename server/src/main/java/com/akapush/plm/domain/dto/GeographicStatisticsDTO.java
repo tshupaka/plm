@@ -1,12 +1,18 @@
-package com.akapush.plm.domain.bean;
+package com.akapush.plm.domain.dto;
 
-public class GeographicStatistics {
+import com.akapush.plm.domain.bean.GeographicStatistics;
+
+public class GeographicStatisticsDTO {
 
     int numberInToulouse;
     int numberInToulouseMetropole;
     int numberInRegion;
 
-    public GeographicStatistics(int numberInToulouse, int numberInToulouseMetropole, int numberInRegion) {
+    public GeographicStatisticsDTO(){
+
+    }
+
+    public GeographicStatisticsDTO(int numberInToulouse, int numberInToulouseMetropole, int numberInRegion) {
         this.numberInToulouse = numberInToulouse;
         this.numberInToulouseMetropole = numberInToulouseMetropole;
         this.numberInRegion = numberInRegion;

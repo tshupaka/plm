@@ -6,7 +6,7 @@ import com.akapush.plm.domain.model.Awareness;
 import com.akapush.plm.domain.model.Young;
 
 /**
- * This service provides method to handle Awareness.
+ * This service provides methods to handle Awareness.
  * 
  * @author eric
  *

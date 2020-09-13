@@ -24,7 +24,7 @@ public interface YoungService {
 
 
 	/**
-	 * Delete a given young (and cascade all awarness & accompanying associated.
+	 * Delete a given young (and cascade all awarness & accompanying associated).
 	 * 
 	 * @param youngId
 	 */
