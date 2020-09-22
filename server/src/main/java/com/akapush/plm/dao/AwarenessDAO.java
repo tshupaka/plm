@@ -16,5 +16,5 @@ public interface AwarenessDAO extends CrudRepository<Awareness, Long> {
 			+ " where awarenesses.id = :id")
 	Iterable<Young> findYoungByAwareness(@Param("id") long id);
 
-	Iterable<Awareness> findByOrderByDateDesc();
+	Iterable<Awareness> findAwarenessByActiveOrderByDateDesc(Boolean isActive);
 }

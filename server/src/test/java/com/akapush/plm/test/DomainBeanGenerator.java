@@ -1,5 +1,6 @@
 package com.akapush.plm.test;
 
+import com.akapush.plm.domain.model.Accompanying;
 import com.akapush.plm.domain.model.DropDownKey;
 import com.akapush.plm.domain.model.DropDownValue;
 import com.akapush.plm.domain.model.Young;
@@ -37,7 +38,17 @@ public class DomainBeanGenerator {
         young.setId(id);
         young.setLastname("Young " + id);
         young.setGender(createGenderDropDownValue(id));
+        young.setAccompanyings(createAccompanyings(id));
+        young.setGeographicFocus(createGeographicFocusDropDownValue(id));
         return young;
+    }
+
+    private static List<Accompanying> createAccompanyings(long id) {
+        return null;
+    }
+
+    private static DropDownValue createGeographicFocusDropDownValue(long id) {
+        return null;
     }
 
     private  static DropDownValue createGenderDropDownValue(long id) {

@@ -1,19 +1,37 @@
 package com.akapush.plm.domain.dto;
 
-import com.akapush.plm.domain.bean.GeographicStatistics;
-
 import java.util.Map;
 
 public class AccompanyingStatisticsDTO {
 
-    private Map<String, GeographicStatisticsDTO> sexStatistics;
+    private Map<String, Integer> sex;
+
+    private Map<String, Integer> educationLevel;
+
+    private Map<String, Integer> qpv;
 
 
-    public Map<String, GeographicStatisticsDTO> getSexStatistics() {
-        return sexStatistics;
+    public Map<String, Integer> getSex() {
+        return sex;
     }
 
-    public void setSexStatistics(Map<String, GeographicStatisticsDTO> sexStatistics) {
-        this.sexStatistics = sexStatistics;
+    public void setSex(Map<String, Integer> sex) {
+        this.sex = sex;
+    }
+
+    public Map<String, Integer> getEducationLevel() {
+        return educationLevel;
+    }
+
+    public void setEducationLevel(Map<String, Integer> educationLevel) {
+        this.educationLevel = educationLevel;
+    }
+
+    public Map<String, Integer> getQpv() {
+        return qpv;
+    }
+
+    public void setQpv(Map<String, Integer> qpv) {
+        this.qpv = qpv;
     }
 }

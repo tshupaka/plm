@@ -193,7 +193,7 @@ public class Awareness {
         this.comment = comment;
     }
 
-    public Boolean getActive() {
+    public Boolean isActive() {
         return active;
     }
 

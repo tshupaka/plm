@@ -1,8 +1,10 @@
 package com.akapush.plm.util;
 
 import com.akapush.plm.domain.bean.AccompanyingStatistics;
+import com.akapush.plm.domain.bean.AwarenessStatistics;
 import com.akapush.plm.domain.bean.GeographicStatistics;
 import com.akapush.plm.domain.dto.AccompanyingStatisticsDTO;
+import com.akapush.plm.domain.dto.AwarenessStatisticsDTO;
 import com.akapush.plm.domain.dto.GeographicStatisticsDTO;
 import org.springframework.stereotype.Component;
 
@@ -16,10 +18,10 @@ public class StatisticsHelper {
     public AccompanyingStatisticsDTO getAccompanyingStatisticsDTO(AccompanyingStatistics accompanyingStatistics) {
         AccompanyingStatisticsDTO accompanyingStatisticsDTO = new AccompanyingStatisticsDTO();
         Map<String, GeographicStatisticsDTO> sexStatisticsDTO = new HashMap<>();
-        Map<String, GeographicStatistics> sexStatistics = accompanyingStatistics.getSexStatistics();
+        /*Map<String, GeographicStatistics> sexStatistics = accompanyingStatistics.getSexStatistics();
         sexStatistics.forEach((key, geographicStatistics) -> sexStatisticsDTO.put(key, getGeographicStatisticsDTO(geographicStatistics)));
-        accompanyingStatisticsDTO.setSexStatistics(sexStatisticsDTO);
-        return  accompanyingStatisticsDTO;
+        accompanyingStatisticsDTO.setSexStatistics(sexStatisticsDTO);*/
+        return accompanyingStatisticsDTO;
     }
 
     private GeographicStatisticsDTO getGeographicStatisticsDTO(GeographicStatistics geographicStatistics) {
@@ -28,5 +30,10 @@ public class StatisticsHelper {
         geographicStatisticsDTO.setNumberInToulouse(geographicStatistics.getNumberInToulouse());
         geographicStatisticsDTO.setNumberInToulouse(geographicStatistics.getNumberInToulouseMetropole());
         return geographicStatisticsDTO;
+    }
+
+    public AwarenessStatisticsDTO getAwarenessStatisticsDTO(AwarenessStatistics awarnessStatistics) {
+        AwarenessStatisticsDTO awarenessStatisticsDTO = new AwarenessStatisticsDTO();
+        return awarenessStatisticsDTO;
     }
 }

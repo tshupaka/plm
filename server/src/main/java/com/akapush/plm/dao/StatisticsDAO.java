@@ -155,5 +155,5 @@ public interface StatisticsDAO extends Repository<Young, Long> {
             "    order by 1\n" +
             "           ",
     nativeQuery = true)
-    List<Map<String, Object>> getAwarnessStatistics();
+    List<Map<String, Object>> exportAwarnessStatistics();
 }

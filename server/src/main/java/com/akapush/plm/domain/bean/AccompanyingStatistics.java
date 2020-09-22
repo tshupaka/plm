@@ -3,95 +3,29 @@ package com.akapush.plm.domain.bean;
 import java.util.Map;
 
 public class AccompanyingStatistics {
+    private final Map<String, Long> sex;
 
-    private Map<String, GeographicStatistics> sexStatistics;
+    private final Map<String, Long> educationLevel;
 
-    private Map<String,GeographicStatistics> ageStatistics;
+    private final Map<String, Long> qpv;
 
-    private Map<String, GeographicStatistics> departmentStatistics;
-
-    private Map<String, GeographicStatistics> isQpvStatistics;
-
-    private Map<String, GeographicStatistics> qpvQuarterStatistics;
-
-    private Map<String, GeographicStatistics> employmentStatusStatistics;
-
-    private Map<String, GeographicStatistics> rsaClaimerStatistics;
-
-    private Map<String, GeographicStatistics> schoolLevelStatistics;
-
-    private Map<String, GeographicStatistics> prescriberStatistics;
-
-    public Map<String, GeographicStatistics> getSexStatistics() {
-        return sexStatistics;
+    public AccompanyingStatistics(Map<String, Long> sex, Map<String, Long> educationLevel, Map<String, Long> qpv) {
+        this.sex = sex;
+        this.educationLevel = educationLevel;
+        this.qpv = qpv;
     }
 
-    public void setSexStatistics(Map<String, GeographicStatistics> sexStatistics) {
-        this.sexStatistics = sexStatistics;
+
+    public Map<String, Long> getSex() {
+        return sex;
     }
 
-    public Map<String, GeographicStatistics> getAgeStatistics() {
-        return ageStatistics;
+    public Map<String, Long> getEducationLevel() {
+        return educationLevel;
     }
 
-    public void setAgeStatistics(Map<String, GeographicStatistics> ageStatistics) {
-        this.ageStatistics = ageStatistics;
-    }
-
-    public Map<String, GeographicStatistics> getDepartmentStatistics() {
-        return departmentStatistics;
-    }
-
-    public void setDepartmentStatistics(Map<String, GeographicStatistics> departmentStatistics) {
-        this.departmentStatistics = departmentStatistics;
-    }
-
-    public Map<String, GeographicStatistics> getIsQpvStatistics() {
-        return isQpvStatistics;
-    }
-
-    public void setIsQpvStatistics(Map<String, GeographicStatistics> isQpvStatistics) {
-        this.isQpvStatistics = isQpvStatistics;
-    }
-
-    public Map<String, GeographicStatistics> getQpvQuarterStatistics() {
-        return qpvQuarterStatistics;
-    }
-
-    public void setQpvQuarterStatistics(Map<String, GeographicStatistics> qpvQuarterStatistics) {
-        this.qpvQuarterStatistics = qpvQuarterStatistics;
-    }
-
-    public Map<String, GeographicStatistics> getEmploymentStatusStatistics() {
-        return employmentStatusStatistics;
-    }
-
-    public void setEmploymentStatusStatistics(Map<String, GeographicStatistics> employmentStatusStatistics) {
-        this.employmentStatusStatistics = employmentStatusStatistics;
-    }
-
-    public Map<String, GeographicStatistics> getRsaClaimerStatistics() {
-        return rsaClaimerStatistics;
-    }
-
-    public void setRsaClaimerStatistics(Map<String, GeographicStatistics> rsaClaimerStatistics) {
-        this.rsaClaimerStatistics = rsaClaimerStatistics;
-    }
-
-    public Map<String, GeographicStatistics> getSchoolLevelStatistics() {
-        return schoolLevelStatistics;
-    }
-
-    public void setSchoolLevelStatistics(Map<String, GeographicStatistics> schoolLevelStatistics) {
-        this.schoolLevelStatistics = schoolLevelStatistics;
-    }
-
-    public Map<String, GeographicStatistics> getPrescriberStatistics() {
-        return prescriberStatistics;
-    }
-
-    public void setPrescriberStatistics(Map<String, GeographicStatistics> prescriberStatistics) {
-        this.prescriberStatistics = prescriberStatistics;
+    public Map<String, Long> getQpv() {
+        return qpv;
     }
 }
 

@@ -14,7 +14,7 @@ import org.springframework.test.context.TestPropertySource;
 
 import java.util.List;
 
-//@SpringBootTest
+@SpringBootTest
 @TestPropertySource(locations = "classpath:application-test.properties")
 class StatisticsServiceTest {
 
@@ -38,8 +38,8 @@ class StatisticsServiceTest {
             }
         });
 
-        AccompanyingStatistics statistics = statisticsService.getAccompanyingStatistics();
-        System.out.println(statistics);
+        //AccompanyingStatistics statistics = statisticsService.getAccompanyingStatistics(List.of(2019), );
+        //System.out.println(statistics);
     }
 
 

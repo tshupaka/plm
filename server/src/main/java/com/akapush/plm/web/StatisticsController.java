@@ -1,7 +1,9 @@
 package com.akapush.plm.web;
 
 import com.akapush.plm.domain.bean.AccompanyingStatistics;
+import com.akapush.plm.domain.bean.AwarenessStatistics;
 import com.akapush.plm.domain.dto.AccompanyingStatisticsDTO;
+import com.akapush.plm.domain.dto.AwarenessStatisticsDTO;
 import com.akapush.plm.security.TokenAuthenticationService;
 import com.akapush.plm.service.StatisticsService;
 import com.akapush.plm.util.StatisticsHelper;
@@ -10,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -249,7 +248,7 @@ public class StatisticsController {
         }
         writer.writeNext(headerTabs);
 
-        List<Map<String, Object>> result = statisticsService.getAwarenessStatistics();
+        List<Map<String, Object>> result = statisticsService.exportAwarenessStatistics();
 
         for (Map<String, Object> line : result) {
             String[] csvLine = new String[headers.size()];
@@ -267,12 +266,23 @@ public class StatisticsController {
     }
 
 
-    @RequestMapping(value = "/api/statistics", method = RequestMethod.GET)
-    public ResponseEntity<AccompanyingStatisticsDTO> getAccompanyingStatistics() {
-        AccompanyingStatistics accompanyingStatistics = statisticsService.getAccompanyingStatistics();
+    @RequestMapping(value = "/api/statistics/accompanying", method = RequestMethod.GET)
+    public ResponseEntity<AccompanyingStatisticsDTO> getAccompanyingStatistics(@RequestParam("year") List<Integer> years,
+                                                                               @RequestParam("geofocus") List<Long> geographicFocus,
+                                                                               @RequestParam("founding") List<Long> foundingIds) {
+        AccompanyingStatistics accompanyingStatistics = statisticsService.getAccompanyingStatistics(years, geographicFocus, foundingIds);
         AccompanyingStatisticsDTO accompanyingStatisticsDTO = statisticsHelper.getAccompanyingStatisticsDTO(accompanyingStatistics);
         return new ResponseEntity<>(accompanyingStatisticsDTO, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/api/statistics/awarenesss")
+    public ResponseEntity<AwarenessStatisticsDTO> getAwarenessStatistics(@RequestParam(name = "qpvId") List<Integer> qpvIds) {
+        AwarenessStatistics awarnessStatistics = statisticsService.getAwarenessStatistics(qpvIds);
+        AwarenessStatisticsDTO awarenessStatisticsDTO = statisticsHelper.getAwarenessStatisticsDTO(awarnessStatistics);
+        return new ResponseEntity<>(awarenessStatisticsDTO, HttpStatus.OK);
+
+    }
+
 
     private String getStringValue(Object value) {
         if (value == null) {
