@@ -1,0 +1,11 @@
+.geographic-focus {
+
+  border: 1px black solid;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.scrollable {
+  overflow: auto;
+  height: 250px;
+}

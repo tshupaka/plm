@@ -81,7 +81,7 @@ public class YoungServiceImpl implements YoungService {
     @Override
     public Iterable<Young> getAllYoungs() {
 
-        return youngDAO.getAllYWithCurrentAccompanying();
+        return youngDAO.getAllYoungsYWithCurrentAccompanying();
     }
 
     @Override

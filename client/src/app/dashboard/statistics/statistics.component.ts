@@ -29,4 +29,5 @@ export class StatisticsComponent implements OnInit {
     var token:string= this.authenticationService.getToken();
     window.open("/api/export/csv/awareness?token="+token);
   }
+
 }

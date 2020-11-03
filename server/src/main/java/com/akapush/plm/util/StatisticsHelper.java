@@ -8,32 +8,29 @@ import com.akapush.plm.domain.dto.AwarenessStatisticsDTO;
 import com.akapush.plm.domain.dto.GeographicStatisticsDTO;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Component
 public class StatisticsHelper {
 
 
     public AccompanyingStatisticsDTO getAccompanyingStatisticsDTO(AccompanyingStatistics accompanyingStatistics) {
+        if(accompanyingStatistics == null) {
+            return null;
+        }
         AccompanyingStatisticsDTO accompanyingStatisticsDTO = new AccompanyingStatisticsDTO();
-        Map<String, GeographicStatisticsDTO> sexStatisticsDTO = new HashMap<>();
-        /*Map<String, GeographicStatistics> sexStatistics = accompanyingStatistics.getSexStatistics();
-        sexStatistics.forEach((key, geographicStatistics) -> sexStatisticsDTO.put(key, getGeographicStatisticsDTO(geographicStatistics)));
-        accompanyingStatisticsDTO.setSexStatistics(sexStatisticsDTO);*/
+        accompanyingStatisticsDTO.setEducationLevel(accompanyingStatistics.getEducationLevel());
+        accompanyingStatisticsDTO.setQpv(accompanyingStatistics.getQpv());
+        accompanyingStatisticsDTO.setSex(accompanyingStatistics.getSex());
         return accompanyingStatisticsDTO;
     }
 
-    private GeographicStatisticsDTO getGeographicStatisticsDTO(GeographicStatistics geographicStatistics) {
-        GeographicStatisticsDTO geographicStatisticsDTO = new GeographicStatisticsDTO();
-        geographicStatisticsDTO.setNumberInRegion(geographicStatistics.getNumberInRegion());
-        geographicStatisticsDTO.setNumberInToulouse(geographicStatistics.getNumberInToulouse());
-        geographicStatisticsDTO.setNumberInToulouse(geographicStatistics.getNumberInToulouseMetropole());
-        return geographicStatisticsDTO;
-    }
 
     public AwarenessStatisticsDTO getAwarenessStatisticsDTO(AwarenessStatistics awarnessStatistics) {
+        if(awarnessStatistics == null) {
+            return null;
+        }
         AwarenessStatisticsDTO awarenessStatisticsDTO = new AwarenessStatisticsDTO();
+        awarenessStatisticsDTO.setQpv(awarnessStatistics.getQpv());
+        awarenessStatisticsDTO.setSex(awarnessStatistics.getSex());
         return awarenessStatisticsDTO;
     }
 }

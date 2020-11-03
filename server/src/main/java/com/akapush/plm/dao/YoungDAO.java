@@ -11,8 +11,11 @@ import java.util.List;
 @Repository
 public interface YoungDAO extends CrudRepository<Young, Long> {
 
-	@Query("Select young from Young young order by young.lastname")
-	Iterable<Young> getAllYWithCurrentAccompanying();
+	@Query("Select distinct young from Young young left join fetch young.accompanyings ")
+	Iterable<Young> getAllYoungsYWithCurrentAccompanying();
 
     List<Young> findByLastnameIgnoreCase(String lastname);
+
+    @Query("Select distinct young from Young young left join fetch young.awarenesses")
+    Iterable<Young> getAllYoungsWithAwareness();
 }

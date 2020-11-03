@@ -1,0 +1,107 @@
+<div class="row m-2">
+  <div class="col-2 text-left">
+    <button type="button" class="btn btn-outline-primary text-left m-2" [routerLink]="['/dashboard/statistics']"><i
+        class="fas fa-chevron-left m-2"></i>Retour</button>
+  </div>
+</div>
+<div class="row m-2">
+  <div class="col-sm-12 col-md-4 col-lg-4">
+    <div class="geographic-focus">
+      <label><strong>Année : </strong></label>
+      <div>
+        <input id="selectAllYears" type="checkbox" [(ngModel)]="selectAllYears" (change)="onSelectAllYears($event)">
+        <label for="selectAllYears">Sélectionner tout</label>
+      </div>
+      <hr />
+      <div class="scrollable">
+        <div class="form-group">
+
+          <div *ngFor="let yearsType of yearsStatusValues" class="form-check">
+            <input id="years{{yearsType.id}}" type="checkbox" class="form-check-input" id="yearsValues{{yearsType.id}}"
+              value="1" [(ngModel)]="yearsValues[yearsType.id]" (change)="onFilterChange($event)">
+            <label for="isSensitizedYes">{{yearsType.value}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-4 col-lg-4">
+    <div class="geographic-focus">
+
+      <label><strong>Focus Géographique : </strong></label>
+      <div>
+        <input id="selectAllFocus" type="checkbox" [(ngModel)]="selectAllGeofocus" (change)="onSelectAllFocus($event)">
+        <label for="selectAllFocus">Sélectionner tout</label>
+      </div>
+      <hr />
+      <div class="scrollable">
+
+        <div class="form-group">
+
+          <div *ngFor="let geographicFocusType of geographicFocusStatusValues" class="form-check">
+            <input id="geographicFocus{{geographicFocusType.id}}" type="checkbox" class="form-check-input"
+              id="geographicFocusValues{{geographicFocusType.id}}" value="1"
+              [(ngModel)]="geographicFocusValues[geographicFocusType.id]" (change)="onFilterChange($event)">
+            <label for="geographicFocusValues{{geographicFocusType.id}}">{{geographicFocusType.value}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-4 col-lg-4">
+    <div class="geographic-focus">
+      <label><strong>Financement : </strong></label>
+      <div>
+        <input id="selectAllFounding" type="checkbox" [(ngModel)]="selectAllFounding"
+          (change)="onSelectAllFouding($event)">
+        <label for="selectAllFounding">Sélectionner tout</label>
+      </div>
+      <hr />
+      <div class="scrollable">
+        <div class="form-group">
+
+          <div *ngFor="let foundingType of foundingStatusValues" class="form-check">
+            <input id="founding{{foundingType.id}}" type="checkbox" class="form-check-input"
+              id="foundingValues{{foundingType.id}}" value="1" [(ngModel)]="foundingValues[foundingType.id]"
+              (change)="onFilterChange($event)">
+            <label for="isSensitizedYes">{{foundingType.value}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+<strong>Accompagnement : {{nbAccompanying}}</strong>
+</div>
+<div class="row">
+  <div class="col-sm-12 col-md-4 col-lg-3">
+    <div>Répartition par sexe</div>
+    <div id="genderGraphAccompanying" style="height: 300px; width:100%;"></div>
+  </div>
+
+  <div class="col-sm-12 col-md-4 col-lg-6">
+    <div>Répartition par niveau de formation</div>
+    <div id="educationLevelGraphAccompanying" style="height: 300px; width:100%;"></div>
+  </div>
+
+  <div class="col-sm-12 col-md-4 col-lg-3">
+    <div>Répartition par QPV</div>
+    <div id="qpvGraphAccompanying" style="height: 300px; width:100%;"></div>
+  </div>
+</div>
+
+<div class="row">
+  <strong>Sensibilisation : {{nbAwarenesses}}</strong>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-4 col-lg-3">
+      <div>Répartition par sexe</div>
+      <div id="genderGraphAwareness" style="height: 300px; width:100%;"></div>
+    </div>
+  
+    <div class="col-sm-12 col-md-4 col-lg-3">
+      <div>Répartition par QPV</div>
+      <div id="qpvGraphAwareness" style="height: 300px; width:100%;"></div>
+    </div>
+  </div>

@@ -10,12 +10,15 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Date</label>
         <input type="date" class="form-control" name="meetingDate" id="meetingDate" [(ngModel)]="meeting.date"
-          aria-describedby="meetingDate" plmUseValueAsDate>
+          aria-describedby="meetingDate"  required #meetingDate="ngModel">
+          <span *ngIf="meetingDate.invalid" class="text-danger">La date est obligatoire</span>
       </div>
+      
       <div class="form-group">
         <label for="meetingDescription">Description</label>
         <textarea class="form-control" name="meetingDescription" id="meetingDescription" [(ngModel)]="meeting.description"
-          rows="3"></textarea>
+          rows="3" #description="ngModel"></textarea>
+      
       </div>
       <div class="form-group">
         <label for="meetingComment">Commentaires</label>

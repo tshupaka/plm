@@ -30,8 +30,9 @@
           <label for="date">Date :</label>
         </div>
         <div class="col-8 mb-2">
-          <input class="form-control" id="date" type="date" [(ngModel)]="awareness.date" #name="ngModel" name="date"
-            plmUseValueAsDate />
+          <input class="form-control" id="date" type="date" [(ngModel)]="awareness.date" #date="ngModel" name="date"
+            plmUseValueAsDate required />
+            <span *ngIf="date.invalid" class="text-danger">La date est obligatoire</span>
         </div>
       </div>
       <div class="row">

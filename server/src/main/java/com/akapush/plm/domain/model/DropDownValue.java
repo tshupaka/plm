@@ -10,10 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import java.util.Comparator;
 
 @Entity
 @Table(name = "DROP_DOWN_VALUE")
-public class DropDownValue {
+public class DropDownValue implements Comparable<DropDownValue> {
 
 	@Id
 	@Column(name = "DDV_ID")
@@ -38,6 +39,7 @@ public class DropDownValue {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -86,4 +88,16 @@ public class DropDownValue {
 		this.dropDownKey = dropDownKey;
 	}
 
+
+
+	@Override
+	public int compareTo(DropDownValue dropDownValue) {
+		if(this.order == null ) {
+			return -1;
+		}
+		if(dropDownValue.getOrder() == null) {
+			return 1;
+		}
+		return this.getOrder().compareTo(dropDownValue.getOrder());
+	}
 }

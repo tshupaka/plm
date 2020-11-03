@@ -32,6 +32,7 @@ import { YoungPopupClosedAccompanyingComponent } from './young-panel/young-accom
 import { YoungPipe } from '../utils/pipe/young.pipe';
 import { YoungListComponent } from './young-panel/young-list.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { StatisticsDashboardComponent } from './statistics/statistics-dashboard.component';
 
 @NgModule({
   imports: [
@@ -54,6 +55,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
           { path: 'parameters/home', component: ParametersComponent },
           { path: 'parameters/dropdown', component: DropdownParameterComponent },
           { path: 'parameters/users', component: UserParameterComponent },
+          { path: 'statistics/dashboard', component: StatisticsDashboardComponent}
 
         ]
       }
@@ -83,7 +85,8 @@ import { StatisticsComponent } from './statistics/statistics.component';
     YoungAccompanyingComponent,
     YoungPopupClosedAccompanyingComponent,
     YoungListComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    StatisticsDashboardComponent
   ],
   entryComponents: [AddAwarenessComponent, AddMeetingComponent, YoungPopupClosedAccompanyingComponent]
 })

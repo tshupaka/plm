@@ -276,11 +276,11 @@ public class StatisticsController {
     }
 
     @RequestMapping(value = "/api/statistics/awarenesss")
-    public ResponseEntity<AwarenessStatisticsDTO> getAwarenessStatistics(@RequestParam(name = "qpvId") List<Integer> qpvIds) {
-        AwarenessStatistics awarnessStatistics = statisticsService.getAwarenessStatistics(qpvIds);
-        AwarenessStatisticsDTO awarenessStatisticsDTO = statisticsHelper.getAwarenessStatisticsDTO(awarnessStatistics);
+    public ResponseEntity<AwarenessStatisticsDTO> getAwarenessStatistics(@RequestParam("year") List<Integer> years,
+                                                                         @RequestParam("geofocus") List<Long> geographicFocus) {
+        AwarenessStatistics awarenessStatistics = statisticsService.getAwarenessStatistics(years, geographicFocus);
+        AwarenessStatisticsDTO awarenessStatisticsDTO = statisticsHelper.getAwarenessStatisticsDTO(awarenessStatistics);
         return new ResponseEntity<>(awarenessStatisticsDTO, HttpStatus.OK);
-
     }
 
 

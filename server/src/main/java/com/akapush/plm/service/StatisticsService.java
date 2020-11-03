@@ -28,6 +28,14 @@ public interface StatisticsService {
      */
     List<Map<String, Object>> getYoungAwarenessStatistics();
 
+    /**
+     * Return statistcs of accompanyings
+     *
+     * @param years
+     * @param geographicFocusIds
+     * @param foundingIds
+     * @return
+     */
     public AccompanyingStatistics getAccompanyingStatistics(List<Integer> years, List<Long> geographicFocusIds, List<Long> foundingIds);
 
     /**
@@ -38,10 +46,11 @@ public interface StatisticsService {
     List<Map<String, Object>> exportAwarenessStatistics();
 
     /**
-     * Return statistics about awareness
+     * Return statistics of Awareness
      *
-     * @param qpvIds filter by qpvIds
-     * @return awrenesses statistics
+     * @param years
+     * @param geographicFocusIds
+     * @return
      */
-    AwarenessStatistics getAwarenessStatistics(List<Integer> qpvIds);
+    AwarenessStatistics getAwarenessStatistics(List<Integer> years, List<Long> geographicFocusIds);
 }

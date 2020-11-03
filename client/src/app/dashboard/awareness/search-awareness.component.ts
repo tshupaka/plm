@@ -32,6 +32,17 @@ export class SearchAwarenessComponent implements OnInit {
     this.router.navigate(['/dashboard/awareness', awarenessId]);
   }
 
+
+  deleteAwareness(awarnessId: number) {
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette sensibilisation ?')) {
+
+      const awareness = this.awarenesses.filter((awareness: Awareness) => awareness.id = awarnessId).shift();
+      awareness.active = false;
+      this.awarenessService.saveAwarness(awareness).subscribe(() => this.ngOnInit());
+    }
+
+  }
+
   addAwareness() {
     this.router.navigate(['/dashboard/awareness']);
   }

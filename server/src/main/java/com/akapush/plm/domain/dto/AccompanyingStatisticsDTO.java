@@ -4,34 +4,34 @@ import java.util.Map;
 
 public class AccompanyingStatisticsDTO {
 
-    private Map<String, Integer> sex;
+    private Map<String, Long> sex;
 
-    private Map<String, Integer> educationLevel;
+    private Map<String, Long> educationLevel;
 
-    private Map<String, Integer> qpv;
+    private Map<String, Long> qpv;
 
 
-    public Map<String, Integer> getSex() {
+    public Map<String, Long> getSex() {
         return sex;
     }
 
-    public void setSex(Map<String, Integer> sex) {
+    public void setSex(Map<String, Long> sex) {
         this.sex = sex;
     }
 
-    public Map<String, Integer> getEducationLevel() {
+    public Map<String, Long> getEducationLevel() {
         return educationLevel;
     }
 
-    public void setEducationLevel(Map<String, Integer> educationLevel) {
+    public void setEducationLevel(Map<String, Long> educationLevel) {
         this.educationLevel = educationLevel;
     }
 
-    public Map<String, Integer> getQpv() {
+    public Map<String, Long> getQpv() {
         return qpv;
     }
 
-    public void setQpv(Map<String, Integer> qpv) {
+    public void setQpv(Map<String, Long> qpv) {
         this.qpv = qpv;
     }
 }

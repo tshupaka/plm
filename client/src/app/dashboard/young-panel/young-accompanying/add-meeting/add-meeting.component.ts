@@ -77,7 +77,7 @@ export class AddMeetingComponent implements OnInit {
 
       this.youngAccompanyingComponent.handleAddMeeting(this.meeting, this.newMeeting);
       this.activeModal.dismiss();
-    }
+    } 
   }
 
   getUserFromId(userId: number): User {

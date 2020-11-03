@@ -27,7 +27,7 @@
           <th scope="col">Date</th>
           <th scope="col">Nom</th>
           <th scope="col">Ville</th>
-          <th scope="col">Accès</th>
+          <th class="text-center align-middle" scope="col">Accès</th>
         </tr>
       </thead>
       <tbody>
@@ -35,7 +35,9 @@
           <td>{{awareness.date | date:'shortDate'}}</td>
           <td>{{awareness.name}}</td>
           <td>{{awareness.city}}</td>
-          <td><button class="btn btn-link" (click)="displayAwareness(awareness.id)">Afficher</button></td>
+          <td class="text-center align-middle"><button class="btn btn-link" (click)="displayAwareness(awareness.id)">Afficher</button>
+            <button class="btn btn-link" (click)="deleteAwareness(awareness.id)">Supprimer</button>
+          </td>
         </tr>
 
 

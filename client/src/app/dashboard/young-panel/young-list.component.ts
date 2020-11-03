@@ -61,52 +61,52 @@ export class YoungListComponent implements OnInit {
       console.log("QPVSStatus", this.qpvStatusValues[1].value);
 
     }
-        
-  );
-}
 
-
-getDropDownValues(key: string) {
-  if (this.dropDownValues) {
-    let values = this.dropDownValues[key];
-    if (!values) {
-      values = [];
-    }
-    return values;
+    );
   }
-}
-
-getDropDownValue(key: string, id : number) {
-  let values = this.getDropDownValues(key);
-  let value;
-  if (values) {
-    values.forEach(item => {
 
 
-      if (item.id == id) {
-        value = item.value;
-
+  getDropDownValues(key: string) {
+    if (this.dropDownValues) {
+      let values = this.dropDownValues[key];
+      if (!values) {
+        values = [];
       }
-    });
-    return value;
+      return values;
+    }
   }
-}
+
+  getDropDownValue(key: string, id: number) {
+    let values = this.getDropDownValues(key);
+    let value;
+    if (values) {
+      values.forEach(item => {
 
 
-displayYoung(youngId: number) {
-  this.router.navigate(['/dashboard/young', youngId]);
-}
+        if (item.id == id) {
+          value = item.value;
 
-getAccompanyingTypeLabel(typeId: number) {
-  return this.accompanyingTypesMap.get(typeId);
-}
-
-getAccompanyingTypes(): any {
-  return this.accompanyingTypes;
-}
+        }
+      });
+      return value;
+    }
+  }
 
 
-isFilterEmpty(): boolean {
-  return this.youngFilter.isEmpty();
-}
+  displayYoung(youngId: number) {
+    this.router.navigate(['/dashboard/young', youngId]);
+  }
+
+  getAccompanyingTypeLabel(typeId: number) {
+    return this.accompanyingTypesMap.get(typeId);
+  }
+
+  getAccompanyingTypes(): any {
+    return this.accompanyingTypes;
+  }
+
+
+  isFilterEmpty(): boolean {
+    return this.youngFilter.isEmpty();
+  }
 }

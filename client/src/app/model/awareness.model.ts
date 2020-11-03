@@ -1,6 +1,7 @@
 import { User } from './user.model';
 
 export class Awareness {
+    public id?:number;
     public name?: string;
     public date?: Date;
     public typeId?: number;
@@ -16,4 +17,5 @@ export class Awareness {
     public contact?: string;
     public comment?: string;
     public users: User[];
+    public active: boolean;
 }
